@@ -14,7 +14,7 @@ import Footer from './Footer';
 import EventPage from './EventPage';
 import EventSidebar from './EventSidebar';
 import LoginPage from './LoginPage';
-
+import GuestSidebar from './GuestSidebar';
 function App() {
 
   const handleLogin = (userRole) => {
@@ -45,89 +45,113 @@ const [events, setEvents] = useState(() => {
       id: 1,
       title: 'Tech Meetup 2026',
       date: '2026-08-25',
-      time: '10:00 AM - 1:00 PM',
+      time: '10:00 - 13:00',
       venue: 'Room 101, Main Building',
       description: 'Join us for an exciting tech meetup with industry experts.',
       status: 'upcoming',
       category: 'tech',
-      icon: '💻'
+      icon: '💻',
+      capacity: 50,
+      participants: 20,
+      participantNames: []
     },
     {
       id: 2,
       title: 'Annual Cultural Fest',
       date: '2026-09-05',
-      time: '2:00 PM - 5:00 PM',
+      time: '14:00 - 17:00',
       venue: 'Seminar Hall',
       description: 'Plan the biggest cultural fest of the year.',
       status: 'upcoming',
       category: 'cultural',
-      icon: '🎭'
+      icon: '🎭',
+      capacity: 50,
+      participants: 33,
+      participantNames: []
     },
     {
       id: 3,
       title: 'Football Tournament',
       date: '2026-08-20',
-      time: '8:00 AM - 6:00 PM',
+      time: '08:00 - 18:00',
       venue: 'Sports Ground',
       description: 'Inter-college football tournament with 8 teams.',
       status: 'ongoing',
       category: 'sports',
-      icon: '⚽'
+      icon: '⚽',
+      capacity: 50,
+      participants: 10,
+      participantNames: []
     },
     {
       id: 4,
       title: 'UI/UX Design Workshop',
       date: '2026-08-15',
-      time: '11:00 AM - 3:00 PM',
+      time: '11:00 - 15:00',
       venue: 'Design Studio',
       description: 'Learn the basics of UI/UX design.',
       status: 'completed',
       category: 'workshop',
-      icon: '📚'
+      icon: '📚',
+      capacity: 50,
+      participants: 37,
+      participantNames: []
     },
     {
       id: 5,
       title: 'Club Orientation Day',
       date: '2026-07-28',
-      time: '9:00 AM - 12:00 PM',
+      time: '09:00 - 12:00',
       venue: 'Auditorium',
       description: 'Welcome new members to the club.',
       status: 'completed',
       category: 'social',
-      icon: '🎉'
+      icon: '🎉',
+      capacity: 50,
+      participants: 26,
+      participantNames: []
     },
     {
       id: 6,
       title: 'Guest Lecture: AI & ML',
       date: '2026-09-10',
-      time: '3:00 PM - 5:00 PM',
+      time: '15:00 - 17:00',
       venue: 'Lecture Hall 2',
       description: 'Guest lecture on Artificial Intelligence.',
       status: 'upcoming',
       category: 'academic',
-      icon: '🤖'
+      icon: '🤖',
+      capacity: 50,
+      participants: 29,
+      participantNames: []
     },
     {
       id: 7,
       title: 'Dance Competition',
       date: '2026-08-10',
-      time: '6:00 PM - 9:00 PM',
+      time: '18:00 - 21:00',
       venue: 'Auditorium',
       description: 'Inter-club dance competition.',
       status: 'cancelled',
       category: 'cultural',
-      icon: '💃'
+      icon: '💃',
+      capacity: 50,
+      participants: 8,
+      participantNames: []
     },
     {
       id: 8,
       title: 'Coding Hackathon',
       date: '2026-09-15',
-      time: '9:00 AM - 9:00 PM',
+      time: '09:00 - 21:00',
       venue: 'Computer Lab',
       description: '24-hour coding hackathon.',
       status: 'upcoming',
       category: 'tech',
-      icon: '⌨️'
+      icon: '⌨️',
+      capacity: 50,
+      participants: 40,
+      participantNames: []
     }
   ];
 });
@@ -189,24 +213,29 @@ const [events, setEvents] = useState(() => {
   }
 
 
-  return (
-    <div className={darkMode ? "main-layout dark" : "main-layout"}>
-      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin}   />
-      <main className="content-area" id="mainContentScroll">
-        <Topbar 
-          darkMode={darkMode} 
-          setDarkMode={setDarkMode} 
-          goToLogin={goToLogin}
-        />
-        <Hero darkMode={darkMode} />
-        <Features />
-        <Steps />
-        <About />
-        <BottomCTA />
-        <Footer />
-      </main>
-    </div>
-  );
+return (
+  <div className={darkMode ? "main-layout dark" : "main-layout"}>
+    {!role ? (
+      <GuestSidebar darkMode={darkMode} goToLogin={goToLogin} />
+    ) : (
+      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} />
+    )}
+    <main className="content-area" id="mainContentScroll">
+      <Topbar 
+        darkMode={darkMode} 
+        setDarkMode={setDarkMode} 
+        goToLogin={goToLogin}
+        role={role}
+      />
+      <Hero darkMode={darkMode} />
+      <Features />
+      <Steps />
+      <About />
+      <BottomCTA />
+      <Footer />
+    </main>
+  </div>
+);
 }
 
 export default App;

@@ -982,3 +982,67 @@
 .main-layout.dark .event-page.dark-mode .btn-submit:hover {
     box-shadow: 0 4px 20px rgba(124, 107, 245, 0.3);
 }
+
+/* ===== PARTICIPATE BUTTON ===== */
+.participate-btn {
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    letter-spacing: 0.3px;
+}
+
+.participate-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.participate-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== FULL BADGE ===== */
+.full-badge {
+    background: #FEE2E2;
+    color: #DC2626;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===== DARK MODE — PARTICIPATE BUTTON ===== */
+.main-layout.dark .participate-btn {
+    background: linear-gradient(135deg, #60A5FA, #3B82F6);
+}
+
+.main-layout.dark .participate-btn:hover {
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+}
+
+.main-layout.dark .full-badge {
+    background: #3A2028;
+    color: #F87171;
+}
+
+.already-participated {
+  background: #D1FAE5;
+  color: #059669;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}

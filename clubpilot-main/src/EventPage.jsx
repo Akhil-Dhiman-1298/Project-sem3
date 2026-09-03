@@ -32,6 +32,39 @@ function EventPage({ darkMode, role,events,setEvents }) {
     }
   };
 
+const handleParticipate = (id) => {
+
+  const event = events.find(e => e.id === id);
+
+  if (!event) return;
+  if (event.participantNames && event.participantNames.includes('user')) {
+    alert('You have already participated in this event!');
+    return;
+  }
+
+  if (!window.confirm('Do you want to participate in this event?')) {
+    return;
+  }
+
+
+  setEvents(events.map(event => {
+    if (event.id === id) {
+      if (event.participants >= event.capacity) {
+        alert('Event is full! No more participants allowed.');
+        return event;
+      }
+
+      return {
+        ...event,
+        participants: event.participants + 1,
+        participantNames: [...(event.participantNames || []), 'user']  
+      };
+    }
+    return event;
+  }));
+};
+
+
  const updateStatus = (id, newStatus) => {
   let message = '';
   let confirmText = '';
@@ -54,46 +87,80 @@ function EventPage({ darkMode, role,events,setEvents }) {
   }
 };
 
-  const [newEvent, setNewEvent] = useState({
-    title: '',
-    date: '',
-    time: '',
-    venue: '',
-    description: '',
-    status: 'upcoming',
-    category: 'tech'
-  });
+const [newEvent, setNewEvent] = useState({
+  title: '',
+  date: '',
+  startTime: '',   
+  endTime: '',     
+  venue: '',
+  description: '',
+  status: 'upcoming',
+  category: 'tech',
+  capacity: 50,
+  participants: 0
+});
+
+const convertToMinutes = (timeStr) => {
+  if (!timeStr) return 0;
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + (minutes || 0);
+};
+
+const getTimeRange = (timeStr) => {
+  if (!timeStr || !timeStr.includes(' - ')) {
+    return { start: 0, end: 0 };
+  }
+
+  const [start, end] = timeStr.split(' - ');
+  return {
+    start: convertToMinutes(start.trim()),
+    end: convertToMinutes(end.trim())
+  };
+};
+
+const isOverlapping = (time1, time2) => {
+  const t1 = getTimeRange(time1);
+  const t2 = getTimeRange(time2);
+  return t1.start < t2.end && t2.start < t1.end;
+};
 
   const handleAddEvent = (e) => {
     e.preventDefault();
-    const isClashing = events.some(event => 
-      event.date === newEvent.date && 
-      (event.time === newEvent.time || 
-      event.time.toLowerCase() === newEvent.time.toLowerCase()) && 
-      (event.venue === newEvent.venue || 
-      event.venue.toLowerCase() === newEvent.venue.toLowerCase())
-    );
+      const combinedTime = `${newEvent.startTime} - ${newEvent.endTime}`;
 
-    if (isClashing) {
-    alert('This time slot is already booked! Please choose another date or time.');
-    return;
-    }
+      const isClashing = events.some(event => 
+        event.date === newEvent.date && 
+        isOverlapping(event.time, combinedTime) && 
+        event.venue.toLowerCase() === newEvent.venue.toLowerCase()
+      );
 
-    const newEventData = {
-      id: events.length + 1,
-      ...newEvent,
-      icon: '📌'
-    };
+      if (isClashing) {
+        alert('This time slot is already booked! Please choose another date or time.');
+        return;
+      }
+
+      const newEventData = {
+        id: events.length + 1,
+        ...newEvent,
+        time: combinedTime,  
+        capacity: newEvent.capacity || 50,
+        participants: 0,
+        icon: '📌'
+      };
+
     setEvents([...events, newEventData]);
     setShowForm(false);
     setNewEvent({
       title: '',
       date: '',
-      time: '',
+      startTime: '',   
+      endTime: '',     
       venue: '',
       description: '',
       status: 'upcoming',
-      category: 'tech'
+      category: 'tech',
+      capacity: 50,      
+      participants: 0    
     });
   };
 
@@ -144,15 +211,25 @@ function EventPage({ darkMode, role,events,setEvents }) {
                     required
                   />
                 </div>
-                <div className="form-group">
-                  <label>Time</label>
-                  <input
-                    type="text"
-                    placeholder="10:00 AM - 1:00 PM"
-                    value={newEvent.time}
-                    onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Start Time</label>
+                    <input
+                      type="time"
+                      value={newEvent.startTime}
+                      onChange={(e) => setNewEvent({...newEvent, startTime: e.target.value})}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>End Time</label>
+                    <input
+                      type="time"
+                      value={newEvent.endTime}
+                      onChange={(e) => setNewEvent({...newEvent, endTime: e.target.value})}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               <div className="form-group">
@@ -202,6 +279,19 @@ function EventPage({ darkMode, role,events,setEvents }) {
                   </select>
                 </div>
               </div>
+
+              <div className="form-group">
+                <label>Event Capacity</label>
+                <input
+                  type="number"
+                  placeholder="Max participants (e.g., 50)"
+                  value={newEvent.capacity}
+                  onChange={(e) => setNewEvent({...newEvent, capacity: Number(e.target.value)})}
+                  required
+                  min="1"
+                />
+              </div>
+
               <div className="form-actions">
                 <button type="button" className="btn-cancel" onClick={() => setShowForm(false)}>Cancel</button>
                 <button type="submit" className="btn-submit">Create Event</button>
@@ -304,9 +394,33 @@ function EventPage({ darkMode, role,events,setEvents }) {
                   <span className="meta-item">
                     <i className="fa-solid fa-location-dot"></i> {event.venue}
                   </span>
+
+                    <span className="meta-item">
+                      <i className="fa-solid fa-users"></i> {event.participants} / {event.capacity}
+                    </span>
                 </div>
 
                 <div className="event-footer">
+                    {role === 'user' && 
+                      event.status === 'upcoming' && 
+                      event.participants < event.capacity &&
+                      !event.participantNames?.includes('user') && (
+                        <button 
+                          className="status-btn participate-btn" 
+                          onClick={() => handleParticipate(event.id)}
+                        >
+                          <i className="fa-solid fa-user-plus"></i> Participate
+                        </button>
+                      )}
+
+                      {role === 'user' && event.participantNames?.includes('user') && (
+                        <span className="already-participated"> Already Participated</span>
+                      )}
+
+                  {role === 'user' && event.status === 'upcoming' && event.participants >= event.capacity && (
+                    <span className="full-badge">🔴 Full</span>
+                  )}
+
                   {role === 'admin' || role === 'leader' ? (
                     <div className="event-actions">
                       {event.status !== 'completed' && (
