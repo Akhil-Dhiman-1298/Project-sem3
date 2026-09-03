@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 
-function LoginPage({ onLogin }) {
+function LoginPage({ onLogin,darkMode }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,7 +23,7 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="login-page">
+    <div className={`login-page ${darkMode ? 'dark' : ''}`}>
       <div className="login-card">
         <h1>ClubPilot</h1>
         <p>Sign in to your account</p>

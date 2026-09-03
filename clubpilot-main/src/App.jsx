@@ -197,7 +197,7 @@ const [events, setEvents] = useState(() => {
 
 
   if (currentPage === 'login') {
-    return <LoginPage onLogin={handleLogin} />; 
+    return <LoginPage onLogin={handleLogin} darkMode={darkMode} />; 
   }
 
 
