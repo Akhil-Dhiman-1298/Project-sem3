@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sidebar({ darkMode, goToEvents,goToLogin }) {
+function Sidebar({ darkMode, goToEvents,goToLogin, goToProfile, role }) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -30,7 +30,7 @@ function Sidebar({ darkMode, goToEvents,goToLogin }) {
         <i className="fa-regular fa-circle-question"></i> About Us
       </a>
 
-      <div className={`sidebar-bottom ${darkMode ? 'dark' : ''}`}>
+      {/* <div className={`sidebar-bottom ${darkMode ? 'dark' : ''}`}>
         <div className="sidebar-bottom-title">100% Free</div>
         <div className="sidebar-bottom-subtext">For Club Leaders</div>
         <button className={`sidebar-bottom-button ${darkMode ? 'dark' : ''}`} onClick={(e) => {
@@ -39,7 +39,24 @@ function Sidebar({ darkMode, goToEvents,goToLogin }) {
         }}>
           Launch Dashboard →
         </button>
-      </div>
+      </div>  */}
+      <div className={`sidebar-bottom ${darkMode ? 'dark' : ''}`}>
+    <div className="sidebar-bottom-title">100% Free</div>
+    <div className="sidebar-bottom-subtext">For Club Leaders</div>
+    <button 
+      className={`sidebar-bottom-button ${darkMode ? 'dark' : ''}`}
+      onClick={() => {
+        if (role) {
+          goToProfile();   // 🔥 Profile
+        } else {
+          goToLogin();     // 🔥 Login
+        }
+      }}
+    >
+      {role ? '👤 Profile' : 'Launch Dashboard →'}
+    </button>
+  </div>
+      
     </aside>
   );
 }

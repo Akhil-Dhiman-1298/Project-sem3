@@ -14,7 +14,9 @@ import Footer from './Footer';
 import EventPage from './EventPage';
 import EventSidebar from './EventSidebar';
 import LoginPage from './LoginPage';
+import SignUpPage from './SignupPage';
 import GuestSidebar from './GuestSidebar';
+import ProfilePage from './ProfilePage';
 function App() {
 
   const handleLogin = (userRole) => {
@@ -32,6 +34,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
+
+  const handleSignUp = (userRole) => {
+    setRole(userRole);
+    localStorage.setItem('userRole', userRole);
+    setCurrentPage('landing');
+  };
 
   const handleLogoutClick = () => {
     setLogoutModal(true);
@@ -207,10 +215,29 @@ const [events, setEvents] = useState(() => {
   const goToEvents = () => setCurrentPage('events');
   const goToLanding = () => setCurrentPage('landing');
   const goToLogin = () => setCurrentPage('login');
+  const goToSignUp = () => setCurrentPage('signup');
+  const goToProfile = () => setCurrentPage('profile');
 
+  if (currentPage === 'profile') {
+    if (!role) {
+      setCurrentPage('landing');
+      return null;
+    }
+    return <ProfilePage darkMode={darkMode} role={role} goToLanding={goToLanding} />;
+  }
 
   if (currentPage === 'login') {
-    return <LoginPage onLogin={handleLogin} darkMode={darkMode} />; 
+    return <LoginPage onLogin={handleLogin} darkMode={darkMode} goToSignUp={goToSignUp} />; 
+  }
+
+  if (currentPage === 'signup') {
+    return (
+      <SignUpPage
+        onSignUp={handleSignUp}
+        darkMode={darkMode}
+        goToLogin={goToLogin}
+      />
+    );
   }
 
 
@@ -231,13 +258,14 @@ return (
     {!role ? (
       <GuestSidebar darkMode={darkMode} goToLogin={goToLogin} />
     ) : (
-      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} />
+      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} goToProfile={goToProfile}  role={role} />
     )}
     <main className="content-area" id="mainContentScroll">
     <Topbar 
       darkMode={darkMode} 
       setDarkMode={setDarkMode} 
       goToLogin={goToLogin}
+      goToSignUp={goToSignUp}
       role={role}
       onLogout={handleLogoutClick}   
     />

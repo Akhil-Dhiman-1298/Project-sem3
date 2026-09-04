@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 
-function LoginPage({ onLogin,darkMode }) {
+function LoginPage({ onLogin, darkMode, goToSignUp }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,11 +19,11 @@ function LoginPage({ onLogin,darkMode }) {
       return;
     }
 
-    onLogin(role); // 🔥 Ye callback App.jsx ke handleLogin ko call karega
+    onLogin(role);
   };
 
   return (
-    <div className={`login-page ${darkMode ? 'dark' : ''}`}>
+    <div className={`login-page ${darkMode ? 'dark-mode' : ''}`}>  {/* 🔥 FIX: "dark-mode" */}
       <div className="login-card">
         <h1>ClubPilot</h1>
         <p>Sign in to your account</p>
@@ -45,6 +45,15 @@ function LoginPage({ onLogin,darkMode }) {
         />
 
         <button onClick={handleLogin}>Sign In</button>
+
+        <div className="login-footer">
+          <p>
+            Don't have an account?{' '}
+            <a href="#" onClick={(e) => { e.preventDefault(); goToSignUp(); }}>
+              Sign Up
+            </a>
+          </p>
+        </div>
 
         <div className="demo-creds">
           <p>Demo Credentials:</p>
