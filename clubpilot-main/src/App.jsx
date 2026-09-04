@@ -28,10 +28,24 @@ function App() {
   );
   const [currentPage, setCurrentPage] = useState('landing');
   const [role, setRole] = useState(null);
-
+  const [logoutModal, setLogoutModal] = useState(false);
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
+
+  const handleLogoutClick = () => {
+    setLogoutModal(true);
+  };
+
+const confirmLogout = () => {
+  setLogoutModal(false);
+
+  setTimeout(() => {
+    setRole(null);
+    localStorage.removeItem('userRole');
+    setCurrentPage('landing');
+  }, 300);
+};
 
 
 const [events, setEvents] = useState(() => {
@@ -220,19 +234,42 @@ return (
       <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} />
     )}
     <main className="content-area" id="mainContentScroll">
-      <Topbar 
-        darkMode={darkMode} 
-        setDarkMode={setDarkMode} 
-        goToLogin={goToLogin}
-        role={role}
-      />
+    <Topbar 
+      darkMode={darkMode} 
+      setDarkMode={setDarkMode} 
+      goToLogin={goToLogin}
+      role={role}
+      onLogout={handleLogoutClick}   
+    />
       <Hero darkMode={darkMode} />
       <Features />
       <Steps />
       <About />
-      <BottomCTA />
-      <Footer />
+      <BottomCTA 
+      role={role} 
+      goToLogin={goToLogin} 
+      goToEvents={goToEvents} 
+     />
+    <Footer />
     </main>
+
+    {logoutModal && (
+    <div className="confirm-overlay" onClick={() => setLogoutModal(false)}>
+      <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
+        <h3>Logout</h3>
+        <p>Are you sure you want to logout?</p>
+        <div className="confirm-actions">
+          <button className="btn-confirm-cancel" onClick={() => setLogoutModal(false)}>
+            Cancel
+          </button>
+          <button className="btn-confirm-yes" onClick={confirmLogout}>
+            Yes, Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+
   </div>
 );
 }
