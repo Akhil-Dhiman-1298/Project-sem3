@@ -3,11 +3,21 @@ import './EventPage.css';
 
 function EventPage({ darkMode, role,events,setEvents }) {
   
-
   const [statusFilter, setStatusFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [showForm, setShowForm] = useState(false);
+  
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [participatingEventId, setParticipatingEventId] = useState(null);
+
+  const [actionModal, setActionModal] = useState(false);
+  const [actionEventId, setActionEventId] = useState(null);
+  const [actionType, setActionType] = useState('');
+
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [alertText, setAlertText] = useState('');
+  const [alertHeading, setAlertHeading] = useState('');
 
   const categories = ['all', ...new Set(events.map(event => event.category))];
 
@@ -27,64 +37,84 @@ function EventPage({ darkMode, role,events,setEvents }) {
   const completedCount = events.filter(e => e.status === 'completed').length;
 
   const deleteEvent = (id) => {
-    if (window.confirm('Are you sure you want to delete this event?')) {
       setEvents(events.filter(event => event.id !== id));
-    }
   };
 
 const handleParticipate = (id) => {
-
   const event = events.find(e => e.id === id);
-
   if (!event) return;
+  
   if (event.participantNames && event.participantNames.includes('user')) {
-    alert('You have already participated in this event!');
+    showAlert(' You have already participated in this event!');
     return;
   }
 
-  if (!window.confirm('Do you want to participate in this event?')) {
+  setParticipatingEventId(id);
+  setConfirmModal(true);
+};
+
+const confirmParticipation = () => {
+  const id = participatingEventId;
+  const event = events.find(e => e.id === id);
+  if (!event) return;
+
+  if (event.participants >= event.capacity) {
+    showAlert('Event is full! No more participants allowed.');
+    setConfirmModal(false);
     return;
   }
-
 
   setEvents(events.map(event => {
     if (event.id === id) {
-      if (event.participants >= event.capacity) {
-        alert('Event is full! No more participants allowed.');
-        return event;
-      }
-
       return {
         ...event,
         participants: event.participants + 1,
-        participantNames: [...(event.participantNames || []), 'user']  
+        participantNames: [...(event.participantNames || []), 'user']
       };
     }
     return event;
   }));
+
+  setConfirmModal(false);
+  setParticipatingEventId(null);
 };
 
+  const handleAction = (id, type) => {
+    setActionEventId(id);
+    setActionType(type);
+    setActionModal(true);
+  };
+
+
+  const confirmAction = () => {
+    const id = actionEventId;
+    const type = actionType;
+
+    if (type === 'delete') {
+        deleteEvent(id);
+    } 
+    else if (type === 'complete') {
+      updateStatus(id, 'completed');
+    } 
+    else if (type === 'cancel') {
+      updateStatus(id, 'cancelled');
+    }
+
+    setActionModal(false);
+    setActionEventId(null);
+    setActionType('');
+  };
 
  const updateStatus = (id, newStatus) => {
-  let message = '';
-  let confirmText = '';
-
-  if (newStatus === 'completed') {
-    message = ' Are you sure you want to mark this event as COMPLETED?';
-    confirmText = 'Yes, Complete it!';
-  } else if (newStatus === 'cancelled') {
-    message = ' Are you sure you want to CANCEL this event?';
-    confirmText = 'Yes, Cancel it!';
-  } else {
-    message = `Are you sure you want to change status to "${newStatus}"?`;
-    confirmText = 'Yes';
-  }
-
-  if (window.confirm(message)) {
     setEvents(events.map(event => 
       event.id === id ? { ...event, status: newStatus } : event
     ));
-  }
+};
+
+const showAlert = (message, title) => {
+  setAlertText(message);
+  setAlertHeading(title);
+  setIsAlertVisible(true);
 };
 
 const [newEvent, setNewEvent] = useState({
@@ -125,7 +155,7 @@ const isOverlapping = (time1, time2) => {
 };
 
   const handleAddEvent = (e) => {
-    e.preventDefault();
+      e.preventDefault();
       const combinedTime = `${newEvent.startTime} - ${newEvent.endTime}`;
 
       const isClashing = events.some(event => 
@@ -135,7 +165,7 @@ const isOverlapping = (time1, time2) => {
       );
 
       if (isClashing) {
-        alert('This time slot is already booked! Please choose another date or time.');
+      showAlert('This time slot is already booked! Please choose another date or time.', 'Time Clash');
         return;
       }
 
@@ -401,53 +431,39 @@ const isOverlapping = (time1, time2) => {
                 </div>
 
                 <div className="event-footer">
-                    {role === 'user' && 
-                      event.status === 'upcoming' && 
-                      event.participants < event.capacity &&
-                      !event.participantNames?.includes('user') && (
-                        <button 
-                          className="status-btn participate-btn" 
-                          onClick={() => handleParticipate(event.id)}
-                        >
-                          <i className="fa-solid fa-user-plus"></i> Participate
-                        </button>
-                      )}
 
-                      {role === 'user' && event.participantNames?.includes('user') && (
-                        <span className="already-participated"> Already Participated</span>
-                      )}
+                  {role === 'user' && event.status === 'upcoming' && event.participants < event.capacity && !event.participantNames?.includes('user') && (
+                    <button className="status-btn participate-btn" onClick={() => handleParticipate(event.id)}>
+                      <i className="fa-solid fa-user-plus"></i> Participate
+                    </button>
+                  )}
+
+                  {role === 'user' && event.participantNames?.includes('user') && (
+                    <span className="already-participated"> Already Participated</span>
+                  )}
 
                   {role === 'user' && event.status === 'upcoming' && event.participants >= event.capacity && (
-                    <span className="full-badge">🔴 Full</span>
+                    <span className="full-badge">Full</span>
                   )}
+
 
                   {role === 'admin' || role === 'leader' ? (
                     <div className="event-actions">
                       {event.status !== 'completed' && (
-                        <button 
-                          className="status-btn complete-btn" 
-                          onClick={() => updateStatus(event.id, 'completed')}
-                        >
-                           Mark as Completed
+                        <button className="status-btn complete-btn" onClick={() => handleAction(event.id, 'complete')}>
+                          Mark as Completed
                         </button>
                       )}
                       
                       {event.status !== 'cancelled' && event.status !== 'completed' && (
-                        <button 
-                          className="status-btn cancel-btn" 
-                          onClick={() => updateStatus(event.id, 'cancelled')}
-                        >
-                           Cancel
+                        <button className="status-btn cancel-btn" onClick={() => handleAction(event.id, 'cancel')}>
+                          Cancel
                         </button>
                       )}
 
                       {role === 'admin' && (
-                        <button className="delete-btn" onClick={() => {
-                          if (window.confirm(' Are you sure you want to DELETE this event?')) {
-                            deleteEvent(event.id);
-                          }
-                        }}>
-                           Delete
+                        <button className="delete-btn" onClick={() => handleAction(event.id, 'delete')}>
+                          Delete
                         </button>
                       )}
                     </div>
@@ -460,7 +476,71 @@ const isOverlapping = (time1, time2) => {
           ))}
         </div>
       )}
+
+{confirmModal && (
+  <div className="confirm-overlay">
+    <div className="confirm-modal">
+      <h3>Confirm Participation</h3>
+      <p>Do you want to participate in this event?</p>
+      <div className="confirm-actions">
+        <button className="btn-confirm-cancel" onClick={() => {
+          setConfirmModal(false);
+          setParticipatingEventId(null);
+        }}>
+          Cancel
+        </button>
+        <button className="btn-confirm-yes" onClick={confirmParticipation}>
+          Yes, Participate
+        </button>
+      </div>
     </div>
+  </div>
+)}
+
+{actionModal && (
+  <div className="confirm-overlay">
+    <div className="confirm-modal">
+      <h3>
+        {actionType === 'delete' && 'Delete Event'}
+        {actionType === 'complete' && 'Complete Event'}
+        {actionType === 'cancel' && 'Cancel Event'}
+      </h3>
+      <p>
+        {actionType === 'delete' && 'Are you sure you want to DELETE this event?'}
+        {actionType === 'complete' && 'Are you sure you want to mark this event as COMPLETED?'}
+        {actionType === 'cancel' && 'Are you sure you want to CANCEL this event?'}
+      </p>
+      <div className="confirm-actions">
+        <button className="btn-confirm-cancel" onClick={() => {
+          setActionModal(false);
+          setActionEventId(null);
+          setActionType('');
+        }}>
+          Cancel
+        </button>
+        <button className="btn-confirm-yes" onClick={confirmAction}>
+          Yes, {actionType === 'delete' ? 'Delete' : actionType === 'complete' ? 'Complete' : 'Cancel'}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+{isAlertVisible && (
+  <div className="confirm-overlay" onClick={() => setIsAlertVisible(false)}>
+    <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
+      <h3>{alertHeading}</h3>
+      <p>{alertText}</p>
+      <div className="confirm-actions">
+        <button className="btn-confirm-yes" onClick={() => setIsAlertVisible(false)}>
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+</div>
   );
 }
 

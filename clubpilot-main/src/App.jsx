@@ -23,7 +23,6 @@ function App() {
     setCurrentPage('landing');
   };
 
-
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('darkMode') === 'true'
   );
