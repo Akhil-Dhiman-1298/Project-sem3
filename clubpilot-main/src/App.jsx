@@ -271,7 +271,7 @@ return (
       <Hero darkMode={darkMode} />
       <Features />
       <Steps />
-      0<About />
+      <About />
       <BottomCTA 
       role={role} 
       goToLogin={goToLogin} 

@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './LoginPage.css';
 
 function LoginPage({ onLogin, darkMode, goToSignUp }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  useEffect(() => {
+    usernameRef.current?.focus();
+  }, []);
 
   const handleLogin = () => {
     let role = '';
@@ -22,38 +29,43 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
     onLogin(role);
   };
 
+  const handleUsernameKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      passwordRef.current?.focus();
+    }
+  };
+
+  const handlePasswordKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
-    <div className={`login-page ${darkMode ? 'dark-mode' : ''}`}>  {/* 🔥 FIX: "dark-mode" */}
+    <div className={`login-page ${darkMode ? 'dark' : ''}`}>
       <div className="login-card">
         <h1>ClubPilot</h1>
         <p>Sign in to your account</p>
 
         <input
+          ref={usernameRef}
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+          onKeyDown={handleUsernameKeyDown}
         />
 
         <input
+          ref={passwordRef}
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+          onKeyDown={handlePasswordKeyDown}
         />
 
         <button onClick={handleLogin}>Sign In</button>
-
-        <div className="login-footer">
-          <p>
-            Don't have an account?{' '}
-            <a href="#" onClick={(e) => { e.preventDefault(); goToSignUp(); }}>
-              Sign Up
-            </a>
-          </p>
-        </div>
 
         <div className="demo-creds">
           <p>Demo Credentials:</p>

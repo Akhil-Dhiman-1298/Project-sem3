@@ -4,7 +4,9 @@ function GuestSidebar({ darkMode }) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
-        <div className="brand-name">Club<span>Pilot</span></div>
+        <div className="brand-name">
+          Club<span className={darkMode ? 'pilot-dark' : ''}>Pilot</span>
+        </div>
       </div>
 
       <a 

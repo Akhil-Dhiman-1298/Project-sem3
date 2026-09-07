@@ -82,6 +82,18 @@ body {
     color: #5B3DF6;
 }
 
+/* ===== SIDEBAR "PILOT" DARK MODE ===== */
+
+/* Light Mode - Default Purple */
+.brand-name span {
+    color: #5B3DF6;
+}
+
+/* Dark Mode - "Pilot" turns Orange */
+.dark .brand-name span.pilot-dark {
+    color: #f97316;
+}
+ 
 
 /* NAVIGATION LINKS */
 .nav-link {
