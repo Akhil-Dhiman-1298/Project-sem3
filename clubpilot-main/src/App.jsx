@@ -22,7 +22,6 @@ function App() {
     localStorage.setItem('userRole', userRole);
     setCurrentPage('landing');
     };
-
     const goToProfile = () => setCurrentPage('profile');
     const goToSignUp = () => setCurrentPage('signup');
 
