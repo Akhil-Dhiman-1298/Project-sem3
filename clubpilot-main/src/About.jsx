@@ -14,7 +14,7 @@ function About() {
             <h3>Our Mission</h3>
             <p>Club Pilot was born from a simple observation: college clubs across India were struggling with manual processes, scattered data, and inefficient management systems.</p>
             <p>We set out to create a comprehensive platform that would help club leaders focus on what they do best – building communities and organizing events – while we handle the administrative complexities.</p>
-            <p>Today, we're proud to serve hundreds of clubs across India, helping them manage thousands of members and grow their communities with confidence.</p>
+            <p>We are aiming to serve hundreds of clubs across India, helping them manage thousands of members and grow their communities with confidence.</p>
           </div>
 
           <div className="about-features" data-aos="fade-left" style={{ textAlign: 'left' }}>

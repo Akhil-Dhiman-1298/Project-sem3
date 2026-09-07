@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './clubpilot.css';
-
+import ProfilePage from './ProfilePage';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Hero from './Hero';
@@ -15,7 +15,18 @@ import EventPage from './EventPage';
 import EventSidebar from './EventSidebar';
 import LoginPage from './LoginPage';
 import GuestSidebar from './GuestSidebar';
+import SignUpPage from './SignUpPage';
 function App() {
+
+    const handleSignUp = (userRole) => {
+    setRole(userRole);
+    localStorage.setItem('userRole', userRole);
+    setCurrentPage('landing');
+    };
+
+    const goToProfile = () => setCurrentPage('profile');
+    const goToSignUp = () => setCurrentPage('signup');
+
 
   const handleLogin = (userRole) => {
     setRole(userRole);
@@ -28,7 +39,9 @@ function App() {
   );
   const [currentPage, setCurrentPage] = useState('landing');
   const [role, setRole] = useState(null);
+
   const [logoutModal, setLogoutModal] = useState(false);
+  
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
@@ -210,14 +223,14 @@ const [events, setEvents] = useState(() => {
 
 
   if (currentPage === 'login') {
-    return <LoginPage onLogin={handleLogin} darkMode={darkMode} />; 
+    return <LoginPage onLogin={handleLogin} darkMode={darkMode} goToSignUp={goToSignUp} />; 
   }
 
 
   if (currentPage === 'events') {
     return (
       <div className={darkMode ? "main-layout dark" : "main-layout"}>
-        <EventSidebar darkMode={darkMode} goToLanding={goToLanding} />
+      <EventSidebar darkMode={darkMode} goToLanding={goToLanding} goToProfile={goToProfile} role={role} goToLogin={goToLogin}/>
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <EventPage darkMode={darkMode} role={role} events={events} setEvents={setEvents}/>
         </div>
@@ -226,12 +239,25 @@ const [events, setEvents] = useState(() => {
   }
 
 
+    if (currentPage === 'signup') {
+      return <SignUpPage onSignUp={handleSignUp} darkMode={darkMode} goToLogin={goToLogin} />;
+    }
+
+    if (currentPage === 'profile') {
+    if (!role) {
+      setCurrentPage('landing');
+      return null;
+    }
+    return <ProfilePage darkMode={darkMode} role={role} goToLanding={goToLanding} setDarkMode={setDarkMode} />;
+  }
+
+
 return (
   <div className={darkMode ? "main-layout dark" : "main-layout"}>
     {!role ? (
       <GuestSidebar darkMode={darkMode} goToLogin={goToLogin} />
     ) : (
-      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} />
+      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} goToProfile={goToProfile}/>
     )}
     <main className="content-area" id="mainContentScroll">
     <Topbar 
@@ -239,12 +265,13 @@ return (
       setDarkMode={setDarkMode} 
       goToLogin={goToLogin}
       role={role}
-      onLogout={handleLogoutClick}   
+      onLogout={handleLogoutClick} 
+      goToSignUp={goToSignUp}  
     />
       <Hero darkMode={darkMode} />
       <Features />
       <Steps />
-      <About />
+      0<About />
       <BottomCTA 
       role={role} 
       goToLogin={goToLogin} 

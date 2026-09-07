@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sidebar({ darkMode, goToEvents,goToLogin }) {
+function Sidebar({ darkMode, goToEvents,goToLogin,goToProfile,role}) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -24,10 +24,12 @@ function Sidebar({ darkMode, goToEvents,goToLogin }) {
       </a>
 
       <div className="divider"></div>
-      <div className="section-label">Support</div>
-
       <a href="#about-section" className="nav-link">
         <i className="fa-regular fa-circle-question"></i> About Us
+      </a>
+
+      <a href="#" className="nav-link" onClick={goToProfile}>
+        <i className="fa-regular fa-user"></i> Profile
       </a>
 
       <div className={`sidebar-bottom ${darkMode ? 'dark' : ''}`}>

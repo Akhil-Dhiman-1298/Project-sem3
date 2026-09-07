@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Topbar({ darkMode, setDarkMode, role, goToLogin, onLogout }) {
+function Topbar({ darkMode, setDarkMode, role, goToLogin, goToSignUp, onLogout }) {
   return (
     <div className={`topbar ${darkMode ? 'dark' : ''}`}>
       <button className="topbar-btn" onClick={() => setDarkMode(!darkMode)}>
@@ -16,7 +16,7 @@ function Topbar({ darkMode, setDarkMode, role, goToLogin, onLogout }) {
           <a href="#" className="topbar-btn" onClick={(e) => { e.preventDefault(); goToLogin(); }}>
             Login
           </a>
-          <button className="topbar-btn" onClick={() => {/* Sign-Up logic */}}>
+          <button className="topbar-btn" onClick={goToSignUp}>  {/* 🔥 onClick add */}
             Sign-Up
           </button>
         </>

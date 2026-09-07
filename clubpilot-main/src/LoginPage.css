@@ -1,141 +1,193 @@
-/* ===== LOGIN PAGE ===== */
+/* ===== LIGHT MODE ===== */
+
 .login-page {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #FAFAFC;  /* 🔥 Landing page jaisa background */
-  font-family: 'Inter', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FAFAFC;
 }
 
 .login-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 48px 40px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid #EEEAF8;
-  text-align: center;
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #EEEAF8;
+    text-align: center;
 }
 
 .login-card h1 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #5B3DF6 0%, #8B5CF6 40%, #f97316 80%, #fb923c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #5B3DF6, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
 }
 
 .login-card p {
-  color: #64748B;
-  font-size: 14px;
-  margin-bottom: 28px;
+    color: #64748B;
+    font-size: 14px;
+    margin-bottom: 24px;
 }
 
 .login-card input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
-  margin-bottom: 14px;
-  transition: all 0.3s ease;
-  background: white;
-  color: #0F172A;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    background: white;
+    color: #0F172A;
 }
 
 .login-card input:focus {
-  border-color: #5B3DF6;
-  box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
-  outline: none;
+    border-color: #5B3DF6;
+    box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
+    outline: none;
+}
+
+.login-card input::placeholder {
+    color: #94a3b8;
 }
 
 .login-card button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 4px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 4px;
 }
 
 .login-card button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(91, 61, 246, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(91, 61, 246, 0.3);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #64748B;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #5B3DF6;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
 }
 
 .demo-creds {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid #EEEAF8;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #EEEAF8;
 }
 
 .demo-creds p {
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
 }
 
 .demo-creds span {
-  display: inline-block;
-  background: #F1F5F9;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  color: #475569;
-  margin: 4px 4px;
-  font-family: 'Courier New', monospace;
+    display: inline-block;
+    background: #F1F5F9;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #475569;
+    margin: 4px 4px;
+    font-family: 'Courier New', monospace;
 }
+
 /* ===== DARK MODE ===== */
 
-.dark .login-page {
-  background: #0b1120;
+.login-page.dark-mode {
+    background: #0a0e1a;
+    min-height: 100vh;
 }
 
-.dark .login-card {
-  background: #1e293b;
-  border-color: #475569;
+.login-page.dark-mode .login-card {
+    background: #141b2d;
+    border-color: #2a3348;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-.dark .login-card h1 {
-  color: #ffffff;
+.login-page.dark-mode .login-card h1 {
+    color: #ffffff;
 }
 
-.dark .login-card p {
-  color: #94a3b8;
+.login-page.dark-mode .login-card p {
+    color: #94a3b8;
 }
 
-.dark .login-card input {
-  background: #0a0e1a;
-  border-color: #2a3348;
-  color: #e2e8f0;
+.login-page.dark-mode .login-card input {
+    background: #0a0e1a;
+    border-color: #2a3348;
+    color: #e2e8f0;
 }
 
-.dark .login-card input:focus {
-  border-color: #7c6bf5;
-  box-shadow: 0 0 0 3px rgba(124, 107, 245, 0.15);
+.login-page.dark-mode .login-card input::placeholder {
+    color: #64748b;
 }
 
-.dark .demo-creds {
-  border-top-color: #2a3348;
+.login-page.dark-mode .login-card input:focus {
+    border-color: #7c6bf5;
+    box-shadow: 0 0 0 3px rgba(124, 107, 245, 0.15);
 }
 
-.dark .demo-creds p {
-  color: #94a3b8;
+.login-page.dark-mode .login-card button {
+    background: linear-gradient(135deg, #7c6bf5, #5b3df6);
+    color: white;
 }
 
-.dark .demo-creds span {
-  background: #1e2740;
-  color: #94a3b8;
+.login-page.dark-mode .login-card button:hover {
+    background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+    box-shadow: 0 8px 25px rgba(91, 61, 246, 0.4);
+}
+
+.login-page.dark-mode .login-footer {
+    color: #94a3b8;
+}
+
+.login-page.dark-mode .login-footer a {
+    color: #8B5CF6;
+}
+
+.login-page.dark-mode .login-footer a:hover {
+    color: #A78BFA;
+    text-decoration: underline;
+}
+
+.login-page.dark-mode .demo-creds {
+    border-top-color: #2a3348;
+}
+
+.login-page.dark-mode .demo-creds p {
+    color: #94a3b8;
+}
+
+.login-page.dark-mode .demo-creds span {
+    background: #1e2740;
+    color: #94a3b8;
 }

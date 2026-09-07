@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EventSidebar({ darkMode, goToLanding }) {
+function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile }) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -22,6 +22,14 @@ function EventSidebar({ darkMode, goToLanding }) {
       <a href="#" className="nav-link">
         <i className="fa-solid fa-credit-card"></i> Features
       </a>
+
+      <div className="divider"></div>
+
+      <a href="#" className="nav-link" onClick={goToProfile}>
+        <i className="fa-regular fa-user"></i> Profile
+      </a>
+
+      
 
 
 

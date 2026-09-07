@@ -6,6 +6,7 @@ function EventPage({ darkMode, role,events,setEvents }) {
   const [statusFilter, setStatusFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  
   const [showForm, setShowForm] = useState(false);
   
   const [confirmModal, setConfirmModal] = useState(false);
@@ -59,7 +60,7 @@ const confirmParticipation = () => {
   if (!event) return;
 
   if (event.participants >= event.capacity) {
-    showAlert('Event is full! No more participants allowed.');
+    showAlert('Event is full! No more participants allowed.','Already Participated');
     setConfirmModal(false);
     return;
   }
