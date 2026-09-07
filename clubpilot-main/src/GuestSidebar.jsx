@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuestSidebar({ darkMode }) {
+function GuestSidebar({ darkMode }) {  // 🔥 Sirf darkMode
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -9,10 +9,7 @@ function GuestSidebar({ darkMode }) {
         </div>
       </div>
 
-      <a 
-        href="#" 
-        className="nav-link active disabled-link" 
-      >
+      <a href="#" className="nav-link active disabled-link">
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 

@@ -17,7 +17,6 @@ import LoginPage from './LoginPage';
 import GuestSidebar from './GuestSidebar';
 import SignUpPage from './SignUpPage';
 function App() {
-
     const handleSignUp = (userRole) => {
     setRole(userRole);
     localStorage.setItem('userRole', userRole);

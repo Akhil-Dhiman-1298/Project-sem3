@@ -42,7 +42,7 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
   };
 
   return (
-    <div className={`login-page ${darkMode ? 'dark' : ''}`}>
+    <div className={`login-page ${darkMode ? 'dark-mode' : ''}`}>  {/* 🔥 FIX: "dark-mode" */}
       <div className="login-card">
         <h1>ClubPilot</h1>
         <p>Sign in to your account</p>
@@ -66,6 +66,15 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
         />
 
         <button onClick={handleLogin}>Sign In</button>
+
+        <div className="login-footer">
+          <p>
+            Don't have an account?{' '}
+            <a href="#" onClick={(e) => { e.preventDefault(); goToSignUp(); }}>
+              Sign Up
+            </a>
+          </p>
+        </div>
 
         <div className="demo-creds">
           <p>Demo Credentials:</p>
