@@ -95,6 +95,28 @@ body {
 }
  
 
+.quote-btn {
+    background: transparent;
+    border: 1px solid #f97316;
+    color: #f97316;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+}
+
+.quote-btn:hover {
+    background: #f97316;
+    color: white;
+}
+
+.quote-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* NAVIGATION LINKS */
 .nav-link {
     display: flex;

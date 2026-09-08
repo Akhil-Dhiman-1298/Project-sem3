@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './EventPage.css';
 
 function EventPage({ darkMode, role,events,setEvents }) {
@@ -8,6 +8,21 @@ function EventPage({ darkMode, role,events,setEvents }) {
   const [searchTerm, setSearchTerm] = useState('');
   
   const [showForm, setShowForm] = useState(false);
+
+  const searchInputRef = useRef(null);
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    searchInputRef.current?.focus();
+  }, []);
+
+    useEffect(() => {
+    if (showForm) {
+      setTimeout(() => {
+        titleRef.current?.focus();
+      }, 100);
+    }
+  }, [showForm]);
   
   const [confirmModal, setConfirmModal] = useState(false);
   const [participatingEventId, setParticipatingEventId] = useState(null);
@@ -31,6 +46,8 @@ function EventPage({ darkMode, role,events,setEvents }) {
     event.description.toLowerCase().includes(searchTerm.toLowerCase());
     return statusMatch && categoryMatch && searchMatch;
   });
+
+  
 
   const totalEvents = events.length;
   const upcomingCount = events.filter(e => e.status === 'upcoming').length;
@@ -225,6 +242,7 @@ const isOverlapping = (time1, time2) => {
               <div className="form-group">
                 <label>Event Title</label>
                 <input
+                  ref={titleRef}
                   type="text"
                   placeholder="Enter event title"
                   value={newEvent.title}
@@ -335,6 +353,7 @@ const isOverlapping = (time1, time2) => {
       <div className="search-section">
         <div className="search-box">
           <input
+            ref={searchInputRef}
             type="text"
             className="search-input"
             placeholder="Search events by title, category, or description..."
