@@ -1012,4 +1012,27 @@ body {
   color: white;
 }
 
+@media (max-width: 600px) {
+    .club-pilot-text {
+        font-size: 28px;
+    }
 
+    .club-pilot-the-Complete-part {
+        font-size: 24px;
+    }
+
+    .club-pilot-the-Complete-part span {
+        font-size: 24px;
+    }
+
+    .features-grid,
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image-top {
+        width: 100px;
+        height: 100px;
+    }
+
+}
