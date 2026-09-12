@@ -56,16 +56,25 @@ function ProfilePage({ darkMode, role, goToLanding, setDarkMode }) {
         {/* Stats */}
         <div className="profile-stats">
           <div className="stat-item">
+            <div className="stat-icon-wrap">
+              <i className="fa-solid fa-calendar-check"></i>
+            </div>
             <span className="stat-number">{userData.eventsAttended}</span>
             <span className="stat-label">Events Attended</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
+            <div className="stat-icon-wrap">
+              <i className="fa-solid fa-calendar-plus"></i>
+            </div>
             <span className="stat-number">{userData.eventsOrganized}</span>
             <span className="stat-label">Events Organized</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
+            <div className="stat-icon-wrap">
+              <i className="fa-solid fa-clock"></i>
+            </div>
             <span className="stat-number">{userData.memberSince}</span>
             <span className="stat-label">Member Since</span>
           </div>
