@@ -1,6 +1,7 @@
 import React from 'react';
 
-function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goToTasks }) {
+
+function TaskSidebar({ darkMode, goToEvents, goToLogin, goToProfile, role, goToLanding }) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -8,6 +9,7 @@ function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goTo
           Club<span className={darkMode ? 'pilot-dark' : ''}>Pilot</span>
         </div>
       </div>
+
       <a href="#" className="nav-link" onClick={goToLanding}>
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
@@ -16,15 +18,13 @@ function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goTo
         <i className="fa-solid fa-users"></i> Members
       </a>
 
-      <a href="#" className="nav-link active">
+      <a href="#" className="nav-link" onClick={goToEvents}>
         <i className="fa-solid fa-calendar-check"></i> Events
       </a>
 
-      {(role === 'admin' || role === 'leader') && (
-        <a href="#" className="nav-link" onClick={goToTasks}>
-          <i className="fa-solid fa-credit-card"></i> Task
-        </a>
-      )}
+      <a href="#" className="nav-link active">
+        <i className="fa-solid fa-credit-card"></i> Task
+      </a>
 
       <div className="divider"></div>
 
@@ -32,13 +32,8 @@ function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goTo
         <i className="fa-regular fa-user"></i> Profile
       </a>
 
-      
-
-
-
-
     </aside>
   );
 }
 
-export default EventSidebar;
+export default TaskSidebar;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuestSidebar({ darkMode }) {  // 🔥 Sirf darkMode
+function GuestSidebar({ darkMode }) { 
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -23,13 +23,6 @@ function GuestSidebar({ darkMode }) {  // 🔥 Sirf darkMode
         <i className="fa-regular fa-circle-question"></i> About Us
       </a>
 
-      <div className={`sidebar-bottom ${darkMode ? 'dark' : ''}`}>
-        <div className="sidebar-bottom-title">100% Free</div>
-        <div className="sidebar-bottom-subtext">For Club Leaders</div>
-        <button className={`sidebar-bottom-button ${darkMode ? 'dark' : ''}`}>
-          Launch Dashboard →
-        </button>
-      </div>
     </aside>
   );
 }
