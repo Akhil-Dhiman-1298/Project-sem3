@@ -1,0 +1,2087 @@
+/* =====================================================
+   CLUBPILOT COLOR THEME
+===================================================== */
+
+:root {
+
+    /* Brand Orange */
+
+    --brand-50: #fff7ed;
+    --brand-100: #ffedd5;
+    --brand-200: #fed7aa;
+    --brand-300: #fdba74;
+    --brand-400: #fb923c;
+    --brand-500: #f97316;
+    --brand-600: #ea580c;
+    --brand-700: #c2410c;
+    --brand-900: #7c2d12;
+
+
+    /* Background */
+
+    --background: #fafafc;
+
+
+    /* White */
+
+    --white: #ffffff;
+
+
+    /* Text */
+
+    --text-dark: #0f172a;
+    --text: #334155;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+
+
+    /* Borders */
+
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+
+
+    /* Status */
+
+    --success: #16a34a;
+}
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    margin: 0;
+
+    background: var(--background);
+
+    color: var(--text-dark);
+
+    font-family: "Inter", sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.font-display {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+
+/* =====================================================
+   APP SHELL
+===================================================== */
+
+.app-shell {
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 320px;
+    min-width: 320px;
+
+    height: 100vh;
+
+    background: var(--white);
+
+    border-right: 1px solid var(--border-light);
+
+    box-shadow:
+        4px 0 24px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo-wrap {
+
+    height: 100px;
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    border-bottom: 1px solid var(--border-light);
+
+    flex-shrink: 0;
+}
+
+
+.clubpilot-logo {
+
+    width: 46px;
+    height: 46px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+.logo-text {
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: var(--text-dark);
+
+    letter-spacing: -1px;
+}
+
+
+.logo-text span {
+    color: var(--brand-500);
+}
+
+
+/* =====================================================
+   LEADER PROFILE
+===================================================== */
+
+.leader-profile {
+
+    padding: 28px;
+
+    border-bottom: 1px solid var(--border-light);
+
+    flex-shrink: 0;
+}
+
+
+.leader-profile-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.avatar-wrapper {
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+.leader-avatar {
+
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+
+    border: 2px solid var(--brand-200);
+}
+
+
+.online-dot {
+
+    width: 11px;
+    height: 11px;
+
+    background: var(--success);
+
+    border: 2px solid white;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+}
+
+
+.leader-info {
+    min-width: 0;
+}
+
+
+.leader-name {
+
+    margin: 0 0 4px 0;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: var(--text-dark);
+}
+
+
+.leader-role {
+
+    margin: 0;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--brand-600);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =====================================================
+   SIDEBAR NAVIGATION
+===================================================== */
+
+.sidebar-nav {
+
+    flex: 1;
+
+    width: 100%;
+
+    padding: 28px 20px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   NAV SECTION
+===================================================== */
+
+.nav-section {
+    width: 100%;
+}
+
+
+/* =====================================================
+   SECTION LABEL
+===================================================== */
+
+.section-label {
+
+    display: block;
+
+    padding-left: 18px;
+
+    margin-bottom: 12px;
+
+    color: var(--text-light);
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   SIDEBAR NAV LINKS
+
+   IMPORTANT:
+   !important is used here because Bootstrap also
+   contains a ".nav-link" class.
+===================================================== */
+
+.sidebar .nav-link {
+
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    box-sizing: border-box;
+
+    padding: 13px 18px !important;
+
+    margin: 0 0 4px 0;
+
+    color: var(--text-muted) !important;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* =====================================================
+   NAV ICONS
+
+   Fixed width keeps all text aligned.
+===================================================== */
+
+.sidebar .nav-link i {
+
+    width: 24px !important;
+
+    min-width: 24px !important;
+
+    max-width: 24px !important;
+
+    height: 20px;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    flex-shrink: 0 !important;
+
+    margin: 0 14px 0 0 !important;
+
+    color: #64748b !important;
+
+    font-size: 16px;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   NAV TEXT
+===================================================== */
+
+.sidebar .nav-link span {
+
+    display: inline-block !important;
+
+    flex: 0 1 auto;
+
+    width: auto;
+
+    margin: 0;
+
+    color: inherit;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   NAV HOVER
+===================================================== */
+
+.sidebar .nav-link:hover {
+
+    color: var(--brand-700) !important;
+
+    background: var(--brand-50) !important;
+
+    transform: translateX(2px);
+}
+
+
+.sidebar .nav-link:hover i {
+
+    color: var(--brand-600) !important;
+}
+
+
+/* =====================================================
+   ACTIVE NAV ITEM
+===================================================== */
+
+.sidebar .nav-link.active {
+
+    color: var(--brand-700) !important;
+
+    background: var(--brand-50) !important;
+
+    box-shadow:
+        inset 3px 0 0 var(--brand-500);
+}
+
+
+.sidebar .nav-link.active i {
+
+    color: var(--brand-600) !important;
+}
+
+
+/* =====================================================
+   SIDEBAR DIVIDER
+===================================================== */
+
+.sidebar-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    background: var(--border-light);
+
+    margin: 24px 0;
+}
+
+
+/* =====================================================
+   SIDEBAR BOTTOM
+===================================================== */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    padding: 0 20px 30px;
+
+    flex-shrink: 0;
+}
+
+
+.sidebar-cta {
+
+    border-top: 1px solid var(--border-light);
+
+    padding: 22px 0 0;
+}
+
+
+/* =====================================================
+   SIDEBAR CTA TEXT
+===================================================== */
+
+.cta-small {
+
+    margin: 0 0 5px 0;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    color: var(--brand-600);
+}
+
+
+.cta-text {
+
+    margin: 0 0 18px 0;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    color: var(--text-muted);
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   OPEN DASHBOARD BUTTON
+===================================================== */
+
+.dashboard-btn {
+
+    width: 100% !important;
+
+    height: 50px;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 10px;
+
+    padding: 0 18px;
+
+    color: white !important;
+
+    background: var(--brand-700) !important;
+
+    border: 1px solid var(--brand-700) !important;
+
+    border-radius: 11px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    box-shadow:
+        0 8px 24px rgba(194, 65, 12, 0.20);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Dashboard icon */
+
+.dashboard-btn i {
+
+    width: auto !important;
+
+    min-width: auto !important;
+
+    max-width: none !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
+
+    color: white !important;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+
+/* Dashboard text */
+
+.dashboard-btn span {
+
+    display: inline-block;
+
+    color: white !important;
+
+    white-space: nowrap;
+}
+
+
+/* Dashboard hover */
+
+.dashboard-btn:hover {
+
+    color: white !important;
+
+    background: var(--brand-900) !important;
+
+    border-color: var(--brand-900) !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(124, 45, 18, 0.25);
+}
+
+
+/* =====================================================
+   MAIN AREA
+===================================================== */
+
+.main-area {
+
+    min-width: 0;
+
+    height: 100vh;
+
+    overflow-y: auto;
+
+    background: var(--background);
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    min-height: 80px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-top: 12px;
+
+    padding-bottom: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.80);
+
+    backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid var(--border-light);
+
+    gap: 30px;
+}
+
+
+/* =====================================================
+   TOPBAR LEFT
+===================================================== */
+
+.topbar-left {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* =====================================================
+   TOPBAR RIGHT
+===================================================== */
+
+.topbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   PAGE TITLE
+===================================================== */
+
+.page-title {
+
+    color: var(--text-dark);
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+
+.page-subtitle {
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box {
+
+    width: 315px;
+    height:46px;
+    flex-shrink:0;
+    position: relative;
+}
+
+
+.search-box i {
+
+    position: absolute;
+
+    left: 16px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--text-light);
+
+    z-index: 2;
+    font-size:15px;
+    z-index:5;
+    pointer-events:none;
+}
+
+
+.search-box input {
+     width: 100%;
+    height: 46px;
+
+    padding-left: 42px;
+    padding-right: 15px;
+
+    border-radius: 50px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    color: var(--text-dark);
+    
+}
+
+
+.search-box input:focus {
+
+    background: white;
+
+    border-color: var(--brand-300);
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(249, 115, 22, 0.12);
+
+    outline: none;
+}
+
+
+/* =====================================================
+   NOTIFICATION BUTTON
+===================================================== */
+
+.icon-button {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: var(--text-muted);
+
+    position: relative;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.2s ease;
+    
+}
+
+
+.icon-button:hover {
+
+    background: var(--brand-50);
+
+    color: var(--brand-600);
+
+    border-color: var(--brand-100);
+}
+
+.icon-button i {
+    display: block;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   NOTIFICATION DOT
+===================================================== */
+
+.notification-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: var(--brand-500);
+
+    border: 2px solid white;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 8px;
+}
+
+
+/* =====================================================
+   BRAND BUTTON
+   CREATE TASK
+===================================================== */
+
+.btn-brand {
+
+    height: 50px;
+
+    color: white !important;
+
+    background: var(--brand-700) !important;
+
+    border: 1px solid var(--brand-700) !important;
+
+    border-radius: 11px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    padding: 0 22px;
+
+    box-shadow:
+        0 8px 24px rgba(194, 65, 12, 0.18);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Create Task hover */
+
+.btn-brand:hover {
+
+    color: white !important;
+
+    background: var(--brand-900) !important;
+
+    border-color: var(--brand-900) !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(124, 45, 18, 0.25);
+}
+
+
+/* Create Task icon */
+
+.btn-brand i {
+
+    color: white !important;
+}
+
+
+/* =====================================================
+   CREATE TASK
+===================================================== */
+
+.create-task-btn {
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   PAGE CONTENT
+===================================================== */
+
+.page-content {
+
+    padding-top: 35px;
+
+    padding-bottom: 50px;
+}
+
+
+/* =====================================================
+   CONTENT PLACEHOLDER
+===================================================== */
+
+.content-placeholder {
+
+    min-height: 500px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   PLACEHOLDER ICON
+===================================================== */
+
+.placeholder-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--brand-50);
+
+    color: var(--brand-500);
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   PLACEHOLDER HEADING
+===================================================== */
+
+.content-placeholder h2 {
+
+    font-size: 22px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   PLACEHOLDER TEXT
+===================================================== */
+
+.content-placeholder p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+
+/* =====================================================
+   TABLET / SMALL LAPTOP
+===================================================== */
+
+@media (max-width: 992px) {
+
+    .sidebar {
+
+        width: 250px;
+
+        min-width: 250px;
+    }
+
+
+    .search-box {
+
+        width: 240px;
+    }
+
+
+    .topbar {
+
+        gap: 15px;
+    }
+}
+
+
+/* =====================================================
+   TABLET / MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        width: 80px;
+
+        min-width: 80px;
+    }
+
+
+    /* Hide sidebar text */
+
+    .logo-text,
+    .leader-info,
+    .nav-link span,
+    .section-label,
+    .sidebar-cta {
+
+        display: none !important;
+    }
+
+
+    /* Center logo */
+
+    .logo-wrap {
+
+        justify-content: center;
+
+        padding: 0 !important;
+    }
+
+
+    /* Center profile */
+
+    .leader-profile {
+
+        display: flex;
+
+        justify-content: center;
+
+        padding: 20px 0;
+    }
+
+
+    .leader-profile-inner {
+
+        justify-content: center;
+    }
+
+
+    /* Sidebar navigation */
+
+    .sidebar-nav {
+
+        padding: 12px !important;
+    }
+
+
+    /* Sidebar links */
+
+    .sidebar .nav-link {
+
+        justify-content: center !important;
+
+        padding: 13px !important;
+    }
+
+
+    /* Hide icon spacing */
+
+    .sidebar .nav-link i {
+
+        margin-right: 0 !important;
+    }
+
+
+    /* Hide dashboard area */
+
+    .sidebar-bottom {
+
+        display: none;
+    }
+
+
+    /* Topbar */
+
+    .topbar {
+
+        padding-left: 20px !important;
+
+        padding-right: 20px !important;
+    }
+
+
+    .page-title {
+
+        font-size: 20px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 576px) {
+
+    .sidebar {
+
+        width: 65px;
+
+        min-width: 65px;
+    }
+
+
+    .page-subtitle {
+
+        display: none;
+    }
+
+
+    /* Create task becomes icon button */
+
+    .topbar .btn-brand {
+
+        font-size: 0;
+
+        width: 40px;
+
+        height: 40px;
+
+        padding: 0;
+    }
+
+
+    .topbar .btn-brand i {
+
+        margin: 0 !important;
+
+        font-size: 14px;
+    }
+
+
+    .page-content {
+
+        padding-left: 15px !important;
+
+        padding-right: 15px !important;
+    }
+}
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+}
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+.stat-icon.orange {
+    background: var(--brand-50);
+    color: var(--brand-600);
+}
+
+.stat-icon.green {
+    background: #ecfdf3;
+    color: #16a34a;
+}
+
+.stat-icon.red {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 28px;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 7px;
+}
+
+.stat-card span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   TASK HEADER
+========================================= */
+
+.task-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.task-page-header h2 {
+    margin: 0 0 6px;
+    color: var(--text-dark);
+    font-size: 24px;
+}
+
+.task-page-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FILTER BAR
+========================================= */
+
+.filter-bar {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 18px;
+
+    padding: 14px;
+
+    margin-bottom: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.03);
+}
+
+.filter-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn {
+    border: none;
+    background: transparent;
+
+    padding: 11px 18px;
+
+    border-radius: 11px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    color: var(--brand-600);
+    background: var(--brand-50);
+}
+
+.filter-btn.active {
+    color: white;
+    background: var(--brand-600);
+}
+
+
+/* =========================================
+   SORT
+========================================= */
+
+.sort-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-section span {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sort-section select {
+    height: 42px;
+
+    padding: 0 35px 0 15px;
+
+    border-radius: 11px;
+
+    border: 1px solid var(--brand-300);
+
+    background: white;
+
+    color: var(--text-dark);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TASK LIST
+========================================= */
+
+.task-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   TASK CARD
+========================================= */
+
+.task-card {
+    position: relative;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    min-height: 365px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================
+   CARD TOP
+========================================= */
+
+.task-card-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+/* =========================================
+   PRIORITY BADGE
+========================================= */
+
+.priority-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 7px 12px;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+.priority-badge.high {
+    background: #fff1f2;
+    color: #dc2626;
+    border: 1px solid #fecdd3;
+}
+
+.priority-badge.medium {
+    background: #fff7ed;
+    color: var(--brand-600);
+    border: 1px solid var(--brand-200);
+}
+
+.priority-badge.low {
+    background: #ecfdf3;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+
+/* =========================================
+   DEADLINE + MENU
+========================================= */
+
+.task-card-actions {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.deadline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+.deadline i {
+    color: var(--text-light);
+}
+
+
+/* =========================================
+   THREE DOTS
+========================================= */
+
+.task-menu-btn {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: var(--text-muted);
+
+    cursor: pointer;
+}
+
+.task-menu-btn:hover {
+    color: var(--brand-600);
+    border-color: var(--brand-300);
+    background: var(--brand-50);
+}
+
+
+/* =========================================
+   DROPDOWN
+========================================= */
+
+.task-dropdown {
+    position: absolute;
+
+    top: 46px;
+    right: 0;
+
+    width: 145px;
+
+    background: white;
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 10px;
+
+    padding: 7px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.12);
+
+    z-index: 50;
+}
+
+.task-dropdown button {
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.task-dropdown button:hover {
+    background: var(--brand-50);
+    color: var(--brand-700);
+}
+
+.task-dropdown .delete-menu-item {
+    color: #dc2626;
+}
+
+.task-dropdown .delete-menu-item:hover {
+    background: #fef2f2;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.task-card-content {
+    flex: 1;
+
+    padding-top: 30px;
+}
+
+.task-card-content h3 {
+    margin: 0 0 12px;
+
+    color: var(--text-dark);
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.35;
+
+    font-weight: 800;
+}
+
+.task-card-content p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   CARD BOTTOM
+========================================= */
+
+.task-card-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top: 1px solid var(--border-light);
+
+    padding-top: 18px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   ASSIGNEE
+========================================= */
+
+.assignee {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.assignee img {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid var(--brand-100);
+}
+
+.assignee div {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.assignee strong {
+    color: var(--text-dark);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.assignee span {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   STATUS BADGE
+========================================= */
+
+.status-badge {
+    padding: 8px 12px;
+
+    border-radius: 50px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.status-badge.pending {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.status-badge.in-progress {
+    background: var(--brand-50);
+    color: var(--brand-600);
+}
+
+.status-badge.completed {
+    background: #ecfdf3;
+    color: #16a34a;
+}
+
+
+/* =========================================
+   NO TASKS
+========================================= */
+
+.no-tasks {
+    background: white;
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 18px;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    grid-column: 1 / -1;
+}
+
+.no-tasks i {
+    font-size: 35px;
+
+    color: var(--brand-400);
+
+    margin-bottom: 15px;
+}
+
+.no-tasks h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+}
+
+.no-tasks p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+}
+
+.task-modal {
+    width: 100%;
+
+    max-width: 600px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.25);
+}
+
+.modal-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    margin: 0 0 5px;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+.modal-header p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+.modal-close {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: var(--text-muted);
+
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: var(--brand-50);
+
+    color: var(--brand-600);
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-dark);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 11px 13px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    color: var(--text-dark);
+
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--brand-400);
+
+    box-shadow:
+        0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   MODAL FOOTER
+========================================= */
+
+.modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 10px;
+}
+
+.cancel-btn,
+.save-task-btn {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    color: var(--text-muted);
+}
+
+.save-task-btn {
+    background: var(--brand-700);
+
+    border: 1px solid var(--brand-700);
+
+    color: white;
+}
+
+.save-task-btn:hover {
+    background: var(--brand-900);
+
+    border-color: var(--brand-900);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .task-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .filter-bar {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+    .filter-tabs {
+        overflow-x: auto;
+    }
+
+    .sort-section {
+        justify-content: space-between;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .task-list {
+        grid-template-columns: 1fr;
+    }
+
+    .task-card-bottom {
+        align-items: flex-start;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .deadline {
+        display: none;
+    }
+
+}
