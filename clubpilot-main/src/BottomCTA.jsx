@@ -4,32 +4,24 @@ function BottomCTA({ role, goToLogin, goToEvents }) {
   const [quote, setQuote] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const fetchQuote = async () => {
-    if (!role) return;
+const fetchQuote = async () => {
+  if (!role) return;
+  setLoading(true);
+  try {
+    const response = await fetch(
+      'https://dummyjson.com/quotes/random'
+    );
 
-    setLoading(true);
-    try {
-      const response = await fetch('https://api.quotable.io/random');
-      const data = await response.json();
-      setQuote(data.content);
-      } 
-      catch (error) {
-      console.error('Error fetching quote:', error);
-
-      const fallbackQuotes = [
-        '"Leadership is the capacity to translate vision into reality."',
-        '"The only way to do great work is to love what you do."',
-        '"Success is not final, failure is not fatal."',
-        '"Believe you can and you\'re halfway there."',
-        '"Act as if what you do makes a difference. It does."'
-      ];
-      const randomIndex = Math.floor(Math.random() * fallbackQuotes.length);
-      setQuote(fallbackQuotes[randomIndex]);
-    } 
-    finally {
-      setLoading(false);
-    }
-  };
+  const data = await response.json();
+  setQuote(data.quote);
+  }
+  catch (error) {
+    console.error('Error fetching quote:', error);
+  }
+  finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchQuote();

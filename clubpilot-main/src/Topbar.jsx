@@ -16,7 +16,7 @@ function Topbar({ darkMode, setDarkMode, role, goToLogin, goToSignUp, onLogout }
           <a href="#" className="topbar-btn" onClick={(e) => { e.preventDefault(); goToLogin(); }}>
             Login
           </a>
-          <button className="topbar-btn" onClick={goToSignUp}>  {/* 🔥 onClick add */}
+          <button className="topbar-btn" onClick={goToSignUp}> 
             Sign-Up
           </button>
         </>

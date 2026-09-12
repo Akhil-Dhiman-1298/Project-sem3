@@ -4,11 +4,6 @@ import darkImage3 from "./watermarked_img_3266336707912256=.png"
 function Hero({ darkMode }) {
   return (
     <section className="page-intro">
-      <div className="shining-part">
-        <div className="glowing-part1"></div>
-        <div className="glowing-part-2"></div>
-      </div>
-
       <div className="club-pilot-main-writing">
         <div className="hero-image-wrapper" data-aos="zoom-out">
           <img
