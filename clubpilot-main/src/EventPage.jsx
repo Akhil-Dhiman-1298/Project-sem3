@@ -215,7 +215,7 @@ const isOverlapping = (time1, time2) => {
   return (
     <div className={`event-page ${darkMode ? 'dark-mode' : ''}`}>
       <div className="event-header">
-        <div className="event-header-left">
+        <div className={`event-header-left ${darkMode?'dark-mode':''}`}>
           <h2>Events</h2>
           <p>Manage all your club events in one place.</p>
         </div>

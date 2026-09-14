@@ -18,12 +18,15 @@ import GuestSidebar from './GuestSidebar';
 import SignUpPage from './SignUpPage';
 import TaskPage from './TaskPage';
 import TaskSidebar from './TaskSidebar';
+
 function App() {
+
     const handleSignUp = (userRole) => {
     setRole(userRole);
     localStorage.setItem('userRole', userRole);
     setCurrentPage('landing');
     };
+
     const goToProfile = () => setCurrentPage('profile');
     const goToSignUp = () => setCurrentPage('signup');
     const goToTasks = () => setCurrentPage('tasks');

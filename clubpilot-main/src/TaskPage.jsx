@@ -137,7 +137,7 @@ function TaskPage({ darkMode, role }) {
         <div className="task-page">
             <header className="topbar-task">
                 <div className="topbar-left">
-                    <h1 style={{ textAlign: "left", letterSpacing: "0.5px" }}>Welcome Back</h1>
+                    <h1 style={{ textAlign: "left", letterSpacing: "0.5px" }}>Task Management</h1>
                     <p>Lead your team, manage tasks and keep your club on track.</p>
                 </div>
 

@@ -996,6 +996,12 @@
 .main-layout.dark .event-page.dark-mode .form-group label {
     color: #e2e8f0;
 }
+
+.event-header-left.dark-mode h2 {
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+}
 .main-layout.dark .event-page.dark-mode .form-group input,
 .main-layout.dark .event-page.dark-mode .form-group textarea,
 .main-layout.dark .event-page.dark-mode .form-group select {
