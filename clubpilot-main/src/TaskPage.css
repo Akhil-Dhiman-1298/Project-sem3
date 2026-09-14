@@ -569,6 +569,7 @@
     font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 21px;
     font-weight: 800;
+    color:#0f172a;
 }
 
 .task-page .modal-header p {
@@ -614,6 +615,7 @@
     font-family: "Inter", sans-serif;
     font-size: 13px;
     color: #0f172a;
+    background:#ffffff;
     outline: none;
 }
 
