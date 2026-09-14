@@ -18,7 +18,9 @@ import GuestSidebar from './GuestSidebar';
 import SignUpPage from './SignUpPage';
 import TaskPage from './TaskPage';
 import TaskSidebar from './TaskSidebar';
-
+import MembersDashboard from './Members/pages/MembersDashboard';
+import MemberSidebar from './MemberSidebar';
+import './Members/Members.css';
 function App() {
 
     const handleSignUp = (userRole) => {
@@ -30,6 +32,7 @@ function App() {
     const goToProfile = () => setCurrentPage('profile');
     const goToSignUp = () => setCurrentPage('signup');
     const goToTasks = () => setCurrentPage('tasks');
+    const goToMembers = () => setCurrentPage('members');
 
   const handleLogin = (userRole) => {
     setRole(userRole);
@@ -233,7 +236,7 @@ const [events, setEvents] = useState(() => {
   if (currentPage === 'events') {
     return (
       <div className={darkMode ? "main-layout dark" : "main-layout"}>
-      <EventSidebar darkMode={darkMode} goToLanding={goToLanding} goToProfile={goToProfile} role={role} goToLogin={goToLogin} goToTasks={goToTasks}/>
+      <EventSidebar darkMode={darkMode} goToLanding={goToLanding} goToProfile={goToProfile} role={role} goToLogin={goToLogin} goToTasks={goToTasks} goToMembers={goToMembers}/>
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <EventPage darkMode={darkMode} role={role} events={events} setEvents={setEvents}/>
         </div>
@@ -264,6 +267,7 @@ if (currentPage === 'tasks') {
         role={role} 
         goToLogin={goToLogin}
         goToEvents={goToEvents}
+        goToMembers={goToMembers}
       />
       <div className="content-area" style={{ paddingTop: '0px' }}>
         <TaskPage 
@@ -275,12 +279,31 @@ if (currentPage === 'tasks') {
   );
 }
 
+if (currentPage === 'members') {
+  return (
+    <div className={darkMode ? "main-layout dark" : "main-layout"}>
+      <MemberSidebar
+        darkMode={darkMode}
+        goToLanding={goToLanding}
+        goToEvents={goToEvents}
+        goToLogin={goToLogin}
+        goToProfile={goToProfile}
+        goToTasks={goToTasks}
+        role={role}
+      />
+      <div className="content-area" style={{ paddingTop: '0px' }}>
+        <MembersDashboard />
+      </div>
+    </div>
+  );
+}
+
 return (
   <div className={darkMode ? "main-layout dark" : "main-layout"}>
     {!role ? (
-      <GuestSidebar darkMode={darkMode} goToLogin={goToLogin} />
+      <GuestSidebar darkMode={darkMode} goToLogin={goToLogin} goToMembers={goToMembers}/>
     ) : (
-      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} goToProfile={goToProfile} goToTasks={goToTasks}/>
+      <Sidebar darkMode={darkMode} goToEvents={goToEvents} goToLogin={goToLogin} role={role} goToProfile={goToProfile} goToTasks={goToTasks} goToMembers={goToMembers}/>
     )}
     <main className="content-area" id="mainContentScroll">
     <Topbar 

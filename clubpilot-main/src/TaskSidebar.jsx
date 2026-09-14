@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function TaskSidebar({ darkMode, goToEvents, goToLogin, goToProfile, role, goToLanding }) {
+function TaskSidebar({ darkMode, goToEvents, goToLogin, goToProfile, role, goToLanding ,goToMembers}) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -14,7 +14,7 @@ function TaskSidebar({ darkMode, goToEvents, goToLogin, goToProfile, role, goToL
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 
-      <a href="#" className="nav-link">
+      <a href="#" className="nav-link" onClick={goToMembers}>
         <i className="fa-solid fa-users"></i> Members
       </a>
 

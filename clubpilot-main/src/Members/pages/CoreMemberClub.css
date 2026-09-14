@@ -1,0 +1,341 @@
+/* =====================================================
+   CORE MEMBER - MY CLUB
+   ===================================================== */
+
+.core-club-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 36px 50px;
+  box-sizing: border-box;
+}
+
+
+/* ================= HERO ================= */
+
+.core-club-hero {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff, #f6f2ff);
+  border: 1px solid #e8e3f4;
+  margin-bottom: 22px;
+}
+
+.core-club-logo {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #6547f5, #7b5cff);
+  color: white;
+
+  font-size: 24px;
+  font-weight: 800;
+
+  box-shadow: 0 10px 25px rgba(91, 61, 246, 0.18);
+}
+
+.core-club-hero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.core-club-eyebrow {
+  margin: 0 0 6px;
+
+  color: #6547f5;
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.core-club-hero h1 {
+  margin: 0 0 7px;
+
+  color: #202536;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.core-club-description {
+  margin: 0;
+
+  color: #697184;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ================= CLUB DETAILS ================= */
+
+.core-club-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.core-club-info-card {
+  padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e8e5f2;
+  border-radius: 15px;
+
+  min-height: 82px;
+}
+
+.core-club-info-card span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #8a91a1;
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.core-club-info-card strong {
+  display: block;
+
+  color: #202536;
+  font-size: 16px;
+}
+
+
+/* ================= TEAM ================= */
+
+.core-club-team-card {
+  padding: 25px;
+
+  background: #ffffff;
+  border: 1px solid #e8e5f2;
+  border-radius: 17px;
+
+  margin-bottom: 22px;
+}
+
+.core-club-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.core-club-section-heading h2 {
+  margin: 3px 0 0;
+
+  color: #202536;
+  font-size: 21px;
+}
+
+.core-club-team-badge {
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: #f0edff;
+  color: #5b3df6;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.core-club-team-description {
+  max-width: 750px;
+
+  margin: 13px 0 20px;
+
+  color: #697184;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.core-club-team-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid #eeeaf4;
+}
+
+.core-club-person-avatar {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+
+  background: #eeeaff;
+  color: #5b3df6;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.core-club-team-person div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.core-club-team-person span {
+  color: #8a91a1;
+  font-size: 11px;
+}
+
+.core-club-team-person strong {
+  color: #202536;
+  font-size: 14px;
+}
+
+
+/* ================= CLUB STRUCTURE ================= */
+
+.core-club-structure {
+  padding: 25px;
+
+  background: #ffffff;
+  border: 1px solid #e8e5f2;
+  border-radius: 17px;
+}
+
+.core-club-structure-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 22px;
+}
+
+.core-club-structure-card {
+  width: min(100%, 600px);
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 18px;
+
+  border: 1px solid #e8e5f2;
+  border-radius: 14px;
+
+  background: #faf9fd;
+}
+
+.core-club-structure-card.highlighted {
+  background: #f6f2ff;
+  border-color: #dcd3ff;
+}
+
+.core-club-structure-icon {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #eeeaff;
+  color: #5b3df6;
+}
+
+.core-club-structure-card div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.core-club-structure-card span {
+  color: #8a91a1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.core-club-structure-card strong {
+  color: #202536;
+  font-size: 15px;
+}
+
+.core-club-structure-card small {
+  color: #697184;
+  font-size: 12px;
+}
+
+.core-club-flow-line {
+  padding: 7px 0;
+
+  color: #8b78ef;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+  .core-club-page {
+    padding: 24px 20px 40px;
+  }
+
+  .core-club-hero {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .core-club-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .core-club-page {
+    padding: 20px 15px 35px;
+  }
+
+  .core-club-hero {
+    padding: 22px;
+  }
+
+  .core-club-hero h1 {
+    font-size: 25px;
+  }
+
+  .core-club-logo {
+    width: 62px;
+    height: 62px;
+  }
+
+  .core-club-team-card,
+  .core-club-structure {
+    padding: 20px;
+  }
+
+  .core-club-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

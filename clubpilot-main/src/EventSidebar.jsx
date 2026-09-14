@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goToTasks }) {
+function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goToTasks,goToMembers }) {
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -12,9 +12,9 @@ function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goTo
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 
-      <a href="#" className="nav-link">
+    {(role === 'admin' || role === 'leader')&&( <a href="#" className="nav-link" onClick={goToMembers}>
         <i className="fa-solid fa-users"></i> Members
-      </a>
+      </a>)}
 
       <a href="#" className="nav-link active">
         <i className="fa-solid fa-calendar-check"></i> Events
