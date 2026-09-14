@@ -23,7 +23,7 @@ function TaskSidebar({ darkMode, goToEvents, goToLogin, goToProfile, role, goToL
       </a>
 
       <a href="#" className="nav-link active">
-        <i className="fa-solid fa-credit-card"></i> Task
+        <i className="fa-solid fa-credit-card"></i> Tasks
       </a>
 
       <div className="divider"></div>
