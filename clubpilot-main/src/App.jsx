@@ -28,12 +28,21 @@ function App() {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('darkMode') === 'true'
   );
-  const [currentPage, setCurrentPage] = useState('landing');
-  const [role, setRole] = useState(null);
+  // const [currentPage, setCurrentPage] = useState('landing');
+  const [currentPage, setCurrentPage] = useState(() => {
+    return localStorage.getItem("currentPage") || "landing";
+});
+
+  // const [role, setRole] = useState(null);
+  const [role, setRole] = useState(() => {
+    return localStorage.getItem("userRole");
+});
   const [currentMemberId, setCurrentMemberId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [logoutModal, setLogoutModal] = useState(false);
-
+useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
+}, [currentPage]);
   // ---- Navigation ----
   const goToProfile = () => setCurrentPage('profile');
   const goToSignUp = () => setCurrentPage('signup');
@@ -311,7 +320,12 @@ function App() {
           goToMembers={goToMembers}
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
-          <TaskPage darkMode={darkMode} role={role} />
+          <TaskPage
+    darkMode={darkMode}
+    role={role}
+    tasks={tasks}
+    setTasks={setTasks}
+/>
         </div>
       </div>
     );
