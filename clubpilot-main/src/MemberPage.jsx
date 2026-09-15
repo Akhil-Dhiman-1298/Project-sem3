@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MemberSidebar from "./MemberSidebar";
 import CoreMemberHub from "./Members/pages/CoreMemberHub";
 import CoreMemberClub from "./Members/pages/CoreMemberClub";
@@ -19,6 +19,10 @@ function MemberPage({
 }) {
   const [activeTab, setActiveTab] = useState(initialTab);
 
+  useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
+
   const currentPageKey =
     activeTab === "hub"
       ? "core-member"
@@ -26,7 +30,7 @@ function MemberPage({
       ? "core-club"
       : activeTab === "tasks"
       ? "member-tasks"
-      : "events";
+      : "member-events";
 
   return (
     <div className={darkMode ? "main-layout dark" : "main-layout"}>

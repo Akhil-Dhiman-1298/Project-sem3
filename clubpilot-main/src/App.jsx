@@ -28,21 +28,12 @@ function App() {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('darkMode') === 'true'
   );
-  // const [currentPage, setCurrentPage] = useState('landing');
-  const [currentPage, setCurrentPage] = useState(() => {
-    return localStorage.getItem("currentPage") || "landing";
-});
-
-  // const [role, setRole] = useState(null);
-  const [role, setRole] = useState(() => {
-    return localStorage.getItem("userRole");
-});
+  const [currentPage, setCurrentPage] = useState('landing');
+  const [role, setRole] = useState(null);
   const [currentMemberId, setCurrentMemberId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [logoutModal, setLogoutModal] = useState(false);
-useEffect(() => {
-    localStorage.setItem("currentPage", currentPage);
-}, [currentPage]);
+
   // ---- Navigation ----
   const goToProfile = () => setCurrentPage('profile');
   const goToSignUp = () => setCurrentPage('signup');
@@ -268,10 +259,11 @@ useEffect(() => {
     );
   }
 
-  if (['core-member', 'core-club', 'member-tasks'].includes(currentPage)) {
+  if (['core-member', 'core-club', 'member-tasks', 'member-events'].includes(currentPage)) {
     const tab =
       currentPage === 'core-member' ? 'hub' :
-      currentPage === 'core-club' ? 'club' : 'tasks';
+      currentPage === 'core-club' ? 'club' :
+      currentPage === 'member-events' ? 'events' : 'tasks';
 
     return (
       <MemberPage
@@ -321,11 +313,11 @@ useEffect(() => {
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <TaskPage
-    darkMode={darkMode}
-    role={role}
-    tasks={tasks}
-    setTasks={setTasks}
-/>
+            darkMode={darkMode}
+            role={role}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
         </div>
       </div>
     );
@@ -364,7 +356,7 @@ useEffect(() => {
           goToCoreMember={() => setCurrentPage('core-member')}
           goToCoreClub={() => setCurrentPage('core-club')}
           goToTasks={() => setCurrentPage('member-tasks')}
-          goToEvents={goToEvents}
+          goToEvents={() => setCurrentPage('member-events')}
           goToProfile={goToProfile}
           currentPage={currentPage}
         />

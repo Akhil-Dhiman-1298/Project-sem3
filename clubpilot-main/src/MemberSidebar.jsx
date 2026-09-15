@@ -27,7 +27,7 @@ function MemberSidebar({ darkMode, goToHome, goToCoreMember, goToTasks, goToCore
         <i className="fa-solid fa-users"></i> My Club
       </a>
 
-      <a href="#" className={`nav-link ${isActive('events') ? 'active' : ''}`} onClick={goToEvents}>
+      <a href="#" className={`nav-link ${isActive('member-events') ? 'active' : ''}`} onClick={goToEvents}>
         <i className="fa-solid fa-calendar-check"></i> Events
       </a>
 
