@@ -15,15 +15,15 @@ function MembersDashboard() {
     const matchesTeam =
       selectedTeam === "All" || member.team === selectedTeam;
 
-    return matchesSearch && matchesTeam;
+    return matchesSearch && matchesTeam
   });
 
   return (
     <div className="members-dashboard">
       <div className="members-header">
         <div>
-          <p className="members-eyebrow">Club Members</p>
-          <h1>Members Dashboard</h1>
+          
+          <h1>Your Club Members</h1>
           <p>View and keep track of the core members in your club.</p>
         </div>
       </div>
