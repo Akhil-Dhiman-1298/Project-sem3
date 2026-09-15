@@ -320,7 +320,12 @@ useEffect(() => {
           goToMembers={goToMembers}
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
-          <TaskPage darkMode={darkMode} role={role} />
+          <TaskPage
+    darkMode={darkMode}
+    role={role}
+    tasks={tasks}
+    setTasks={setTasks}
+/>
         </div>
       </div>
     );
