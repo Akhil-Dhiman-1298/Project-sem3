@@ -136,9 +136,9 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
           </div>
 
 
-          <label htmlFor="username">
+          {/* <label htmlFor="username">
             Username
-          </label>
+          </label> */}
 
           <input
             id="username"
@@ -151,9 +151,9 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
           />
 
 
-          <label htmlFor="password">
+          {/* <label htmlFor="password">
             Password
-          </label>
+          </label> */}
 
           <input
             id="password"
