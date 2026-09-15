@@ -1,11 +1,18 @@
-import { useState } from "react";
+import {useEffect ,useState } from "react";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 import "./TaskPage.css";
 
 function TaskPage({ darkMode, role }) {
 
-    const [tasks, setTasks] = useState([
+    const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+        return JSON.parse(savedTasks);
+    }
+
+    return [
         {
             id: 1,
             title: "Plan Annual Sports Day",
@@ -39,7 +46,11 @@ function TaskPage({ darkMode, role }) {
             assigneeRole: "Team Member",
             avatar: "https://i.pravatar.cc/100?img=8"
         }
-    ]);
+    ];
+});
+useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}, [tasks]);
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("All");
