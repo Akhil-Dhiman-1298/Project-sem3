@@ -75,14 +75,16 @@ function TaskForm({ formData, setFormData, onSubmit, onClose, editingTask }) {
                         </div>
 
                         <div className="form-group">
-                            <label>Assignee</label>
-                            <input
-                                type="text"
+                          <label>Assignee</label>
+                                <input
+                                 type="number"
                                 name="assignee"
                                 value={formData.assignee}
                                 onChange={handleChange}
-                                placeholder="Enter assignee"
-                            />
+                                placeholder="Enter member ID (1-4)"
+                                min="1"
+                                max="4"
+/>
                         </div>
                     </div>
 

@@ -3,43 +3,7 @@ import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 import "./TaskPage.css";
 
-function TaskPage({ darkMode, role }) {
-
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            title: "Plan Annual Sports Day",
-            description: "Organize and schedule events for the annual sports day.",
-            priority: "High",
-            status: "In Progress",
-            deadline: "2026-09-20",
-            assignee: "Alex Morgan",
-            assigneeRole: "Club Leader",
-            avatar: "https://i.pravatar.cc/100?img=12"
-        },
-        {
-            id: 2,
-            title: "Update Member List",
-            description: "Add new members and remove inactive ones.",
-            priority: "Medium",
-            status: "Pending",
-            deadline: "2026-09-15",
-            assignee: "Riya Sharma",
-            assigneeRole: "Team Member",
-            avatar: "https://i.pravatar.cc/100?img=5"
-        },
-        {
-            id: 3,
-            title: "Book Auditorium for Cultural Fest",
-            description: "Confirm booking and send invites to participants.",
-            priority: "High",
-            status: "Completed",
-            deadline: "2026-09-10",
-            assignee: "Karan Patel",
-            assigneeRole: "Team Member",
-            avatar: "https://i.pravatar.cc/100?img=8"
-        }
-    ]);
+function TaskPage({ darkMode, role, tasks, setTasks }) {
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("All");
@@ -61,17 +25,24 @@ function TaskPage({ darkMode, role }) {
         if (editingTask) {
             setTasks(tasks.map((task) =>
                 task.id === editingTask.id
-                    ? { ...task, ...formData, avatar: task.avatar, assigneeRole: "Team Member" }
+                   ? {
+    ...task,
+    ...formData,
+    assignedTo: formData.assignee ? Number(formData.assignee) : null,
+    avatar: task.avatar,
+    assigneeRole: "Team Member"
+}
                     : task
             ));
         } else {
-            setTasks([...tasks, {
+                setTasks([...tasks, {
                 id: Date.now(),
                 ...formData,
                 assignee: formData.assignee || "Unassigned",
+                assignedTo: formData.assignee ? Number(formData.assignee) : null,
                 assigneeRole: "Team Member",
                 avatar: "https://i.pravatar.cc/100?img=12"
-            }]);
+                }]);
         }
         closeForm();
     };
