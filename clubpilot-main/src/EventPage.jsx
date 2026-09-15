@@ -220,15 +220,12 @@ const isOverlapping = (time1, time2) => {
           <p>Manage all your club events in one place.</p>
         </div>
 
-        {role === 'admin'||role==='leader' ? (
+        {role === 'admin'||role==='leader' &&(
           <button className="create-btn" onClick={() => setShowForm(true)}>
             <i className="fas fa-plus"></i> Create New Event
           </button>
-        ) : (
-          <button className="create-btn disabled" disabled>
-            <i className="fas fa-lock"></i> Only Admin Can Create
-          </button>
-        )}
+        ) 
+      }
       </div>
 
       {showForm && (

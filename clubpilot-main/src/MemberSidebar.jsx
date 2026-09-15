@@ -1,6 +1,8 @@
 import React from 'react';
-import './Members/Members.css';
-function MemberSidebar({ darkMode, goToLanding, goToEvents, goToLogin, goToProfile, role,goToTasks}) {
+
+function MemberSidebar({ darkMode, goToHome, goToCoreMember, goToTasks, goToCoreClub, goToEvents, goToProfile, currentPage }) {
+  const isActive = (page) => currentPage === page;
+
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -9,27 +11,29 @@ function MemberSidebar({ darkMode, goToLanding, goToEvents, goToLogin, goToProfi
         </div>
       </div>
 
-      <a href="#" className="nav-link" onClick={goToLanding}>
+      <a href="#" className={`nav-link ${isActive('landing') ? 'active' : ''}`} onClick={goToHome}>
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 
-      <a href="#" className="nav-link active">
-        <i className="fa-solid fa-users"></i> Members
+      <a href="#" className={`nav-link ${isActive('core-member') ? 'active' : ''}`} onClick={goToCoreMember}>
+        <i className="fa-solid fa-house"></i> My Dashboard
       </a>
 
-      <a href="#" className="nav-link" onClick={goToEvents}>
+      <a href="#" className={`nav-link ${isActive('member-tasks') ? 'active' : ''}`} onClick={goToTasks}>
+        <i className="fa-solid fa-list-check"></i> My Tasks
+      </a>
+
+      <a href="#" className={`nav-link ${isActive('core-club') ? 'active' : ''}`} onClick={goToCoreClub}>
+        <i className="fa-solid fa-users"></i> My Club
+      </a>
+
+      <a href="#" className={`nav-link ${isActive('events') ? 'active' : ''}`} onClick={goToEvents}>
         <i className="fa-solid fa-calendar-check"></i> Events
       </a>
 
-      {(role === 'admin' || role === 'leader') && (
-        <a href="#" className="nav-link" onClick={goToTasks}>
-          <i className="fa-solid fa-credit-card"></i> Tasks
-        </a>
-      )}
-
       <div className="divider"></div>
 
-      <a href="#" className="nav-link" onClick={goToProfile}>
+      <a href="#" className={`nav-link ${isActive('profile') ? 'active' : ''}`} onClick={goToProfile}>
         <i className="fa-regular fa-user"></i> Profile
       </a>
 
