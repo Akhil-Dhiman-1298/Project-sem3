@@ -1779,3 +1779,384 @@
 }
 
 /* ==================  END OF FILE  ================== */
+
+
+/* =========================================================
+   DARK MODE — CORE MEMBER DASHBOARD + MY TASKS
+   ========================================================= */
+
+/* ---- Core Dashboard ---- */
+.main-layout.dark .core-dashboard {
+  background: transparent;
+}
+
+.main-layout.dark .core-dashboard-welcome h1 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-dashboard-welcome p {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-dashboard-club {
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-dashboard-member {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-dashboard-avatar {
+  background: #1e2740;
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-dashboard-member strong {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-dashboard-member span {
+  color: #94a3b8;
+}
+
+/* Stat cards */
+.main-layout.dark .core-stat-card {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-stat-icon {
+  background: #1e2740;
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-stat-card span {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-stat-card strong {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-stat-card small {
+  color: #64748b;
+}
+
+/* Focus + Progress panels */
+.main-layout.dark .core-focus-panel,
+.main-layout.dark .core-progress-panel,
+.main-layout.dark .core-tasks-panel,
+.main-layout.dark .core-upcoming-section {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-panel-heading h2,
+.main-layout.dark .core-progress-heading h2,
+.main-layout.dark .core-section-heading h2 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-panel-label,
+.main-layout.dark .core-progress-heading > strong {
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-focus-icon {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-focus-top p,
+.main-layout.dark .core-section-heading p,
+.main-layout.dark .core-progress-text {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-focus-details > div,
+.main-layout.dark .core-progress-summary > div {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-focus-details span,
+.main-layout.dark .core-progress-summary span {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-focus-details strong,
+.main-layout.dark .core-progress-summary strong,
+.main-layout.dark .core-progress-text strong {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-progress-bar {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-task-count {
+  background: #1e2740;
+  color: #a78bfa;
+}
+
+/* Task rows */
+.main-layout.dark .core-task-card {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-task-card:hover {
+  border-color: #7c6bf5;
+}
+
+.main-layout.dark .core-task-information h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-task-information p {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-task-deadline span {
+  color: #64748b;
+}
+
+.main-layout.dark .core-task-deadline strong {
+  color: #e2e8f0;
+}
+
+/* Upcoming */
+.main-layout.dark .core-upcoming-task {
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-upcoming-date {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-upcoming-date strong {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-upcoming-info h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-upcoming-info p {
+  color: #94a3b8;
+}
+
+/* Footer info */
+.main-layout.dark .core-dashboard-footer {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-dashboard-footer > div {
+  background: #141b2d;
+  border-right-color: #2a3348;
+}
+
+.main-layout.dark .core-dashboard-footer span {
+  color: #64748b;
+}
+
+.main-layout.dark .core-dashboard-footer strong {
+  color: #ffffff;
+}
+
+/* Empty states */
+.main-layout.dark .core-empty-state h3,
+.main-layout.dark .core-task-empty h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-empty-state p,
+.main-layout.dark .core-no-tasks,
+.main-layout.dark .core-task-empty p {
+  color: #94a3b8;
+}
+
+/* ---- Core Member My Tasks page ---- */
+.main-layout.dark .core-tasks-header h1 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-tasks-header p {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-page-label {
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-task-member-line {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-task-member-avatar {
+  background: #1e2740;
+  color: #a78bfa;
+}
+
+/* Overview cards */
+.main-layout.dark .core-task-overview-card {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-task-overview-card span {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-task-overview-card strong {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-task-overview-card small {
+  color: #64748b;
+}
+
+/* Attention card */
+.main-layout.dark .core-attention-card {
+  background: linear-gradient(135deg, #1e1a2a, #141b2d);
+  border-color: #3a2a3a;
+}
+
+.main-layout.dark .core-attention-info h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-attention-info p {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-attention-meta {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-attention-meta strong {
+  color: #e2e8f0;
+}
+
+/* Task tabs */
+.main-layout.dark .core-task-tabs {
+  border-bottom-color: #2a3348;
+}
+
+.main-layout.dark .core-task-tabs button {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-task-tabs button span {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-task-tabs button.active {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
+}
+
+.main-layout.dark .core-task-tabs button.active span {
+  background: #1e2740;
+  color: #a78bfa;
+}
+
+/* Member task cards */
+.main-layout.dark .core-member-task-card {
+  background: #141b2d;
+  border-color: #2a3348;
+}
+
+.main-layout.dark .core-member-task-card:hover {
+  box-shadow: 0 8px 22px rgba(124, 107, 245, 0.15);
+}
+
+.main-layout.dark .core-member-task-info h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-member-task-info p {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-member-task-meta {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-member-task-meta i {
+  color: #a78bfa;
+}
+
+/* Task action button */
+.main-layout.dark .core-task-action {
+  background: #141b2d;
+  border-color: #3a4560;
+  color: #a78bfa;
+}
+
+.main-layout.dark .core-task-action:hover {
+  background: #5b3df6;
+  color: #ffffff;
+  border-color: #5b3df6;
+}
+
+/* Modal */
+.main-layout.dark .core-task-modal {
+  background: #141b2d;
+}
+
+.main-layout.dark .core-task-modal h2 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-modal-description {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-modal-details div {
+  background: #1e2740;
+}
+
+.main-layout.dark .core-modal-details span {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-modal-details strong {
+  color: #e2e8f0;
+}
+
+.main-layout.dark .core-modal-checklist {
+  border-top-color: #2a3348;
+}
+
+.main-layout.dark .core-modal-checklist h3 {
+  color: #ffffff;
+}
+
+.main-layout.dark .core-modal-checklist label {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-modal-comment label {
+  color: #cbd5e1;
+}
+
+.main-layout.dark .core-modal-comment textarea {
+  background: #0a0e1a;
+  border-color: #2a3348;
+  color: #e2e8f0;
+}
+
+.main-layout.dark .core-task-modal-close {
+  color: #94a3b8;
+}
+
+.main-layout.dark .core-task-modal-close:hover {
+  color: #ffffff;
+}
+
+/* Empty task state */
+.main-layout.dark .core-task-empty {
+  background: #141b2d;
+  border-color: #2a3348;
+}
