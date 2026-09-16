@@ -23,7 +23,7 @@ function MembersDashboard() {
       <div className="members-header">
         <div>
           
-          <h1>Your Club Members</h1>
+          <h1 style={{textAlign:"left"}}>Your Club Members </h1>
           <p>View and keep track of the core members in your club.</p>
         </div>
       </div>

@@ -22,7 +22,7 @@ import MembersDashboard from './Members/pages/MembersDashboard';
 import MemberSidebar from './MemberSidebar';
 import './Members/Members.css';
 import MemberPage from './MemberPage';
-
+import { initialTasks } from './Members/data/taskData';
 function App() {
 
   const [darkMode, setDarkMode] = useState(
@@ -31,8 +31,19 @@ function App() {
   const [currentPage, setCurrentPage] = useState('landing');
   const [role, setRole] = useState(null);
   const [currentMemberId, setCurrentMemberId] = useState(null);
-  const [tasks, setTasks] = useState([]);
   const [logoutModal, setLogoutModal] = useState(false);
+
+  const [tasks, setTasks] = useState(() => {
+  const saved = localStorage.getItem('tasks');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return initialTasks;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   // ---- Navigation ----
   const goToProfile = () => setCurrentPage('profile');

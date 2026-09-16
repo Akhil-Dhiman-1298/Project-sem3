@@ -234,11 +234,11 @@ function CoreMemberHub({ memberId, tasks }) {
       <section className="core-upcoming-section">
         <div className="core-section-heading">
           <div>
-            <span className="core-panel-label">
+            <span className="core-panel-label" style={{textAlign:"left"}}>
               UPCOMING DEADLINES
             </span>
-            <h2>Keep an eye on your deadlines</h2>
-            <p>Your next tasks that need attention.</p>
+            <h2 style={{textAlign:"left"}}>Keep an eye on your deadlines</h2>
+            <p style={{textAlign:"left"}}>Your next tasks that need attention.</p>
           </div>
           <span className="core-task-count">
             {upcomingTasks.length} active

@@ -73,16 +73,16 @@ console.log("Current Member:", currentMember);
 
         <div className="core-club-section-heading">
           <div>
-            <p className="core-club-eyebrow">YOUR TEAM</p>
+            <p className="core-club-eyebrow" style={{textAlign:"left"}}>YOUR TEAM</p>
             <h2>{currentMember.team}</h2>
           </div>
 
-          <span className="core-club-team-badge">
+          <span className="core-club-team-badge" style={{textAlign:"left"}}>
             Team Head
           </span>
         </div>
 
-        <p className="core-club-team-description">
+        <p className="core-club-team-description" style={{textAlign:"left"}}>
           {currentMember.teamDescription}
         </p>
 
@@ -108,7 +108,7 @@ console.log("Current Member:", currentMember);
 
         <div className="core-club-section-heading">
           <div>
-            <p className="core-club-eyebrow">ORGANIZATION</p>
+            <p className="core-club-eyebrow" style={{textAlign:"left"}}>ORGANIZATION</p>
             <h2>Club Structure</h2>
           </div>
         </div>
