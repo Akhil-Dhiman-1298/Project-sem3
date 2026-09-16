@@ -6,6 +6,28 @@
     margin: 0;
     padding: 0;
 }
+
+:root {
+  color-scheme: light;
+}
+
+.main-layout.dark {
+  color-scheme: dark;
+}
+
+/* Force inputs to follow color-scheme */
+input,
+select,
+textarea {
+  color-scheme: light;
+}
+
+.main-layout.dark input,
+.main-layout.dark select,
+.main-layout.dark textarea {
+  color-scheme: dark;
+}
+
 * { 
     margin: 0;
     padding: 0;

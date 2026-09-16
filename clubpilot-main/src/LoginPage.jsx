@@ -12,7 +12,7 @@ function LoginPage({ onLogin, darkMode, goToSignUp }) {
 
   useEffect(() => {
     usernameRef.current?.focus();
-
+  
     AOS.init({
       duration: 900,
       easing: 'ease-out-cubic',
