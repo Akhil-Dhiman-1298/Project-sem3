@@ -22,7 +22,7 @@ function EventSidebar({ darkMode, goToLanding, role, goToLogin, goToProfile,goTo
 
       {(role === 'admin' || role === 'leader') && (
         <a href="#" className="nav-link" onClick={goToTasks}>
-          <i className="fa-solid fa-credit-card"></i> Task
+          <i className="fa-solid fa-list-check"></i> Task
         </a>
       )}
 

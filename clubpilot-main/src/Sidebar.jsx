@@ -25,7 +25,7 @@ function Sidebar({ darkMode, goToEvents, goToLogin, goToLanding, goToProfile, ro
 
       {(role === 'admin' || role === 'leader') && (
         <a href="#" className={`nav-link ${currentPage === 'tasks' ? 'active' : ''}`} onClick={goToTasks}>
-          <i className="fa-solid fa-credit-card"></i> Tasks
+          <i className="fa-solid fa-list-check"></i> Tasks
         </a>
       )}
 

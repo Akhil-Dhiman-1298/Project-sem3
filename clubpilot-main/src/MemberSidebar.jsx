@@ -16,15 +16,15 @@ function MemberSidebar({ darkMode, goToHome, goToCoreMember, goToTasks, goToCore
       </a>
 
       <a href="#" className={`nav-link ${isActive('core-member') ? 'active' : ''}`} onClick={goToCoreMember}>
-        <i className="fa-solid fa-house"></i> My Dashboard
+        <i className="fa-solid fa-house"></i> Dashboard
       </a>
 
       <a href="#" className={`nav-link ${isActive('member-tasks') ? 'active' : ''}`} onClick={goToTasks}>
-        <i className="fa-solid fa-list-check"></i> My Tasks
+        <i className="fa-solid fa-list-check"></i> Tasks
       </a>
 
       <a href="#" className={`nav-link ${isActive('core-club') ? 'active' : ''}`} onClick={goToCoreClub}>
-        <i className="fa-solid fa-users"></i> My Club
+        <i className="fa-solid fa-users"></i> Club
       </a>
 
       <a href="#" className={`nav-link ${isActive('member-events') ? 'active' : ''}`} onClick={goToEvents}>
