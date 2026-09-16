@@ -16,33 +16,20 @@ function CoreMemberTasks({ memberId, tasks, setTasks }) {
     );
   }, [tasks, memberId]);
 
-  const counts = {
-    Pending: myTasks.filter((t) => t.status === "Pending").length,
-    "In Progress": myTasks.filter((t) => t.status === "In Progress").length,
-    Submitted: myTasks.filter(
-      (t) => t.status === "Submitted" || t.status === "Submitted for Review"
-    ).length,
-    Completed: myTasks.filter((t) => t.status === "Completed").length
-  };
+ const counts = {
+  Pending: tasks.filter((task) => task.status === "Pending").length,
+  "In Progress": tasks.filter((task) => task.status === "In Progress").length,
+  Completed: tasks.filter((task) => task.status === "Completed").length,
+};
 
   const attentionTasks = myTasks.filter(
-    (task) =>
-      task.status === "Pending" ||
-      task.status === "Changes Requested"
-  );
+  (task) => task.status === "Pending"
+);
 
   const filteredTasks =
-    activeTab === "All"
-      ? myTasks
-      : myTasks.filter((task) => {
-          if (activeTab === "Submitted") {
-            return (
-              task.status === "Submitted" ||
-              task.status === "Submitted for Review"
-            );
-          }
-          return task.status === activeTab;
-        });
+  activeTab === "All"
+    ? myTasks
+    : myTasks.filter((task) => task.status === activeTab);
 
   const updateTaskStatus = (taskId, newStatus) => {
     setTasks((currentTasks) =>
@@ -55,30 +42,44 @@ function CoreMemberTasks({ memberId, tasks, setTasks }) {
   };
 
   const getActionText = (status) => {
-    switch (status) {
-      case "Pending":
-        return "Accept Task";
-      case "In Progress":
-        return "Continue Task";
-      case "Submitted":
-      case "Submitted for Review":
-        return "View Submission";
-      case "Completed":
-        return "View Task";
-      case "Changes Requested":
-        return "Update & Resubmit";
-      default:
-        return "View Task";
-    }
-  };
+  switch (status) {
+    case "Pending":
+      return "Accept Task";
+
+    case "In Progress":
+      return "Continue Task";
+
+    case "Submitted":
+    case "Submitted for Review":
+      return "Mark Completed";
+
+    case "Changes Requested":
+      return "Continue Task";
+
+    case "Completed":
+      return "View Task";
+
+    default:
+      return "View Task";
+  }
+};
 
   const handleAction = (task) => {
-    if (task.status === "Pending") {
-      updateTaskStatus(task.id, "In Progress");
-      return;
-    }
-    setSelectedTask(task);
-  };
+  if (task.status === "Pending") {
+    updateTaskStatus(task.id, "In Progress");
+    return;
+  }
+
+  if (
+    task.status === "Submitted" ||
+    task.status === "Submitted for Review"
+  ) {
+    updateTaskStatus(task.id, "Completed");
+    return;
+  }
+
+  setSelectedTask(task);
+};
 
   if (!currentMember) {
     return (
@@ -109,27 +110,24 @@ function CoreMemberTasks({ memberId, tasks, setTasks }) {
       </section>
 
       <section className="core-task-overview">
-        <div className="core-task-overview-card pending">
-          <span>Pending</span>
-          <strong>{counts.Pending}</strong>
-          <small>Waiting to start</small>
-        </div>
-        <div className="core-task-overview-card progress">
-          <span>In Progress</span>
-          <strong>{counts["In Progress"]}</strong>
-          <small>Currently working</small>
-        </div>
-        <div className="core-task-overview-card submitted">
-          <span>Submitted</span>
-          <strong>{counts.Submitted}</strong>
-          <small>Awaiting review</small>
-        </div>
-        <div className="core-task-overview-card completed">
-          <span>Completed</span>
-          <strong>{counts.Completed}</strong>
-          <small>Successfully finished</small>
-        </div>
-      </section>
+  <div className="core-task-overview-card pending">
+    <span>Pending</span>
+    <strong>{counts.Pending}</strong>
+    <small>Waiting to start</small>
+  </div>
+
+  <div className="core-task-overview-card progress">
+    <span>In Progress</span>
+    <strong>{counts["In Progress"]}</strong>
+    <small>Currently working</small>
+  </div>
+
+  <div className="core-task-overview-card completed">
+    <span>Completed</span>
+    <strong>{counts.Completed}</strong>
+    <small>Successfully finished</small>
+  </div>
+</section>
 
       {attentionTasks.length > 0 && (
         <section className="core-attention-section">
@@ -199,7 +197,7 @@ function CoreMemberTasks({ memberId, tasks, setTasks }) {
         </div>
 
         <div className="core-task-tabs">
-          {["All", "Pending", "In Progress", "Submitted", "Completed"].map((tab) => (
+          {["All", "Pending", "In Progress","Completed"].map((tab) => (
             <button
               key={tab}
               className={activeTab === tab ? "active" : ""}
@@ -312,50 +310,36 @@ function CoreMemberTasks({ memberId, tasks, setTasks }) {
               </div>
             </div>
 
-            <div className="core-modal-checklist">
-              <h3>Task checklist</h3>
-              <label>
-                <input type="checkbox" />
-                Review the task requirements
-              </label>
-              <label>
-                <input type="checkbox" />
-                Prepare the required work
-              </label>
-              <label>
-                <input type="checkbox" />
-                Review before submission
-              </label>
-            </div>
-
-            <div className="core-modal-comment">
+              <div className="core-modal-comment">
               <label>Add a comment</label>
               <textarea placeholder="Add an update for your leader..." />
             </div>
 
             {selectedTask.status === "In Progress" && (
-              <button
-                className="core-submit-button"
-                onClick={() => {
-                  updateTaskStatus(selectedTask.id, "Submitted");
-                  setSelectedTask(null);
-                }}
+            <button
+            className="core-submit-button"
+            onClick={() => {
+            updateTaskStatus(selectedTask.id, "Completed");
+            setSelectedTask(null);
+            }}
               >
-                Submit for Review →
+              Mark Completed →
               </button>
-            )}
+                )}
 
-            {selectedTask.status === "Changes Requested" && (
-              <button
-                className="core-submit-button"
-                onClick={() => {
-                  updateTaskStatus(selectedTask.id, "Submitted");
-                  setSelectedTask(null);
-                }}
-              >
-                Update & Resubmit →
-              </button>
-            )}
+                {selectedTask.status === "Changes Requested" && (
+  <button
+    className="core-submit-button"
+    onClick={() => {
+      updateTaskStatus(selectedTask.id, "Completed");
+      setSelectedTask(null);
+    }}
+  >
+    Mark Completed →
+  </button>
+)}
+
+
 
             {selectedTask.status === "Completed" && (
               <div className="core-completed-message">
