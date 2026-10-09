@@ -1,0 +1,710 @@
+/* =========================================================
+   ANALYTICS PAGE — BASE
+   ========================================================= */
+
+.analytics-page {
+    padding: 24px 32px;
+    min-height: 100vh;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    max-width: 100%;
+}
+
+/* =========================================================
+   HEADER ROW — Title left, Back button right
+   ========================================================= */
+
+.analytics-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.analytics-header {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.analytics-header h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 6px 0;
+    text-align: left;
+}
+
+.analytics-header p {
+    color: #64748B;
+    font-size: 15px;
+    margin: 0;
+    text-align: left;
+}
+
+/* =========================================================
+   BACK BUTTON — Purple gradient, right aligned
+   ========================================================= */
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    box-shadow: 0 6px 18px rgba(91, 61, 246, 0.28);
+    letter-spacing: 0.2px;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(91, 61, 246, 0.4);
+    background: linear-gradient(135deg, #7C6BF5, #A78BFA);
+}
+
+.back-btn i {
+    font-size: 12px;
+}
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.analytic-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid #EEEAF8;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 8px rgba(35, 25, 80, 0.03);
+}
+
+.analytic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(91, 61, 246, 0.12);
+    border-color: #DDD6FE;
+}
+
+.analytic-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.icon-blue { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #3B82F6; }
+.icon-purple { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); color: #7C3AED; }
+.icon-green { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #059669; }
+.icon-amber { background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #D97706; }
+.icon-cyan { background: linear-gradient(135deg, #CFFAFE, #A5F3FC); color: #0891B2; }
+
+.analytic-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.analytic-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.analytic-label {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   CHART CARDS
+   ========================================================= */
+
+.analytics-charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.chart-card {
+    background: #ffffff;
+    border: 1px solid #EEEAF8;
+    border-radius: 18px;
+    padding: 22px;
+    transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+    box-shadow: 0 10px 30px rgba(91, 61, 246, 0.07);
+    border-color: #DDD6FE;
+}
+
+.chart-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.chart-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.chart-card h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-card h3::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #5B3DF6, #8B5CF6);
+}
+
+.chart-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+/* =========================================================
+   VERTICAL BAR CHART (Monthly + Status)
+   ========================================================= */
+
+.bar-vertical-chart {
+    display: flex;
+    gap: 12px;
+    height: 220px;
+}
+
+.bar-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 4px 26px 0;
+    flex-shrink: 0;
+}
+
+.bar-y-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-align: right;
+    min-width: 20px;
+}
+
+.bar-vertical-area {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-grid {
+    position: absolute;
+    inset: 0 0 26px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.bar-grid-line {
+    height: 1px;
+    background: #EEF2F7;
+    width: 100%;
+}
+
+.bar-bars {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 10px;
+    padding-bottom: 26px;
+    z-index: 1;
+}
+
+.bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.bar-col-inner {
+    width: 100%;
+    max-width: 60px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.bar-col-fill {
+    width: 100%;
+    background: linear-gradient(180deg, #8B5CF6, #5B3DF6);
+    border-radius: 8px 8px 0 0;
+    transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 4px;
+    box-shadow: 0 4px 12px rgba(91, 61, 246, 0.2);
+}
+
+.bar-col-fill:hover {
+    filter: brightness(1.1);
+}
+
+.bar-col-value {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #5B3DF6;
+    white-space: nowrap;
+}
+
+.bar-col-label {
+    position: absolute;
+    bottom: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748B;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   HORIZONTAL BAR CHART (Category)
+   ========================================================= */
+
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 36px;
+    align-items: center;
+    gap: 12px;
+}
+
+.bar-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.bar-track {
+    height: 10px;
+    background: #F1F5F9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0F172A;
+    text-align: right;
+}
+
+/* =========================================================
+   TOP 5 EVENTS
+   ========================================================= */
+
+.analytics-panel {
+    background: #ffffff;
+    border: 1px solid #EEEAF8;
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.analytics-panel h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.analytics-panel h3::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #5B3DF6, #8B5CF6);
+}
+
+.top-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.top-event-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #FAFAFE;
+    border: 1px solid #EEEAF8;
+    transition: all 0.2s ease;
+}
+
+.top-event-row:hover {
+    background: #F5F3FF;
+    border-color: #C4B5FD;
+    transform: translateX(3px);
+}
+
+.rank-badge {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #5B3DF6;
+    width: 34px;
+    text-align: center;
+}
+
+.top-event-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.top-event-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.top-event-info h4 {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0F172A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-event-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748B;
+}
+
+.top-event-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.metric-value {
+    font-size: 18px;
+    font-weight: 800;
+    color: #5B3DF6;
+}
+
+.metric-label {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-analytics {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-analytics-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.empty-analytics h3 {
+    margin: 0 0 8px 0;
+    color: #0F172A;
+}
+
+.empty-analytics p {
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.dark-mode.analytics-page {
+    background: transparent;
+}
+
+.dark-mode .back-btn {
+    background: linear-gradient(135deg, #7C6BF5, #5B3DF6);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(124, 107, 245, 0.35);
+}
+
+.dark-mode .back-btn:hover {
+    background: linear-gradient(135deg, #A78BFA, #7C6BF5);
+    box-shadow: 0 10px 24px rgba(124, 107, 245, 0.5);
+}
+
+.dark-mode .analytics-header h2 {
+    background: linear-gradient(135deg, #A78BFA, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark-mode .analytics-header p {
+    color: #94a3b8;
+}
+
+.dark-mode .analytic-card,
+.dark-mode .chart-card,
+.dark-mode .analytics-panel {
+    background: #141b2d;
+    border-color: #2a3348;
+}
+
+.dark-mode .analytic-card:hover,
+.dark-mode .chart-card:hover {
+    background: #1a2238;
+    border-color: #3a4560;
+}
+
+.dark-mode .analytic-value {
+    color: #ffffff;
+}
+
+.dark-mode .analytic-label {
+    color: #94a3b8;
+}
+
+.dark-mode .icon-blue {
+    background: linear-gradient(135deg, #1e3a5f, #1e4976);
+    color: #60a5fa;
+}
+.dark-mode .icon-purple {
+    background: linear-gradient(135deg, #2a2548, #3d2f6b);
+    color: #a78bfa;
+}
+.dark-mode .icon-green {
+    background: linear-gradient(135deg, #143d2e, #1a5540);
+    color: #34d399;
+}
+.dark-mode .icon-amber {
+    background: linear-gradient(135deg, #4a3410, #6b4a15);
+    color: #fbbf24;
+}
+.dark-mode .icon-cyan {
+    background: linear-gradient(135deg, #14404a, #1a5560);
+    color: #22d3ee;
+}
+
+.dark-mode .chart-card h3,
+.dark-mode .analytics-panel h3 {
+    color: #ffffff;
+}
+
+.dark-mode .chart-sub {
+    color: #64748b;
+}
+
+.dark-mode .bar-grid-line {
+    background: #1e2740;
+}
+
+.dark-mode .bar-y-label {
+    color: #64748b;
+}
+
+.dark-mode .bar-col-label {
+    color: #94a3b8;
+}
+
+.dark-mode .bar-label {
+    color: #cbd5e1;
+}
+
+.dark-mode .bar-track {
+    background: #1e2740;
+}
+
+.dark-mode .bar-value {
+    color: #ffffff;
+}
+
+.dark-mode .top-event-row {
+    background: #0a0e1a;
+    border-color: #2a3348;
+}
+
+.dark-mode .top-event-row:hover {
+    background: #1a2238;
+    border-color: #7c6bf5;
+}
+
+.dark-mode .top-event-info h4 {
+    color: #ffffff;
+}
+
+.dark-mode .top-event-info p {
+    color: #94a3b8;
+}
+
+.dark-mode .rank-badge {
+    color: #A78BFA;
+}
+
+.dark-mode .metric-value {
+    color: #A78BFA;
+}
+
+.dark-mode .metric-label {
+    color: #64748b;
+}
+
+.dark-mode .empty-analytics h3 {
+    color: #ffffff;
+}
+
+.dark-mode .empty-analytics p {
+    color: #64748b;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+    .analytics-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .analytics-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .analytics-charts {
+        grid-template-columns: 1fr;
+    }
+
+    .bar-vertical-chart {
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .analytics-page {
+        padding: 16px;
+    }
+
+    .analytics-header-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .back-btn {
+        align-self: flex-end;
+        margin-top: 0;
+    }
+
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-header h2 {
+        font-size: 22px;
+    }
+
+    .bar-row {
+        grid-template-columns: 70px 1fr 30px;
+        gap: 8px;
+    }
+
+    .bar-vertical-chart {
+        height: 180px;
+    }
+
+    .bar-col-label {
+        font-size: 9px;
+    }
+
+    .bar-col-value {
+        font-size: 11px;
+        top: -20px;
+    }
+}
