@@ -240,6 +240,33 @@
     border: 1px solid #EEEAF8;
     margin-bottom: 28px;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filters-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.filters-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.filters-right label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0F172A;
+    white-space: nowrap;
 }
 
 .filter-group {
@@ -290,6 +317,28 @@
     color: white;
     border-color: #5B3DF6;
     box-shadow: 0 2px 12px rgba(91, 61, 246, 0.15);
+}
+
+/* Sort dropdown */
+.sort-select {
+    padding: 8px 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #0F172A;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    min-width: 180px;
+}
+
+.sort-select:hover,
+.sort-select:focus {
+    border-color: #5B3DF6;
+    box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
 }
 
 /* =========================================================
@@ -816,6 +865,19 @@
     background: #141b2d;
     border-color: #2a3348;
 }
+.main-layout.dark .event-page.dark-mode .filters-right label {
+    color: #e2e8f0;
+}
+.main-layout.dark .event-page.dark-mode .sort-select {
+    background: #0a0e1a;
+    border-color: #2a3348;
+    color: #e2e8f0;
+}
+.main-layout.dark .event-page.dark-mode .sort-select:hover,
+.main-layout.dark .event-page.dark-mode .sort-select:focus {
+    border-color: #7c6bf5;
+    box-shadow: 0 0 0 3px rgba(124, 107, 245, 0.15);
+}
 .main-layout.dark .event-page.dark-mode .filter-group label {
     color: #e2e8f0;
 }
@@ -1136,6 +1198,19 @@
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .filters-section {
+        flex-direction: column;
+    }
+
+    .filters-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .sort-select {
+        min-width: 100%;
     }
 }
 
@@ -1867,45 +1942,26 @@
   }
 }
 
-Badge extreme right, checkbox left
+/* =========================================================
+   EVENT CARD HEADER — Badge right, Checkbox left, No Collision
+   ========================================================= */
+
 .event-top {
   display: flex !important;
   justify-content: flex-end !important;
   align-items: center !important;
   padding-left: 44px !important;
-}
-
-.event-checkbox-wrap {
-  position: absolute !important;
-  top: 20px !important;
-  left: 16px !important;
-  right: auto !important;
-  z-index: 5 !important;
-}
-
-/* =========================================================
-   EVENT CARD HEADER — Badge right, Checkbox left, No Collision
-   ========================================================= */
-
-/* Card top row — badge ko rightmost pe bhejo, checkbox ke liye jagah chhodo */
-.event-top {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  padding-left: 44px !important;   /* checkbox ke liye jagah */
   padding-right: 0 !important;
   margin-bottom: 16px !important;
   width: 100% !important;
 }
 
-/* Status badge — bilkul rightmost corner pe */
 .event-status-badge,
 .live-badge {
   margin-left: auto !important;
   margin-right: 0 !important;
 }
 
-/* Checkbox — left corner me, fixed position */
 .event-checkbox-wrap {
   position: absolute !important;
   top: 16px !important;
@@ -1915,7 +1971,6 @@ Badge extreme right, checkbox left
   cursor: pointer;
 }
 
-/* Category tag — center me */
 .event-category-tag {
   display: block !important;
   margin-left: auto !important;
@@ -1926,11 +1981,178 @@ Badge extreme right, checkbox left
   text-align: center !important;
 }
 
-/* Title aur description — center aligned (as before) */
 .event-card .event-body h3 {
   text-align: center !important;
 }
 
 .event-card .event-body .event-desc {
   text-align: center !important;
+}
+
+/* ============================================
+   LIVE EVENT CARD — LIGHT MODE
+   ============================================ */
+
+.event-card.live-participated {
+  border: 4px solid #ef4444 !important;
+}
+
+.event-card.live-participated::before {
+  display: none !important;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: liveBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.mark-attendance-btn {
+  background: linear-gradient(135deg, #5B3DF6, #8B5CF6) !important;
+  color: white !important;
+  border: none !important;
+  padding: 7px 18px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.25s ease !important;
+}
+
+.mark-attendance-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(91, 61, 246, 0.35) !important;
+}
+
+/* ============================================
+   LIVE EVENT CARD — DARK MODE
+   ============================================ */
+
+.main-layout.dark .event-card.live-participated,
+.dark-mode .event-card.live-participated {
+  border: 4px solid #ef4444 !important;
+}
+
+.main-layout.dark .event-card.live-participated::before,
+.dark-mode .event-card.live-participated::before {
+  display: none !important;
+}
+
+.main-layout.dark .live-badge,
+.dark-mode .live-badge {
+  background: #ef4444;
+  color: #fff;
+}
+
+.main-layout.dark .live-dot,
+.dark-mode .live-dot {
+  background: #fff;
+}
+
+.main-layout.dark .mark-attendance-btn,
+.dark-mode .mark-attendance-btn {
+  background: linear-gradient(135deg, #7C6BF5, #5B3DF6) !important;
+  color: #fff !important;
+}
+
+.main-layout.dark .mark-attendance-btn:hover,
+.dark-mode .mark-attendance-btn:hover {
+  box-shadow: 0 6px 20px rgba(124, 107, 245, 0.5) !important;
+}
+
+.cancel-participation-btn {
+  background: #EF4444 !important;
+  color: white !important;
+  border: none !important;
+  padding: 7px 18px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.cancel-participation-btn:hover {
+  background: #DC2626 !important;
+  transform: translateY(-2px);
+}
+
+/* My Events Toggle */
+.my-events-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 4px;
+  background: rgba(241, 245, 249, 0.6);
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.my-events-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.my-events-btn:hover {
+  color: #0F172A;
+}
+
+.my-events-btn.active {
+  background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(91, 61, 246, 0.25);
+}
+
+.dark-mode .my-events-toggle {
+  background: rgba(30, 39, 64, 0.5);
+}
+
+.dark-mode .my-events-btn {
+  color: #94a3b8;
+}
+
+.dark-mode .my-events-btn:hover {
+  color: #e2e8f0;
+}
+
+.dark-mode .my-events-btn.active {
+  background: linear-gradient(135deg, #7C6BF5, #5B3DF6);
+  color: #fff;
 }

@@ -9,7 +9,13 @@ function Footer() {
           <a href="#">ArshPreet</a>
           <a href="#">Priyanshi</a>
           <a href="#">Aditya</a>
-          <a href="#">Akhil</a>
+          <a
+            href="https://www.linkedin.com/in/akhil-dhiman-17093a41b"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Akhil
+          </a>
         </div>
         <div className="footer-copy">© 2026 ClubPilot</div>
       </div>
