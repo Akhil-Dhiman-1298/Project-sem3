@@ -1,6 +1,7 @@
 import React from 'react';
-
-function Topbar({ darkMode, setDarkMode, role, goToLogin, goToSignUp, onLogout }) {
+import { useTheme } from './ThemeContext';
+function Topbar({ goToLogin, role, onLogout, goToSignUp }) {
+  const { darkMode, setDarkMode, toggleTheme } = useTheme();
   return (
     <div className={`topbar ${darkMode ? 'dark' : ''}`}>
       <button className="topbar-btn" onClick={() => setDarkMode(!darkMode)}>

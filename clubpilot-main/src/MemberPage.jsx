@@ -4,19 +4,9 @@ import CoreMemberHub from "./Members/pages/CoreMemberHub";
 import CoreMemberClub from "./Members/pages/CoreMemberClub";
 import CoreMemberTasks from "./Members/pages/CoreMemberTasks";
 import EventPage from "./EventPage";
-
-function MemberPage({
-  darkMode,
-  currentMemberId,
-  tasks,
-  setTasks,
-  events,
-  setEvents,
-  role,
-  initialTab = "hub",
-  goToLanding,
-  goToProfile
-}) {
+import { useTheme } from './ThemeContext';
+function MemberPage({ currentMemberId, tasks, setTasks, events, setEvents, role, initialTab, goToLanding, goToProfile }) {
+  const { darkMode } = useTheme();
   const [activeTab, setActiveTab] = useState(initialTab);
 
   useEffect(() => {

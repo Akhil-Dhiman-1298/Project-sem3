@@ -1,6 +1,7 @@
 import React from 'react';
-
-function GuestSidebar({ darkMode }) { 
+import { useTheme } from './ThemeContext';
+function GuestSidebar({ goToLogin, goToMembers }) {
+  const { darkMode } = useTheme();
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">

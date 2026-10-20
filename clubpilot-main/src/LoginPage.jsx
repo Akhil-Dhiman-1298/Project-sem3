@@ -419,8 +419,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './LoginPage.css';
-
-function LoginPage({ onLogin, darkMode, goToSignUp }) {
+import { useTheme } from './ThemeContext';
+function LoginPage({ onLogin, goToSignUp }) {
+  const { darkMode } = useTheme();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
