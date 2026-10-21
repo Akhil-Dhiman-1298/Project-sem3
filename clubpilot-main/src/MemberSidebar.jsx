@@ -1,6 +1,7 @@
 import React from 'react';
-
-function MemberSidebar({ darkMode, goToHome, goToCoreMember, goToTasks, goToCoreClub, goToEvents, goToProfile, currentPage }) {
+import { useTheme } from './ThemeContext';
+function MemberSidebar({ goToHome, goToCoreMember, goToCoreClub, goToTasks, goToEvents, goToProfile, currentPage }) {
+  const { darkMode } = useTheme();
   const isActive = (page) => currentPage === page;
 
   return (

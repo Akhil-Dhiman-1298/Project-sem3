@@ -1073,3 +1073,29 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
+
+/* =========================================================
+   ATTENDANCE PENDING BADGE — LIGHT MODE
+   ========================================================= */
+.attendance-pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FEF3C7; /* Halka yellow background */
+  color: #D97706;            /* Dark yellow/orange text */
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ATTENDANCE PENDING BADGE — DARK MODE
+   ========================================================= */
+.main-layout.dark .event-page.dark-mode .attendance-pending-badge,
+.dark-mode .attendance-pending-badge {
+  background-color: rgba(217, 119, 6, 0.2); /* Halka orange tint */
+  color: #FBBF24;                           /* Bright yellow text */
+  border: 1px solid rgba(251, 191, 36, 0.3); /* Halka border taaki alag dikhe */
+}

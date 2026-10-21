@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import './Analytics.css';
-
-function Analytics({ darkMode, role, events, onBack }) {
+import { useTheme } from './ThemeContext';
+function Analytics({ role, events, onBack }) {
+  const { darkMode } = useTheme();
   const safeEvents = Array.isArray(events) ? events : [];
   const totalEvents = safeEvents.length;
   const totalParticipants = safeEvents.reduce((sum, e) => sum + (e.participants || 0), 0);
   const avgParticipation = totalEvents > 0 ? Math.round(totalParticipants / totalEvents) : 0;
 
-  // ---- Status breakdown ----
   const statusCounts = useMemo(() => {
     const counts = { upcoming: 0, ongoing: 0, completed: 0, cancelled: 0 };
     safeEvents.forEach(e => {
@@ -16,7 +16,7 @@ function Analytics({ darkMode, role, events, onBack }) {
     return counts;
   }, [safeEvents]);
 
-  // ---- Status data for bar chart ----
+
   const statusData = useMemo(() => {
     return [
       { label: 'Upcoming', value: statusCounts.upcoming, color: '#5B3DF6' },
@@ -28,7 +28,6 @@ function Analytics({ darkMode, role, events, onBack }) {
 
   const maxStatusValue = Math.max(...statusData.map(d => d.value), 1);
 
-  // ---- Category breakdown ----
   const categoryData = useMemo(() => {
     const map = {};
     safeEvents.forEach(e => {
@@ -56,7 +55,7 @@ function Analytics({ darkMode, role, events, onBack }) {
       .slice(0, 5);
   }, [safeEvents]);
 
-  // ---- Attendance rate ----
+
   const attendanceRate = useMemo(() => {
     const completed = safeEvents.filter(e => e.status === 'completed');
     if (completed.length === 0) return 0;
@@ -65,7 +64,7 @@ function Analytics({ darkMode, role, events, onBack }) {
     return capacity > 0 ? Math.round((total / capacity) * 100) : 0;
   }, [safeEvents]);
 
-  // ---- Monthly trend (last 6 months) ----
+
   const monthlyData = useMemo(() => {
     const months = [];
     const now = new Date();

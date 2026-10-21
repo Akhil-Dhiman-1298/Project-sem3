@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
-
-function SignUpPage({ onSignUp, darkMode, goToLogin }) {
+import { useTheme } from './ThemeContext';
+function SignUpPage({ onSignUp, goToLogin }) {
+  const { darkMode } = useTheme();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

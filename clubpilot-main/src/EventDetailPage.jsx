@@ -1,7 +1,8 @@
 import React from "react";
 import "./EventDetailPage.css";
-
-function EventDetailPage({ event, onBack, darkMode, role, setEvents, currentMemberId }) {
+import { useTheme } from './ThemeContext';
+function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
+  const { darkMode } = useTheme();
   if (!event) {
     return (
       <div className="edp-wrap">
@@ -21,7 +22,6 @@ function EventDetailPage({ event, onBack, darkMode, role, setEvents, currentMemb
   const percentage = Math.round((participants / capacity) * 100);
   const seatsLeft = capacity - participants;
 
-  // ✅ SAME userId logic as EventPage.jsx — isse dono jagah sync rahega
   const userId = (() => {
     const mid = currentMemberId ?? sessionStorage.getItem('currentMemberId');
     if (mid && role) return `${role}_${mid}`;
@@ -53,104 +53,86 @@ function EventDetailPage({ event, onBack, darkMode, role, setEvents, currentMemb
   const getStatusClass = (status) => status.toLowerCase().replace(/ /g, "-");
 
   const formatName = (name) => {
-    // user_1 → User 1
-    if (name.startsWith("user_")) {
-      const rest = name.slice(5);
-      return `User ${rest}`;
-    }
-    // core-member_1 → Core Member 1
-    if (name.startsWith("core-member_")) {
-      const rest = name.slice(12);
-      return `Core Member ${rest}`;
-    }
-    // admin_xxx / leader_xxx → Admin / Leader
+    if (name.startsWith("user_")) return `User ${name.slice(5)}`;
+    if (name.startsWith("core-member_")) return `Core Member ${name.slice(12)}`;
     if (name.startsWith("admin")) return "Admin";
     if (name.startsWith("leader")) return "Leader";
-    // legacy: user1, member1
     if (name.startsWith("user")) return `User ${name.replace("user", "")}`;
     if (name.startsWith("member")) return `Member ${name.replace("member", "")}`;
     return name;
   };
 
   const handleRequestAttendance = () => {
-    if (!setEvents || !userId) return;
+    if (!dispatch || !userId) return;
     if (event.status !== "ongoing") return;
     if (!isRegistered) return;
     if (isUserAttended || isUserPending) return;
 
-    setEvents((prev) =>
-      prev.map((e) =>
-        e.id === event.id
-          ? {
-              ...e,
-              pendingAttendance: [...(e.pendingAttendance || []), userId],
-              rejectedBy: (e.rejectedBy || []).filter((n) => n !== userId)
-            }
-          : e
-      )
-    );
+    dispatch({
+      type: 'UPDATE_EVENT',
+      payload: {
+        id: event.id,
+        updates: {
+          pendingAttendance: [...pendingAttendance, userId],
+          rejectedBy: rejectedBy.filter((n) => n !== userId)
+        }
+      }
+    });
   };
 
+  // ✅ Approve using dispatch
   const handleApprove = (name) => {
-    if (!setEvents) return;
-    setEvents((prev) =>
-      prev.map((e) => {
-        if (e.id !== event.id) return e;
-        return {
-          ...e,
-          pendingAttendance: (e.pendingAttendance || []).filter((n) => n !== name),
-          attendedBy: [...(e.attendedBy || []), name],
-          rejectedBy: (e.rejectedBy || []).filter((n) => n !== name)
-        };
-      })
-    );
+    if (!dispatch) return;
+    dispatch({
+      type: 'UPDATE_EVENT',
+      payload: {
+        id: event.id,
+        updates: {
+          pendingAttendance: pendingAttendance.filter((n) => n !== name),
+          attendedBy: [...attendedBy, name],
+          rejectedBy: rejectedBy.filter((n) => n !== name)
+        }
+      }
+    });
   };
 
+  // ✅ Reject using dispatch
   const handleReject = (name) => {
-    if (!setEvents) return;
-    setEvents((prev) =>
-      prev.map((e) => {
-        if (e.id !== event.id) return e;
-        return {
-          ...e,
-          pendingAttendance: (e.pendingAttendance || []).filter((n) => n !== name),
-          rejectedBy: [...(e.rejectedBy || []), name]
-        };
-      })
-    );
+    if (!dispatch) return;
+    dispatch({
+      type: 'UPDATE_EVENT',
+      payload: {
+        id: event.id,
+        updates: {
+          pendingAttendance: pendingAttendance.filter((n) => n !== name),
+          rejectedBy: [...rejectedBy, name]
+        }
+      }
+    });
   };
 
+  // ✅ Toggle Attendance using dispatch
   const handleToggleAttendance = (name) => {
-    if (!setEvents) return;
-    setEvents((prev) =>
-      prev.map((e) => {
-        if (e.id !== event.id) return e;
-        const current = e.attendedBy || [];
-        const updated = current.includes(name)
-          ? current.filter((n) => n !== name)
-          : [...current, name];
-        return { ...e, attendedBy: updated };
-      })
-    );
+    if (!dispatch) return;
+    const present = attendedBy.includes(name);
+    const updated = present
+      ? attendedBy.filter((n) => n !== name)
+      : [...attendedBy, name];
+
+    dispatch({
+      type: 'UPDATE_EVENT',
+      payload: { id: event.id, updates: { attendedBy: updated } }
+    });
   };
 
+  // ✅ Register using dispatch
   const handleRegister = () => {
-    if (!setEvents || !userId) return;
+    if (!dispatch || !userId) return;
     if (event.status !== "upcoming") return;
     if (participants >= capacity) return;
     if (isRegistered) return;
 
-    setEvents((prev) =>
-      prev.map((e) =>
-        e.id === event.id
-          ? {
-              ...e,
-              participants: (e.participants || 0) + 1,
-              participantNames: [...(e.participantNames || []), userId]
-            }
-          : e
-      )
-    );
+    dispatch({ type: 'PARTICIPATE', payload: { id: event.id, userId } });
   };
 
   return (
