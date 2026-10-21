@@ -1,5 +1,9 @@
-import AdminEvents from "./AdminEvents";
 import React, { useState } from "react";
+import AdminOverview from "./AdminOverview";
+import AdminEvents from "./AdminEvents";
+import AdminSubmissions from "./AdminSubmissions";
+import AdminDocuments from "./AdminDocuments";
+import AdminWorkflow from "./AdminWorkflow";
 import "./AdminDashboard.css";
 
 const navigation = [
@@ -55,28 +59,26 @@ function AdminDashboard({ onLogout }) {
   };
 
   function renderPage() {
-    if (activePage === "overview") {
-      return <AdminOverview onNavigate={setActivePage} />;
-    }
+  switch (activePage) {
+    case "overview":
+      return <AdminOverview />;
 
-    return (
-      <div className="admin-placeholder">
-        <div className="admin-placeholder-icon">
-          {navigation.find((item) => item.id === activePage)?.icon}
-        </div>
-        <h2>{pageTitles[activePage]}</h2>
-        <p>
-          This page will be implemented in the next step.
-        </p>
-        <button
-          className="admin-primary-btn"
-          onClick={() => setActivePage("overview")}
-        >
-          Back to Overview
-        </button>
-      </div>
-    );
+    case "events":
+      return <AdminEvents />;
+
+    case "approvals":
+      return <AdminSubmissions />;
+
+    case "documents":
+      return <AdminDocuments />;
+
+    case "workflow":
+      return <AdminWorkflow />;
+
+    default:
+      return <AdminOverview />;
   }
+}
 
   return (
     <div className="admin-layout">
@@ -167,7 +169,7 @@ function AdminDashboard({ onLogout }) {
   );
 }
 
-function AdminOverview({ onNavigate }) {
+function AdminOverviewLegacy({ onNavigate }) {
   const [activities] = useState(initialActivities);
 
   const stats = [

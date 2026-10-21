@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './clubpilot.css';
 import AdminDashboard from './Admin/AdminDashboard';
+import { AdminProvider } from './Admin/AdminContext';
 import ProfilePage from './ProfilePage';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -190,6 +191,7 @@ function App() {
     return <SignUpPage onSignUp={handleSignUp} goToLogin={goToLogin} />;
   }
 
+<<<<<<< HEAD
   // ✅ Admin Dashboard Routing
   if (path === '/admin') {
     if (role?.toLowerCase() === 'admin') {
@@ -197,6 +199,14 @@ function App() {
     }
     return null; // Redirect is handled in useEffect
   }
+=======
+  return (
+  <AdminProvider>
+    <AdminDashboard onLogout={confirmLogout} />
+  </AdminProvider>
+);
+}
+>>>>>>> 21dcff0b562b5f97df4cfae359a8cd5796437f3b
 
   if (path === '/events') {
     return (
