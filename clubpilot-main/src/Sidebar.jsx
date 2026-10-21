@@ -1,17 +1,22 @@
 import React from 'react';
 
-function Sidebar({ darkMode, goToEvents, goToLogin, goToLanding, goToProfile, role, goToTasks, goToMembers, currentPage }) {
+function Sidebar({ goToEvents, goToLogin, goToLanding, goToProfile, role, goToTasks, goToMembers, currentPage, goToAdmin }) {
   return (
-    <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
+    <aside className={`sidebar`}>
       <div className="logo-box">
-        <div className="brand-name">
-          Club<span className={darkMode ? 'pilot-dark' : ''}>Pilot</span>
-        </div>
+        <div className="brand-name">Club<span>Pilot</span></div>
       </div>
       
       <a href="#top" className={`nav-link ${currentPage === 'landing' ? 'active' : ''}`} onClick={goToLanding}>
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
+
+      {/* ✅ Admin Panel Button */}
+      {role?.toLowerCase() === 'admin' && (
+        <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); goToAdmin(); }}>
+          <i className="fa-solid fa-gauge-high"></i> Admin Panel
+        </a>
+      )}
 
       {(role === 'admin' || role === 'leader') && (
         <a href="#" className={`nav-link ${currentPage === 'members' ? 'active' : ''}`} onClick={goToMembers}>
@@ -40,7 +45,6 @@ function Sidebar({ darkMode, goToEvents, goToLogin, goToLanding, goToProfile, ro
       <a href="#" className="nav-link" onClick={goToProfile}>
         <i className="fa-regular fa-user"></i> Profile
       </a>
-
     </aside>
   );
 }

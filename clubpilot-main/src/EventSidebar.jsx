@@ -1,21 +1,25 @@
-import React from 'react';
-import { useTheme } from './ThemeContext';
-function EventSidebar({ goToLanding, goToProfile, role, goToLogin, goToTasks, goToMembers }) {
-  const { darkMode } = useTheme();
+function EventSidebar({ goToLanding, goToProfile, role, goToLogin, goToTasks, goToMembers, goToAdmin }) {
   return (
-    <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
+    <aside className={`sidebar`}>
       <div className="logo-box">
-        <div className="brand-name">
-          Club<span className={darkMode ? 'pilot-dark' : ''}>Pilot</span>
-        </div>
+        <div className="brand-name">Club<span>Pilot</span></div>
       </div>
       <a href="#" className="nav-link" onClick={goToLanding}>
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 
-    {(role === 'admin' || role === 'leader')&&( <a href="#" className="nav-link" onClick={goToMembers}>
-        <i className="fa-solid fa-users"></i> Members
-      </a>)}
+      {/* ✅ Admin Panel Button */}
+      {role?.toLowerCase() === 'admin' && (
+        <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); goToAdmin(); }}>
+          <i className="fa-solid fa-gauge-high"></i> Admin Panel
+        </a>
+      )}
+
+      {(role === 'admin' || role === 'leader') && ( 
+        <a href="#" className="nav-link" onClick={goToMembers}>
+          <i className="fa-solid fa-users"></i> Members
+        </a>
+      )}
 
       <a href="#" className="nav-link active">
         <i className="fa-solid fa-calendar-check"></i> Events
@@ -32,12 +36,6 @@ function EventSidebar({ goToLanding, goToProfile, role, goToLogin, goToTasks, go
       <a href="#" className="nav-link" onClick={goToProfile}>
         <i className="fa-regular fa-user"></i> Profile
       </a>
-
-      
-
-
-
-
     </aside>
   );
 }
