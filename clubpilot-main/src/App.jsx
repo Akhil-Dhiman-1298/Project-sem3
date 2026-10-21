@@ -63,13 +63,11 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  // ✅ Events Reducer
   const [events, dispatch] = useReducer(eventsReducer, null, () => {
     const savedEvents = localStorage.getItem('events');
     return savedEvents ? JSON.parse(savedEvents) : initialEventsState;
   });
 
-  // ✅ Wrapper function for compatibility
   const setEvents = (updater) => {
     const nextEvents = typeof updater === 'function' ? updater(events) : updater;
     dispatch({ type: 'SET_EVENTS', payload: nextEvents });
@@ -147,8 +145,6 @@ function App() {
   const goToEvents = () => navigate('/events');
   const goToAnalytics = () => navigate('/analytics');
   const goToEventDetail = (id) => navigate(`/events/${id}`);
-  
-  // ✅ Admin Navigation
   const goToAdmin = () => navigate('/admin');
 
   const handleSignUp = (userRole) => {
@@ -191,22 +187,17 @@ function App() {
     return <SignUpPage onSignUp={handleSignUp} goToLogin={goToLogin} />;
   }
 
-<<<<<<< HEAD
-  // ✅ Admin Dashboard Routing
+  // ✅ Admin Dashboard Routing (AdminProvider wrapped correctly)
   if (path === '/admin') {
     if (role?.toLowerCase() === 'admin') {
-      return <AdminDashboard onLogout={confirmLogout} />;
+      return (
+        <AdminProvider>
+          <AdminDashboard onLogout={confirmLogout} />
+        </AdminProvider>
+      );
     }
-    return null; // Redirect is handled in useEffect
+    return null;
   }
-=======
-  return (
-  <AdminProvider>
-    <AdminDashboard onLogout={confirmLogout} />
-  </AdminProvider>
-);
-}
->>>>>>> 21dcff0b562b5f97df4cfae359a8cd5796437f3b
 
   if (path === '/events') {
     return (
@@ -218,7 +209,7 @@ function App() {
           goToLogin={goToLogin} 
           goToTasks={goToTasks} 
           goToMembers={goToMembers} 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <EventPage 
@@ -245,7 +236,7 @@ function App() {
           goToLogin={goToLogin} 
           goToTasks={goToTasks} 
           goToMembers={goToMembers} 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <EventDetailPage 
@@ -270,7 +261,7 @@ function App() {
           goToLogin={goToLogin} 
           goToTasks={goToTasks} 
           goToMembers={goToMembers} 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <Analytics role={role} events={events} onBack={goToEvents} />
@@ -313,7 +304,7 @@ function App() {
           goToLogin={goToLogin} 
           goToEvents={goToEvents} 
           goToMembers={goToMembers} 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <TaskPage role={role} tasks={tasks} setTasks={setTasks} />
@@ -334,7 +325,7 @@ function App() {
           goToTasks={goToTasks} 
           goToMembers={goToMembers} 
           currentPage="members" 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
         <div className="content-area" style={{ paddingTop: '0px' }}>
           <MembersDashboard />
@@ -368,7 +359,7 @@ function App() {
           goToTasks={goToTasks} 
           goToMembers={goToMembers} 
           currentPage="landing" 
-          goToAdmin={goToAdmin} // ✅ Passed here
+          goToAdmin={goToAdmin} 
         />
       )}
       <main className="content-area" id="mainContentScroll">
