@@ -1275,6 +1275,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './clubpilot.css';
 import AdminDashboard from './Admin/AdminDashboard';
+import { AdminProvider } from './Admin/AdminContext';
 import ProfilePage from './ProfilePage';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -1459,7 +1460,11 @@ if (
     return null;
   }
 
-  return <AdminDashboard onLogout={confirmLogout} />;
+  return (
+  <AdminProvider>
+    <AdminDashboard onLogout={confirmLogout} />
+  </AdminProvider>
+);
 }
 
   if (path === '/events') {
