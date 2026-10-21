@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './clubpilot.css';
+import AdminDashboard from './Admin/AdminDashboard';
 import ProfilePage from './ProfilePage';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -29,7 +30,7 @@ import Analytics from './Analytics';
 
 const PROTECTED_PATHS = [
   '/events', '/tasks', '/members', '/analytics', '/profile',
-  '/member/dashboard', '/member/club', '/member/tasks', '/member/events',
+  '/member/dashboard', '/member/club', '/member/tasks', '/member/events','/admin',
 ];
 
 const isProtectedPath = (p) =>
@@ -118,7 +119,13 @@ useEffect(() => {
   useEffect(() => {
     if (isProtectedPath(path) && !role) {
       navigate('/login', { replace: true });
+      return;
     }
+
+    if (path === '/admin' && role &&
+      role.toLowerCase() !== 'admin') {
+    navigate('/', { replace: true });
+  }
   }, [path, role, navigate]);
 
   useEffect(() => {
@@ -195,6 +202,17 @@ useEffect(() => {
   if (path === '/signup') {
     return <SignUpPage onSignUp={handleSignUp} darkMode={darkMode} goToLogin={goToLogin} />;
   }
+  // Admin Dashboard
+if (
+  path === '/admin' ||
+  (path === '/' && role?.toLowerCase() === 'admin')
+) {
+  if (role?.toLowerCase() !== 'admin') {
+    return null;
+  }
+
+  return <AdminDashboard onLogout={confirmLogout} />;
+}
 
   if (path === '/events') {
     return (
