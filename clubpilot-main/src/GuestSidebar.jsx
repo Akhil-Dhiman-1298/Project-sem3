@@ -1,6 +1,7 @@
 import React from 'react';
-
-function GuestSidebar({ darkMode }) { 
+import { useTheme } from './ThemeContext';
+function GuestSidebar({ goToLogin, goToMembers }) {
+  const { darkMode } = useTheme();
   return (
     <aside className={`sidebar ${darkMode ? 'dark' : ''}`}>
       <div className="logo-box">
@@ -9,9 +10,9 @@ function GuestSidebar({ darkMode }) {
         </div>
       </div>
 
-      <a href="#" className="nav-link active disabled-link">
-        <i className="fa-solid fa-layer-group"></i> Overview
-      </a>
+        <a href="#top" className="nav-link active">
+          <i className="fa-solid fa-layer-group"></i> Overview
+        </a>
 
       <a 
         href="#about-section" 

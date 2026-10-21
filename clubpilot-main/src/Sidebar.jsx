@@ -8,8 +8,8 @@ function Sidebar({ darkMode, goToEvents, goToLogin, goToLanding, goToProfile, ro
           Club<span className={darkMode ? 'pilot-dark' : ''}>Pilot</span>
         </div>
       </div>
-
-      <a href="#" className={`nav-link ${currentPage === 'landing' ? 'active' : ''}`} onClick={goToLanding}>
+      
+      <a href="#top" className={`nav-link ${currentPage === 'landing' ? 'active' : ''}`} onClick={goToLanding}>
         <i className="fa-solid fa-layer-group"></i> Overview
       </a>
 

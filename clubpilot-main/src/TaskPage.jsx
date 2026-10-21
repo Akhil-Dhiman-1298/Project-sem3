@@ -2,9 +2,9 @@ import { useState } from "react";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 import "./TaskPage.css";
-
-function TaskPage({ darkMode, role, tasks, setTasks }) {
-
+import { useTheme } from './ThemeContext';
+function TaskPage({ role, tasks, setTasks }) {
+  const { darkMode } = useTheme();
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("All");
     const [sortBy, setSortBy] = useState("Recently Created");

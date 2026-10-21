@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
+import { useTheme } from './ThemeContext';
 
-function ProfilePage({ darkMode, role, goToLanding, setDarkMode }) {
+function ProfilePage({ role, goToLanding }) {
+  const { darkMode, setDarkMode, toggleTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
 
