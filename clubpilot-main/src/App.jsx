@@ -291,7 +291,7 @@ function App() {
 
   if (path === '/profile') {
     if (!role) return null;
-    return <ProfilePage role={role} goToLanding={goToLanding} />;
+    return <ProfilePage role={role} goToLanding={goToLanding} username={sessionStorage.getItem('username') || 'user'} />;
   }
 
   if (path === '/tasks') {
