@@ -1,0 +1,475 @@
+/* =========================================================
+   ADMIN LAYOUT
+   ========================================================= */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #FAF9FD;
+  color: #0F172A;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ✅ Topbar */
+.admin-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-topbar {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 36px;
+  background: #ffffff;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.admin-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.admin-breadcrumb strong {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.admin-role-label {
+  color: #64748B;
+  font-size: 12px;
+}
+
+.admin-notification-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #F3F4F6;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #5B3DF6;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-notification-btn:hover {
+  background: #F5F3FF;
+}
+
+.admin-notification-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: #F97316;
+}
+
+.admin-avatar-small {
+  width: 33px;
+  height: 33px;
+  font-size: 12px;
+  background: #F3EDFF;
+  color: #5B3DF6;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.admin-page-content {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 34px 36px 45px;
+}
+
+/* ✅ Sidebar Fix (Taaki "Submissions & Approvals" ek line me aaye) */
+.sidebar {
+  width: 270px; /* Thoda width badhaya */
+}
+
+.sidebar .nav-link {
+  white-space: nowrap; /* Text ko wrap hone se roka */
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+/* =========================================================
+   ADMIN PANEL — UI MATCHING EVENTS PAGE
+   ========================================================= */
+
+/* --- Page Headings --- */
+.admin-page-heading {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.admin-page-heading h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.admin-page-heading p {
+  color: #64748B;
+  font-size: 14px;
+}
+
+/* --- Section Cards --- */
+.admin-section-card {
+  background: #ffffff;
+  border: 1.5px solid #E8DCFF;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(91, 61, 246, 0.03);
+}
+
+/* --- Budget Card --- */
+.admin-budget-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #F8F4FF, #F3EDFF);
+  border: 1.5px solid #E8DCFF;
+  border-radius: 20px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(91, 61, 246, 0.05);
+}
+
+.admin-budget-card p {
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+}
+
+.admin-budget-card h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #5B3DF6;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+  margin-top: 0;
+}
+
+.admin-budget-card span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.admin-budget-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #5B3DF6;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 6px 20px rgba(91, 61, 246, 0.15);
+}
+
+/* --- Stats Grid --- */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.admin-stat-card {
+  padding: 21px;
+  border: 1.5px solid #E8DCFF;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(91, 61, 246, 0.03);
+  text-align: left;
+}
+
+.admin-stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #64748B;
+  font-size: 13px;
+}
+
+.admin-stat-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  font-size: 19px;
+}
+
+.admin-stat-card h2 {
+  margin: 17px 0 7px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -1px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.admin-stat-card p {
+  color: #64748B;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- Search & Filters --- */
+.admin-event-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #EEEAF8;
+  background: #FAF9FD;
+}
+
+.admin-search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: #0F172A;
+  background: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.admin-search-input:focus {
+  border-color: #5B3DF6;
+  box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
+}
+
+.admin-filter-select {
+  padding: 10px 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: #0F172A;
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.admin-filter-select:focus {
+  border-color: #5B3DF6;
+  box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
+}
+
+/* --- Table --- */
+.admin-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.admin-table thead {
+  background: #FAF9FD;
+}
+
+.admin-table th {
+  padding: 14px 24px;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #EEEAF8;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #F2EFF7;
+  color: #0F172A;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+  background: #FAF9FD;
+}
+
+.admin-table td strong {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.admin-table-subtext {
+  display: block;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* --- Status Badges --- */
+.admin-status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-status-badge.pending { background: #FEF3C7; color: #D97706; }
+.admin-status-badge.approved { background: #D1FAE5; color: #059669; }
+.admin-status-badge.rejected { background: #FEE2E2; color: #DC2626; }
+
+/* --- Action Buttons --- */
+.admin-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-approve-btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #5B3DF6, #8B5CF6);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-approve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 61, 246, 0.3);
+}
+
+.admin-reject-btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 20px;
+  background: #FEE2E2;
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-reject-btn:hover {
+  background: #FECACA;
+  transform: translateY(-2px);
+}
+
+.admin-action-complete {
+  font-size: 12px;
+  color: #64748B;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.admin-empty-state {
+  padding: 50px 20px;
+  text-align: center;
+  color: #64748B;
+  font-size: 14px;
+}
+
+/* --- Workflow Progress Bars --- */
+.admin-workflow-progress {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.admin-progress-label strong {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #5B3DF6;
+}
+
+.admin-progress-track {
+  width: 100%;
+  height: 10px;
+  background: #F2EFF7;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.pending-fill { background: linear-gradient(90deg, #FBBF24, #F59E0B); }
+.approved-fill { background: linear-gradient(90deg, #34D399, #10B981); }
+.rejected-fill { background: linear-gradient(90deg, #F87171, #EF4444); }
+
+.admin-workflow-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

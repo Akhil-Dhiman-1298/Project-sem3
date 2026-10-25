@@ -3105,9 +3105,7 @@ function EventPage({ role, events, dispatch, onEventClick, currentMemberId, goTo
   const confirmCancel = () => {
     const id = cancellingEventId;
     if (!id || !userId) return;
-
     dispatch({ type: 'CANCEL_PARTICIPATE', payload: { id, userId } });
-
     setCancelModal(false);
     setCancellingEventId(null);
     showAlert('Participation cancelled.', 'Cancelled');
@@ -3681,17 +3679,17 @@ function EventPage({ role, events, dispatch, onEventClick, currentMemberId, goTo
                 onClick={() => onEventClick && onEventClick(event.id)}
                 style={{ cursor: 'pointer' }}
               >
-                {(role === 'admin' || role === 'leader') && (
-                  <div
-                    className="event-checkbox-wrap"
-                    onClick={(e) => { e.stopPropagation(); toggleSelect(event.id); }}
-                  >
-                    <div className={`event-checkbox ${selectedIds.includes(event.id) ? 'checked' : ''}`}>
-                      {selectedIds.includes(event.id) && <i className="fa-solid fa-check"></i>}
-                    </div>
-                  </div>
-                )}
-
+              <div 
+                className="event-checkbox-wrap" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                <input 
+                  type="checkbox" 
+                  className="native-checkbox"
+                  checked={selectedIds.includes(event.id)}
+                  onChange={() => toggleSelect(event.id)}
+                />
+              </div>
                 <div className="event-body">
                   <div className="event-top">
                     {isLiveParticipated ? (

@@ -48,7 +48,7 @@ function Analytics({ role, events, onBack }) {
     ? categoryData.reduce((a, b) => (a.value > b.value ? a : b))
     : { name: 'N/A', value: 0 };
 
-  // ---- Top 5 events ----
+
   const topEvents = useMemo(() => {
     return [...safeEvents]
       .sort((a, b) => (b.participants || 0) - (a.participants || 0))
@@ -83,8 +83,6 @@ function Analytics({ role, events, onBack }) {
 
   return (
     <div className={`analytics-page ${darkMode ? 'dark-mode' : ''}`}>
-
-      {/* ============ HEADER — Title left, Back button right ============ */}
       <div className="analytics-header-row">
         <div className="analytics-header">
           <h2>Analytics</h2>
@@ -98,7 +96,6 @@ function Analytics({ role, events, onBack }) {
         )}
       </div>
 
-      {/* ============ STAT CARDS ============ */}
       <div className="analytics-stats">
         <div className="analytic-card">
           <div className="analytic-icon-wrap icon-blue">
@@ -159,7 +156,6 @@ function Analytics({ role, events, onBack }) {
         </div>
       ) : (
         <>
-          {/* ============ MONTHLY BAR CHART ============ */}
           <div className="analytics-charts">
             <div className="chart-card full-width">
               <div className="chart-card-head">
@@ -206,10 +202,8 @@ function Analytics({ role, events, onBack }) {
             </div>
           </div>
 
-          {/* ============ CATEGORY + STATUS (both as bars) ============ */}
-          <div className="analytics-charts">
 
-            {/* CATEGORY */}
+          <div className="analytics-charts">
             <div className="chart-card">
               <div className="chart-card-head">
                 <h3>Category Breakdown</h3>
@@ -233,7 +227,7 @@ function Analytics({ role, events, onBack }) {
               </div>
             </div>
 
-            {/* STATUS — vertical bars (like monthly) */}
+
             <div className="chart-card">
               <div className="chart-card-head">
                 <h3>Status Distribution</h3>

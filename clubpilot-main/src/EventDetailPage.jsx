@@ -21,7 +21,6 @@ function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
   const participants = event.participants || 0;
   const percentage = Math.round((participants / capacity) * 100);
   const seatsLeft = capacity - participants;
-
   const userId = (() => {
     const mid = currentMemberId ?? sessionStorage.getItem('currentMemberId');
     if (mid && role) return `${role}_${mid}`;
@@ -80,7 +79,6 @@ function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
     });
   };
 
-  // ✅ Approve using dispatch
   const handleApprove = (name) => {
     if (!dispatch) return;
     dispatch({
@@ -96,7 +94,7 @@ function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
     });
   };
 
-  // ✅ Reject using dispatch
+
   const handleReject = (name) => {
     if (!dispatch) return;
     dispatch({
@@ -111,7 +109,7 @@ function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
     });
   };
 
-  // ✅ Toggle Attendance using dispatch
+
   const handleToggleAttendance = (name) => {
     if (!dispatch) return;
     const present = attendedBy.includes(name);
@@ -125,7 +123,7 @@ function EventDetailPage({ event, onBack, role, dispatch, currentMemberId }) {
     });
   };
 
-  // ✅ Register using dispatch
+
   const handleRegister = () => {
     if (!dispatch || !userId) return;
     if (event.status !== "upcoming") return;
