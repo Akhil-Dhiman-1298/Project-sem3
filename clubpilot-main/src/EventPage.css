@@ -1,6 +1,3 @@
-/* =========================================================
-   EVENT PAGE — BASE
-   ========================================================= */
 
 .event-page {
     padding: 24px 32px;
@@ -42,9 +39,6 @@
     margin-top: 2px;
 }
 
-/* =========================================================
-   EVENT HEADER ACTIONS
-   ========================================================= */
 
 .event-header-actions {
     display: flex;
@@ -95,9 +89,7 @@
     box-shadow: 0 10px 30px rgba(91, 61, 246, 0.35);
 }
 
-/* =========================================================
-   ANALYTICS BUTTON — Same as Create New Event
-   ========================================================= */
+
 
 .analytics-btn {
     display: inline-flex;
@@ -135,9 +127,7 @@
     box-shadow: 0 10px 30px rgba(91, 61, 246, 0.35);
 }
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
+
 
 .search-section {
     display: flex;
@@ -187,9 +177,7 @@
     white-space: nowrap;
 }
 
-/* =========================================================
-   STATS
-   ========================================================= */
+
 
 .event-stats {
     display: grid;
@@ -229,9 +217,7 @@
     color: #64748B;
 }
 
-/* =========================================================
-   FILTERS
-   ========================================================= */
+
 
 .filters-section {
     background: rgba(255, 255, 255, 0.7);
@@ -341,9 +327,7 @@
     box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.1);
 }
 
-/* =========================================================
-   EVENTS GRID
-   ========================================================= */
+
 
 .events-grid {
     display: grid;
@@ -535,9 +519,6 @@
     border-radius: 12px;
 }
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
 
 .status-btn,
 .delete-btn,
@@ -637,9 +618,7 @@
     border-color: #F97316;
 }
 
-/* =========================================================
-   EMPTY STATE
-   ========================================================= */
+
 
 .empty-state {
     text-align: center;
@@ -669,9 +648,7 @@
     font-size: 16px;
 }
 
-/* =========================================================
-   FORMS
-   ========================================================= */
+
 
 .form-overlay {
     position: fixed;
@@ -2171,3 +2148,58 @@
   color: #fff;
 }
 
+/* =========================================================
+   NATIVE CHECKBOX — ROUNDED BORDER
+   ========================================================= */
+
+.event-checkbox-wrap {
+  position: absolute !important;
+  top: 16px !important;
+  left: 16px !important;
+  z-index: 10 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.native-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px !important;
+  height: 24px !important;
+  cursor: pointer;
+  margin: 0;
+  border: 2px solid #CBD5E1;
+  border-radius: 6px; /* 👈 Border radius yahan hai */
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.native-checkbox:checked {
+  background: #5B3DF6;
+  border-color: #5B3DF6;
+}
+
+/* Checked hone pe white tick */
+.native-checkbox:checked::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin: 2px auto 0;
+}
+
+/* Dark Mode */
+.dark-mode .native-checkbox {
+  background: #141b2d;
+  border-color: #3d3660;
+}
+
+.dark-mode .native-checkbox:checked {
+  background: #A78BFA;
+  border-color: #A78BFA;
+}

@@ -7,7 +7,6 @@ function Analytics({ role, events, onBack }) {
   const totalEvents = safeEvents.length;
   const totalParticipants = safeEvents.reduce((sum, e) => sum + (e.participants || 0), 0);
   const avgParticipation = totalEvents > 0 ? Math.round(totalParticipants / totalEvents) : 0;
-
   const statusCounts = useMemo(() => {
     const counts = { upcoming: 0, ongoing: 0, completed: 0, cancelled: 0 };
     safeEvents.forEach(e => {

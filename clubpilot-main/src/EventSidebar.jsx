@@ -9,11 +9,6 @@ function EventSidebar({ goToLanding, goToProfile, role, goToLogin, goToTasks, go
       </a>
 
 
-      {role?.toLowerCase() === 'admin' && (
-        <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); goToAdmin(); }}>
-          <i className="fa-solid fa-gauge-high"></i> Admin Panel
-        </a>
-      )}
 
       {(role === 'admin' || role === 'leader') && ( 
         <a href="#" className="nav-link" onClick={goToMembers}>
@@ -32,6 +27,12 @@ function EventSidebar({ goToLanding, goToProfile, role, goToLogin, goToTasks, go
       )}
 
       <div className="divider"></div>
+
+      {role?.toLowerCase() === 'admin' && (
+        <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); goToAdmin(); }}>
+          <i className="fa-solid fa-gauge-high"></i> Admin Panel
+        </a>
+      )}
 
       <a href="#" className="nav-link" onClick={goToProfile}>
         <i className="fa-regular fa-user"></i> Profile
