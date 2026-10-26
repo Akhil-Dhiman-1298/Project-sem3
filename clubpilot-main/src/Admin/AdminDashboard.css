@@ -2137,71 +2137,12 @@
 }
 
 /* ============================================
-   DARK MODE SIDEBAR FIX
-   ============================================ */
-
-.admin-layout.dark .admin-sidebar {
-  background: #141b2d;
-  border-right-color: #2a3348;
-}
-
-.admin-layout.dark .admin-brand h2 {
-  color: #ffffff;
-}
-
-.admin-layout.dark .admin-nav-item {
-  color: #94a3b8;
-}
-
-.admin-layout.dark .admin-nav-item:hover,
-.admin-layout.dark .admin-nav-item.active {
-  background: #1e2740;
-  color: #a78bfa;
-}
-
-.admin-layout.dark .admin-sidebar-bottom {
-  border-top-color: #2a3348;
-}
-
-/* ============================================
    ADMIN DASHBOARD — DARK MODE SUPPORT
    ============================================ */
 
 .admin-layout.dark {
   background: #0a0e1a;
   color: #e2e8f0;
-}
-
-/* ============================================
-   SIDEBAR DARK MODE
-   ============================================ */
-
-.admin-layout.dark .sidebar {
-  background: #141b2d;
-  border-right: 1px solid #2a3348;
-}
-
-.admin-layout.dark .sidebar .brand-name {
-  color: #ffffff;
-}
-
-.admin-layout.dark .sidebar .nav-link {
-  color: #94a3b8;
-}
-
-.admin-layout.dark .sidebar .nav-link:hover {
-  background: #1e2740;
-  color: #a78bfa;
-}
-
-.admin-layout.dark .sidebar .nav-link.active {
-  background: #1e2740;
-  color: #a78bfa;
-  font-weight: 600;
-}
-
-.admin-layout.dark .sidebar .divider {
-  background: #2a3348;
 }
 
 /* ============================================
@@ -2618,7 +2559,6 @@
    DARK MODE HARD FIX (Removing all white)
    ============================================ */
 
-/* 1. Topbar aur Main Page ko pure dark karo */
 .admin-layout.dark,
 .admin-layout.dark .admin-main,
 .admin-layout.dark .admin-page-content,
@@ -2627,7 +2567,6 @@
   border-color: #2a3348 !important;
 }
 
-/* 2. Wo bada White Box (Budget Card) dark karo */
 .admin-layout.dark .admin-budget-card {
   background: #141b2d !important;
   border: 1.5px solid #2a3348 !important;
@@ -2648,27 +2587,23 @@
   color: #a78bfa !important;
 }
 
-/* 3. Recent Submissions ka White Area dark karo */
 .admin-layout.dark .admin-section-card {
   background: #141b2d !important;
   border: 1.5px solid #2a3348 !important;
   box-shadow: none !important;
 }
 
-/* Table ke andar ka white background hatao */
 .admin-layout.dark .admin-table-wrapper,
 .admin-layout.dark .admin-table {
   background: transparent !important;
 }
 
-/* Table Headers (Dark background) */
 .admin-layout.dark .admin-table th {
   background: #1a2238 !important;
   color: #94a3b8 !important;
   border-bottom: 1px solid #2a3348 !important;
 }
 
-/* Table Rows (Text ko white karo) */
 .admin-layout.dark .admin-table td,
 .admin-layout.dark .admin-table td strong {
   color: #e2e8f0 !important;
@@ -2679,7 +2614,6 @@
   background: #1a2238 !important;
 }
 
-/* 4. Headings Fix */
 .admin-layout.dark .admin-page-heading h1,
 .admin-layout.dark .admin-page-heading p,
 .admin-layout.dark .admin-header-welcome h2,
@@ -2687,7 +2621,6 @@
   color: #ffffff !important;
 }
 
-/* Topbar Heading ko White karne ke liye */
 .admin-layout.dark .admin-header-welcome h2,
 .admin-layout.dark .admin-header-welcome p {
   color: #ffffff !important;
@@ -2699,12 +2632,10 @@
    LEFT ALIGN FIX
    ============================================ */
 
-/* Pura page aur content left se start ho */
 .admin-layout.dark .admin-page-content {
   text-align: left !important;
 }
 
-/* Heading left align */
 .admin-layout.dark .admin-page-heading,
 .admin-layout.dark .admin-header-welcome,
 .admin-layout.dark .admin-section-heading {
@@ -2713,7 +2644,6 @@
   justify-content: flex-start !important;
 }
 
-/* H1, H2, P sab left align */
 .admin-layout.dark .admin-page-heading h1,
 .admin-layout.dark .admin-page-heading p,
 .admin-layout.dark .admin-header-welcome h2,
@@ -2724,10 +2654,9 @@
   margin-left: 0 !important;
 }
 
-/* Budget Card ka text left align */
 .admin-layout.dark .admin-budget-card {
   text-align: left !important;
-  justify-content: flex-start !important; /* Taaki amount left mein aaye */
+  justify-content: flex-start !important;
   gap: 20px;
 }
 
@@ -2735,7 +2664,6 @@
    WORKFLOW STATUS / PROGRESS TEXT FIX
    ============================================ */
 
-/* Jahan Pending, Approved, Rejected likha hai us text ko white karo */
 .admin-layout.dark .admin-workflow-status,
 .admin-layout.dark .admin-workflow-status *,
 .admin-layout.dark .admin-activity-meta,
@@ -2744,13 +2672,11 @@
   -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Agar koi card/list uske peeche hai toh usko dark background do */
 .admin-layout.dark .admin-workflow-progress,
 .admin-layout.dark .admin-workflow-status {
-  background-color: transparent !important; 
+  background-color: transparent !important;
 }
 
-/* Dono taraf ka background safe rakhne ke liye */
 .admin-layout.dark .admin-section-card {
   background: #141b2d !important;
   border-color: #2a3348 !important;
@@ -2760,7 +2686,6 @@
    HARD FIX: Workflow Progress Text Visibility
    ============================================ */
 
-/* Card ke andar ka pura text white karo */
 .admin-layout.dark .admin-section-card div,
 .admin-layout.dark .admin-section-card p,
 .admin-layout.dark .admin-section-card span,
@@ -2771,14 +2696,12 @@
   opacity: 1 !important;
 }
 
-/* Text ko thoda aur clear dikhane ke liye */
 .admin-layout.dark .admin-workflow-progress p,
 .admin-layout.dark .admin-workflow-progress span {
   color: #e2e8f0 !important;
   font-weight: 500;
 }
 
-/* Pura section dark rakho */
 .admin-layout.dark .admin-workflow-progress {
   background-color: #141b2d !important;
   border-top: 1px solid #2a3348 !important;
@@ -2788,23 +2711,21 @@
    WORKFLOW PROGRESS BEAUTIFICATION
    ============================================ */
 
-/* 1. Container ko thoda space do */
 .admin-layout.dark .admin-workflow-progress {
   padding: 24px !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 16px !important; /* Har item ke beech gap */
+  gap: 16px !important;
 }
 
-/* 2. Har row ko flex karo (Naam left, Number right) */
 .admin-layout.dark .admin-workflow-progress > div,
 .admin-layout.dark .admin-workflow-progress > p,
 .admin-layout.dark .admin-workflow-progress > span {
   display: flex !important;
-  justify-content: space-between !important; /* Naam left, Number right */
+  justify-content: space-between !important;
   align-items: center !important;
   padding: 12px 16px !important;
-  background: #1a2238 !important; /* Har row ko halka dark background */
+  background: #1a2238 !important;
   border-radius: 10px !important;
   border: 1px solid #2a3348 !important;
   color: #e2e8f0 !important;
@@ -2814,16 +2735,13 @@
   margin: 0 !important;
 }
 
-/* 3. Number ko thoda highlight karo */
 .admin-layout.dark .admin-workflow-progress strong,
 .admin-layout.dark .admin-workflow-progress span {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 18px !important;
   font-weight: 800 !important;
-  color: #a78bfa !important; /* Number ka color purple */
+  color: #a78bfa !important;
 }
-
-/* Agar tera code <strong> use nahi kar raha, toh number auto-right chala jayega */
 
 /* ============================================
    WORKFLOW PROGRESS: Separating Text & Number
@@ -2831,17 +2749,406 @@
 
 .admin-layout.dark .admin-workflow-progress > div,
 .admin-layout.dark .admin-workflow-progress > p {
-  /* Text aur Number ke beech zabardasti space daalega */
-  word-spacing: 20px !important; 
-  
-  /* Text ko thoda bada karega */
-  font-size: 15px !important; 
-  
-  /* Text ko left align rakhega */
-  text-align: left !important; 
+  word-spacing: 20px !important;
+  font-size: 15px !important;
+  text-align: left !important;
 }
 
-/* Number ko thoda alag aur sundar dikhane ke liye */
 .admin-layout.dark .admin-workflow-progress > div::first-line {
   letter-spacing: 1px;
+}
+
+/* ============================================
+   EVENT CALENDAR HEADING FIX (LIGHT MODE ONLY)
+   ============================================ */
+
+.admin-layout:not(.dark) .admin-events-intro h2 {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  -webkit-text-fill-color: #5B3DF6 !important;
+  color: #5B3DF6 !important;
+  text-align: left !important;
+}
+
+.admin-layout:not(.dark) .admin-events-intro {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  text-align: left !important;
+}
+
+.admin-layout:not(.dark) .admin-events-intro > div:first-child {
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.admin-layout:not(.dark) .admin-events-intro p {
+  text-align: left !important;
+}
+
+/* ============================================
+   EVENT CALENDAR HEADING FIX (DARK MODE)
+   ============================================ */
+
+.admin-events-intro h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.admin-layout.dark .admin-events-intro h2 {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* RHS Rupee Icon ko hide karne ke liye */
+.admin-budget-card .admin-budget-icon {
+  display: none !important;
+}
+
+/* ============================================
+   ██╗  ██╗███████╗██╗   ██╗    ███████╗██╗██╗  ██╗
+   ██║ ██╔╝██╔════╝╚██╗ ██╔╝    ██╔════╝██║╚██╗██╔╝
+   █████╔╝ █████╗   ╚████╔╝     █████╗  ██║ ╚███╔╝ 
+   ██╔═██╗ ██╔══╝    ╚██╔╝      ██╔══╝  ██║ ██╔██╗ 
+   ██║  ██╗███████╗   ██║       ██║     ██║██╔╝ ██╗
+   ╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝
+   SIDEBAR — EXACT MATCH WITH RESET.TXT
+   ============================================ */
+
+/* Light Mode */
+.admin-sidebar {
+  background: linear-gradient(180deg, #FCFBFF 0%, #F7F4FE 40%, #F3F0FC 100%);
+  border-right: 1px solid #EEEAF8;
+  width: 280px;
+  flex-shrink: 0;
+  padding: 24px 18px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.admin-brand h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: #0F172A;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  margin-bottom: 6px;
+  color: #56657A;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  width: calc(100% - 6px);
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.admin-nav-item i,
+.admin-nav-item .admin-nav-icon {
+  width: 22px;
+  text-align: center;
+  color: #56657A;
+  font-size: 16px;
+  transition: all 0.3s ease-out;
+}
+
+.admin-nav-item:hover {
+  background: #F6F2FF;
+  color: #5B3DF6;
+  transform: translateX(4px) scale(1.05);
+  transform-origin: left center;
+  box-shadow: 0 2px 12px rgba(91, 61, 246, 0.04);
+}
+
+.admin-nav-item:hover i,
+.admin-nav-item:hover .admin-nav-icon {
+  color: #5B3DF6;
+  transform: scale(1.1);
+}
+
+.admin-nav-item.active {
+  background: #EFE8FF;
+  color: #5B3DF6;
+  font-weight: 600;
+  border: 1px solid #E3D8FF;
+  box-shadow: 0 2px 12px rgba(91, 61, 246, 0.08);
+}
+
+.admin-nav-item.active i,
+.admin-nav-item.active .admin-nav-icon {
+  color: #5B3DF6;
+}
+
+.admin-sidebar-bottom {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #EEEAF8;
+}
+
+/* ============================================
+   DARK MODE — EXACT FROM RESET.TXT
+   ============================================ */
+
+.admin-layout.dark .admin-sidebar {
+  background: #111827;
+  border-right: 1px solid #475569;
+}
+
+.admin-layout.dark .admin-brand h2 {
+  color: #ffffff;
+}
+
+.admin-layout.dark .admin-nav-item {
+  color: #e2e8f0;
+}
+
+.admin-layout.dark .admin-nav-item i,
+.admin-layout.dark .admin-nav-item .admin-nav-icon {
+  color: #e2e8f0;
+}
+
+.admin-layout.dark .admin-nav-item:hover {
+  background: #3730a3;
+  color: #ffffff;
+}
+
+.admin-layout.dark .admin-nav-item:hover i,
+.admin-layout.dark .admin-nav-item:hover .admin-nav-icon {
+  color: #f97316; /* Orange icon */
+}
+
+.admin-layout.dark .admin-nav-item.active {
+  background: #3730a3;
+  color: #ffffff;
+  border: none; /* NO BORDER */
+}
+
+.admin-layout.dark .admin-nav-item.active i,
+.admin-layout.dark .admin-nav-item.active .admin-nav-icon {
+  color: #f97316; /* Orange icon */
+}
+
+.admin-layout.dark .admin-sidebar-bottom {
+  border-top: 1px solid #475569;
+}
+
+/* ============================================
+   FIX FOR TOPBAR (KEEP BELL & AVATAR EXACTLY)
+   ============================================ */
+
+/* 1. Topbar ka background white rakho, but height thodi kam karo */
+.admin-topbar {
+  min-height: 70px !important; 
+  padding: 0 36px !important;
+  border-bottom: none !important; /* Purple line hata di */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important; /* Left aur Right me space */
+}
+
+/* 2. Left side ka 'Welcome Admin' text hide karo */
+.admin-topbar > div:first-child,
+.admin-header-welcome {
+  display: none !important; 
+}
+
+/* 3. Right side ke icons (Bell aur Avatar) ko waise hi rakho jaisa image me hai */
+.admin-topbar-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important; /* Thoda gap badhaya */
+}
+
+/* Bell ka size aur styling fix */
+.admin-notification-btn {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 12px !important;
+}
+
+/* Avatar aur text ke wrapper ko center me rakho */
+.admin-topbar-admin-name {
+  margin-top: 4px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+/* 4. Content ko upar khींch lo */
+.admin-main {
+  padding-top: 0 !important;
+}
+
+.admin-page-content {
+  padding-top: 20px !important; /* Thoda gap dene ke liye */
+  margin-top: 0 !important;
+}
+
+/* 5. Stat Cards ke andar sab kuch Center karo (Icon, Text, Number) */
+.admin-overview .admin-stat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 30px 20px !important;
+}
+
+.admin-overview .admin-stat-icon {
+  margin: 0 auto 15px auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 24px !important;
+}
+
+.admin-overview .admin-stat-card p {
+  text-align: center !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.admin-overview .admin-stat-card h2 {
+  text-align: center !important;
+  margin: 0 !important;
+  width: 100% !important;
+  font-size: 32px !important;
+}
+
+/* ============================================
+   FINAL NUCLEAR FIX (READING FROM SCREENSHOT)
+   ============================================ */
+
+/* 1. Topbar fix: Right side me align karo, white background hatao */
+.admin-topbar {
+  display: flex !important;
+  justify-content: flex-end !important; /* Bell aur Avatar ko right me dhakel dega */
+  align-items: center !important;
+  background: transparent !important; /* White box gayab */
+  border-bottom: none !important; /* Line gayab */
+  padding: 20px 40px 0 40px !important; /* Top se thoda space */
+  min-height: auto !important;
+}
+
+/* 2. Welcome Text Hide */
+.admin-header-welcome,
+.admin-topbar > div:first-child:not(.admin-topbar-actions) {
+  display: none !important;
+}
+
+/* 3. Right Side Icons Fix */
+.admin-topbar-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-left: auto !important;
+}
+
+/* 4. Content ko wapas left align karo aur gap fix karo */
+.admin-main {
+  padding-top: 0 !important;
+}
+
+.admin-page-content {
+  padding: 10px 40px 40px 40px !important; /* Thoda padding adjust kiya */
+  margin-top: 0 !important;
+  background: transparent !important;
+}
+
+/* 5. Page Heading (Admin Overview) ko Left align karo */
+.admin-page-heading {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Left me shift */
+  justify-content: flex-start !important;
+  text-align: left !important;
+  margin-bottom: 30px !important;
+}
+
+.admin-page-heading h1,
+.admin-page-heading p {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* 6. Cards ke andar ka maal Center karo */
+.admin-overview .admin-stat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 30px 20px !important;
+}
+
+/* Icon */
+.admin-overview .admin-stat-icon {
+  margin: 0 auto 15px auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 24px !important;
+  background: transparent !important; /* Agar background box tha toh hata diya */
+}
+
+/* Text */
+.admin-overview .admin-stat-card p {
+  text-align: center !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #64748B !important;
+}
+
+/* Number */
+.admin-overview .admin-stat-card h2 {
+  text-align: center !important;
+  margin: 0 !important;
+  width: 100% !important;
+  font-size: 32px !important;
+  color: #5B3DF6 !important; /* Purple color fix */
+}
+
+/* ============================================
+   PULL "ADMIN OVERVIEW" TEXT UP
+   ============================================ */
+
+/* Content container ka upar ka gap hatao */
+.admin-page-content {
+  padding-top: 0px !important;
+}
+
+/* Heading aur uske neeche wali line ka gap hatao */
+.admin-page-heading {
+  margin-top: -20px !important; /* Negative margin se upar khींchega */
+  padding-top: 0 !important;
+}
+
+.admin-page-heading h1 {
+  margin-top: 0 !important;
+}
+
+.admin-page-heading p {
+  margin-bottom: 25px !important; /* Cards se thoda gap rakhne ke liye */
 }
