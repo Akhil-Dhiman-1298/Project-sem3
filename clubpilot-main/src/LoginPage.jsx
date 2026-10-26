@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './LoginPage.css';
 import { useTheme } from './ThemeContext';
+
 function LoginPage({ onLogin, goToSignUp }) {
   const { darkMode } = useTheme();
   const [username, setUsername] = useState('');
@@ -58,6 +59,9 @@ function LoginPage({ onLogin, goToSignUp }) {
       alert('Invalid username or password');
       return;
     }
+
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('userRole', role);
 
     onLogin(role, memberId);
   };
