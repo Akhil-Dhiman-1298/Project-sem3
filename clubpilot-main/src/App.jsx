@@ -613,6 +613,7 @@ function App() {
             goToAnalytics={goToAnalytics} 
             onEventClick={goToEventDetail} 
             currentMemberId={currentMemberId} 
+            dispatch={dispatch}
           />
         </div>
       </div>
@@ -639,6 +640,7 @@ function App() {
             role={role} 
             setEvents={setEvents} 
             currentMemberId={currentMemberId} 
+            dispatch={dispatch}
           />
         </div>
       </div>
@@ -679,6 +681,7 @@ function App() {
         initialTab={tab}
         goToLanding={goToLanding}
         goToProfile={goToProfile}
+         dispatch={dispatch}
       />
     );
   }

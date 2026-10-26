@@ -5,7 +5,7 @@ import CoreMemberClub from "./Members/pages/CoreMemberClub";
 import CoreMemberTasks from "./Members/pages/CoreMemberTasks";
 import EventPage from "./EventPage";
 import { useTheme } from './ThemeContext';
-function MemberPage({ currentMemberId, tasks, setTasks, events, setEvents, role, initialTab, goToLanding, goToProfile }) {
+function MemberPage({ currentMemberId, tasks, setTasks, events, setEvents, role, initialTab, goToLanding, goToProfile, dispatch}) {
   const { darkMode } = useTheme();
   const [activeTab, setActiveTab] = useState(initialTab);
 
@@ -54,6 +54,8 @@ function MemberPage({ currentMemberId, tasks, setTasks, events, setEvents, role,
             role={role}
             events={events}
             setEvents={setEvents}
+            dispatch={dispatch}
+            currentMemberId={currentMemberId}
           />
         )}
       </div>

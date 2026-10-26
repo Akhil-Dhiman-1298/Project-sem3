@@ -77,11 +77,7 @@ function MemberSidebar({ goToHome, goToCoreMember, goToCoreClub, goToTasks, goTo
           <i className="fa-solid fa-calendar-check"></i> Events
         </a>
 
-        <div className="divider"></div>
 
-        <a href="#about-section" className="nav-link">
-          <i className="fa-regular fa-circle-question"></i> About Us
-        </a>
       </div>
 
       {/* ✅ Profile Card (Isme role 'core-member' hardcoded hai) */}
