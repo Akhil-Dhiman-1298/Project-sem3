@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from "react";
 import { AdminContext } from "./AdminContext";
 import "./AdminDashboard.css";
@@ -6,165 +5,103 @@ import "./AdminDashboard.css";
 function AdminWorkflow() {
   const { submissions } = useContext(AdminContext);
 
-  const [statusFilter, setStatusFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
 
-  // Calculate workflow statistics
-  const pendingCount = submissions.filter(
-    (item) => item.status === "Pending"
-  ).length;
+  // Stats calculate kar rahe hain
+  const total = submissions.length;
+  const pending = submissions.filter((item) => item.status === "Pending").length;
+  const approved = submissions.filter((item) => item.status === "Approved").length;
+  const rejected = submissions.filter((item) => item.status === "Rejected").length;
 
-  const approvedCount = submissions.filter(
-    (item) => item.status === "Approved"
-  ).length;
-
-  const rejectedCount = submissions.filter(
-    (item) => item.status === "Rejected"
-  ).length;
-
-  // Search and filter submissions
+  // Table filter logic
   const filteredSubmissions = submissions.filter((item) => {
-    const search = searchTerm.toLowerCase();
-
     const matchesSearch =
-      item.title.toLowerCase().includes(search) ||
-      item.club.toLowerCase().includes(search) ||
-      item.submittedBy.toLowerCase().includes(search);
-
-    const matchesStatus =
-      statusFilter === "All" || item.status === statusFilter;
-
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.club.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === "All" || item.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
-  function getStatusDescription(status) {
-    if (status === "Pending") {
-      return "Waiting for admin review";
-    }
-
-    if (status === "Approved") {
-      return "Submission approved";
-    }
-
-    if (status === "Rejected") {
-      return "Submission rejected";
-    }
-
-    return "Unknown status";
-  }
-
   return (
     <div className="admin-overview">
-      {/* Page heading */}
+      {/* Page Heading */}
       <div className="admin-page-heading">
         <div>
           <h1>Approval Workflow</h1>
-          <p>
-            Track the progress of event proposals and budget requests.
-          </p>
+          <p>Track the progress of event proposals and budget requests.</p>
         </div>
       </div>
 
-      {/* Workflow statistics */}
+      {/* Summary Cards (Fixed with Icons) */}
       <div className="admin-stats-grid">
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">📋</div>
+          <div className="admin-stat-icon icon-purple">
+            <i className="fa-regular fa-file-lines"></i>
+          </div>
           <p>Total Requests</p>
-          <h2>{submissions.length}</h2>
+          <h2>{total}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">⏳</div>
+          <div className="admin-stat-icon icon-orange">
+            <i className="fa-regular fa-clock"></i>
+          </div>
           <p>Awaiting Review</p>
-          <h2>{pendingCount}</h2>
+          <h2>{pending}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">✅</div>
+          <div className="admin-stat-icon icon-green">
+            <i className="fa-regular fa-circle-check"></i>
+          </div>
           <p>Approved</p>
-          <h2>{approvedCount}</h2>
+          <h2>{approved}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">❌</div>
+          <div className="admin-stat-icon icon-red">
+            <i className="fa-regular fa-circle-xmark"></i>
+          </div>
           <p>Rejected</p>
-          <h2>{rejectedCount}</h2>
+          <h2>{rejected}</h2>
         </div>
       </div>
 
-      {/* Workflow progress */}
-      <div className="admin-section-card">
+      {/* Workflow Progress (Redesigned) */}
+      <div className="admin-section-card workflow-progress-card">
         <div className="admin-section-heading">
           <div>
             <h2>Workflow Progress</h2>
             <p>Overview of the current approval stages.</p>
           </div>
         </div>
-
-        <div className="admin-workflow-progress">
-          <div className="admin-progress-item">
-            <div className="admin-progress-label">
-              <span>Pending</span>
-              <strong>{pendingCount}</strong>
+        
+        <div className="workflow-stats-container">
+          <div className="workflow-stat-item">
+            <div className="ws-label">
+              <span className="ws-dot dot-orange"></span> Pending
             </div>
-
-            <div className="admin-progress-track">
-              <div
-                className="admin-progress-fill pending-fill"
-                style={{
-                  width: `${
-                    submissions.length
-                      ? (pendingCount / submissions.length) * 100
-                      : 0
-                  }%`,
-                }}
-              />
+            <div className="ws-value">{pending}</div>
+          </div>
+          
+          <div className="workflow-stat-item">
+            <div className="ws-label">
+              <span className="ws-dot dot-green"></span> Approved
             </div>
+            <div className="ws-value">{approved}</div>
           </div>
 
-          <div className="admin-progress-item">
-            <div className="admin-progress-label">
-              <span>Approved</span>
-              <strong>{approvedCount}</strong>
+          <div className="workflow-stat-item">
+            <div className="ws-label">
+              <span className="ws-dot dot-red"></span> Rejected
             </div>
-
-            <div className="admin-progress-track">
-              <div
-                className="admin-progress-fill approved-fill"
-                style={{
-                  width: `${
-                    submissions.length
-                      ? (approvedCount / submissions.length) * 100
-                      : 0
-                  }%`,
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="admin-progress-item">
-            <div className="admin-progress-label">
-              <span>Rejected</span>
-              <strong>{rejectedCount}</strong>
-            </div>
-
-            <div className="admin-progress-track">
-              <div
-                className="admin-progress-fill rejected-fill"
-                style={{
-                  width: `${
-                    submissions.length
-                      ? (rejectedCount / submissions.length) * 100
-                      : 0
-                  }%`,
-                }}
-              />
-            </div>
+            <div className="ws-value">{rejected}</div>
           </div>
         </div>
       </div>
 
-      {/* Submission workflow table */}
+      {/* Submission Tracking Table */}
       <div className="admin-section-card">
         <div className="admin-section-heading">
           <div>
@@ -181,7 +118,6 @@ function AdminWorkflow() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-
           <select
             className="admin-filter-select"
             value={statusFilter}
@@ -194,63 +130,42 @@ function AdminWorkflow() {
           </select>
         </div>
 
-        {filteredSubmissions.length === 0 ? (
-          <div className="admin-empty-state">
-            <p>No submissions match your search.</p>
-          </div>
-        ) : (
-          <div className="admin-table-wrapper">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Submission</th>
-                  <th>Club</th>
-                  <th>Type</th>
-                  <th>Submitted By</th>
-                  <th>Current Stage</th>
-                  <th>Workflow Status</th>
+        <div className="admin-table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Submission</th>
+                <th>Club</th>
+                <th>Type</th>
+                <th>Submitted By</th>
+                <th>Current Stage</th>
+                <th>Workflow Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredSubmissions.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <strong>{item.title}</strong>
+                  </td>
+                  <td>{item.club}</td>
+                  <td>{item.type}</td>
+                  <td>{item.submittedBy}</td>
+                  <td>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#64748B' }}>
+                      {item.status === 'Pending' ? 'Admin Review' : 'Completed'}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`admin-status-badge ${item.status.toLowerCase()}`}>
+                      {item.status}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-
-              <tbody>
-                {filteredSubmissions.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <strong>{item.title}</strong>
-                      <small className="admin-table-subtext">
-                        {item.date}
-                      </small>
-                    </td>
-
-                    <td>{item.club}</td>
-                    <td>{item.type}</td>
-                    <td>{item.submittedBy}</td>
-
-                    <td>
-                      {item.status === "Pending"
-                        ? "Admin Review"
-                        : "Review Completed"}
-                    </td>
-
-                    <td>
-                      <div className="admin-workflow-status">
-                        <span
-                          className={`admin-status-badge ${item.status.toLowerCase()}`}
-                        >
-                          {item.status}
-                        </span>
-
-                        <small className="admin-table-subtext">
-                          {getStatusDescription(item.status)}
-                        </small>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

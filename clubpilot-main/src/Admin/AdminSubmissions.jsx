@@ -70,25 +70,33 @@ function AdminSubmissions() {
       {/* Summary cards */}
       <div className="admin-stats-grid">
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">📋</div>
+          <div className="admin-stat-icon icon-purple">
+            <i className="fa-regular fa-file-lines"></i>
+          </div>
           <p>Total Submissions</p>
           <h2>{submissions.length}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">⏳</div>
+          <div className="admin-stat-icon icon-orange">
+            <i className="fa-regular fa-clock"></i>
+          </div>
           <p>Pending</p>
           <h2>{pendingCount}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">✅</div>
+          <div className="admin-stat-icon icon-green">
+            <i className="fa-regular fa-circle-check"></i>
+          </div>
           <p>Approved</p>
           <h2>{approvedCount}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">❌</div>
+          <div className="admin-stat-icon icon-red">
+            <i className="fa-regular fa-circle-xmark"></i>
+          </div>
           <p>Rejected</p>
           <h2>{rejectedCount}</h2>
         </div>

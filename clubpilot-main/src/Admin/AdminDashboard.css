@@ -3152,3 +3152,452 @@
 .admin-page-heading p {
   margin-bottom: 25px !important; /* Cards se thoda gap rakhne ke liye */
 }
+
+/* ============================================
+   FINAL PERFECT SIDEBAR LINK FIX
+   ============================================ */
+
+.admin-layout .sidebar .nav-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important; /* Text ko left me layega */
+  text-align: left !important;
+  gap: 12px !important; 
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  white-space: normal !important; 
+  line-height: 1.4 !important;
+  padding: 12px 16px !important;
+}
+
+/* SVG Icon fix */
+.admin-layout .sidebar .nav-link svg {
+  flex-shrink: 0 !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+}
+
+/* Active hone pe size same rahe */
+.admin-layout .sidebar .nav-link.active {
+  font-size: 14px !important; 
+  font-weight: 600 !important; 
+  color: #5B3DF6 !important; 
+}
+
+/* Dark mode fix */
+.admin-layout.dark .sidebar .nav-link,
+.admin-layout.dark .sidebar .nav-link.active {
+  font-size: 14px !important;
+}
+
+/* ============================================
+   PREMIUM NOTIFICATION DROPDOWN FIX
+   ============================================ */
+
+.admin-notification-wrapper {
+  position: relative !important;
+}
+
+/* Dropdown ka main box */
+.admin-notification-dropdown {
+  position: absolute !important;
+  top: 55px !important;
+  right: 0 !important;
+  width: 340px !important;
+  background: #ffffff !important;
+  border: 1px solid #F3F4F6 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  z-index: 999 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Dropdown ka Header */
+.admin-notification-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  padding: 20px !important;
+  border-bottom: 1px solid #F3F4F6 !important;
+}
+
+.admin-notification-header h3 {
+  margin: 0 0 4px 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+.admin-notification-header p {
+  margin: 0 !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+}
+
+/* Close Button */
+.admin-notification-close {
+  background: #F8FAFC !important;
+  border: none !important;
+  border-radius: 8px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #64748B !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.admin-notification-close:hover {
+  background: #FEE2E2 !important;
+  color: #EF4444 !important;
+}
+
+/* Notification List */
+.admin-notification-list {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+/* Har ek Notification Item */
+.admin-notification-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  padding: 16px 20px !important;
+  border-bottom: 1px solid #F8FAFC !important;
+  transition: background 0.2s !important;
+}
+
+.admin-notification-item:hover {
+  background: #F8FAFC !important;
+}
+
+/* Icon Box */
+.admin-notification-item-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #F3EDFF !important;
+  color: #5B3DF6 !important;
+  border-radius: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Item ka Text */
+.admin-notification-item strong {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  margin-bottom: 4px !important;
+}
+
+.admin-notification-item p {
+  margin: 0 !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+  line-height: 1.4 !important;
+}
+
+/* Mark as read Button */
+.admin-mark-read-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 16px !important;
+  background: #ffffff !important;
+  border: none !important;
+  border-top: 1px solid #F3F4F6 !important;
+  color: #5B3DF6 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+}
+
+.admin-mark-read-btn:hover {
+  background: #F5F3FF !important;
+}
+
+/* Dark Mode ke liye */
+.admin-layout.dark .admin-notification-dropdown {
+  background: #141b2d !important;
+  border-color: #2a3348 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+.admin-layout.dark .admin-notification-header,
+.admin-layout.dark .admin-notification-item,
+.admin-layout.dark .admin-mark-read-btn {
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark .admin-notification-header h3,
+.admin-layout.dark .admin-notification-item strong {
+  color: #ffffff !important;
+}
+.admin-layout.dark .admin-notification-item p,
+.admin-layout.dark .admin-notification-header p {
+  color: #94a3b8 !important;
+}
+.admin-layout.dark .admin-notification-item:hover,
+.admin-layout.dark .admin-mark-read-btn:hover {
+  background: #1e2740 !important;
+}
+.admin-layout.dark .admin-notification-item-icon {
+  background: #1e2740 !important;
+  color: #a78bfa !important;
+}
+
+/* ============================================
+   PREMIUM STAT CARD ICONS
+   ============================================ */
+
+.admin-overview .admin-stat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 30px 20px !important;
+}
+
+/* Base Icon Box */
+.admin-overview .admin-stat-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 16px !important; /* Modern rounded box */
+  margin: 0 auto 16px auto !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* Hover karne pe icon thoda bounce kare */
+.admin-overview .admin-stat-card:hover .admin-stat-icon {
+  transform: translateY(-4px) scale(1.05) !important;
+}
+
+/* Text */
+.admin-overview .admin-stat-card p {
+  text-align: center !important;
+  margin: 0 0 12px 0 !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+/* Number */
+.admin-overview .admin-stat-card h2 {
+  text-align: center !important;
+  margin: 0 !important;
+  width: 100% !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #0F172A !important;
+}
+
+/* ---- 4 Different Colors for 4 Cards ---- */
+
+/* Purple (Total Submissions) */
+.admin-overview .icon-purple {
+  background: #F3EDFF !important;
+  color: #5B3DF6 !important;
+}
+
+/* Orange (Pending Approvals) */
+.admin-overview .icon-orange {
+  background: #FFF4E5 !important;
+  color: #F97316 !important;
+}
+
+/* Green (Approved) */
+.admin-overview .icon-green {
+  background: #ECFDF5 !important;
+  color: #10B981 !important;
+}
+
+/* Red (Rejected) */
+.admin-overview .icon-red {
+  background: #FEF2F2 !important;
+  color: #EF4444 !important;
+}
+
+/* Dark Mode Colors */
+.admin-layout.dark .admin-overview .icon-purple { background: rgba(91, 61, 246, 0.15) !important; color: #A78BFA !important; }
+.admin-layout.dark .admin-overview .icon-orange { background: rgba(249, 115, 22, 0.15) !important; color: #FB923C !important; }
+.admin-layout.dark .admin-overview .icon-green { background: rgba(16, 185, 129, 0.15) !important; color: #34D399 !important; }
+.admin-layout.dark .admin-overview .icon-red { background: rgba(239, 68, 68, 0.15) !important; color: #F87171 !important; }
+.admin-layout.dark .admin-overview .admin-stat-card h2 { color: #FFFFFF !important; }
+
+/* ============================================
+   WORKFLOW PROGRESS REDESIGN
+   ============================================ */
+
+.workflow-stats-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 40px !important;
+  padding: 20px 24px 30px 24px !important;
+  background: #F8FAFC !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.workflow-stat-item {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.ws-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+.ws-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+}
+
+.dot-orange { background: #F97316 !important; }
+.dot-green { background: #10B981 !important; }
+.dot-red { background: #EF4444 !important; }
+
+.ws-value {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #0F172A !important;
+  padding-left: 18px !important;
+}
+
+/* Dark Mode */
+.admin-layout.dark .workflow-stats-container {
+  background: #1E293B !important;
+}
+.admin-layout.dark .ws-value {
+  color: #FFFFFF !important;
+}
+
+/* ============================================
+   EXACT DARK MODE PROFILE CARD (AS PER IMAGE)
+   ============================================ */
+
+/* Card Background */
+.admin-layout.dark .sidebar-profile-card {
+  background-color: #1e293b !important; 
+  border: 1px solid #334155 !important;
+}
+
+/* Avatar Background (Dark Maroon) */
+.admin-layout.dark .sidebar-profile-card .spc-avatar {
+  background-color: #3f1d24 !important; /* Dark red/maroon background */
+  color: #fca5a5 !important; /* Light red text (A) */
+  border: none !important; /* White border hata diya */
+}
+
+/* Agar teri file me role-admin class hai toh usko bhi override karo */
+.admin-layout.dark .sidebar-profile-card .spc-avatar.role-admin {
+  background-color: #3f1d24 !important;
+  color: #fca5a5 !important;
+  border: none !important;
+}
+
+/* Name Text */
+.admin-layout.dark .sidebar-profile-card .spc-name {
+  color: #ffffff !important; 
+}
+
+/* Role Text (ADMIN) */
+.admin-layout.dark .sidebar-profile-card .spc-role {
+  color: #fca5a5 !important; /* Light red text */
+}
+
+/* Online Green Dot */
+.admin-layout.dark .sidebar-profile-card .spc-online-dot {
+  border-color: #1e293b !important; /* Border same as card background */
+  background-color: #10b981 !important; 
+}
+
+/* ============================================
+   SIDEBAR ACTIVE STATE - WHITE TEXT & ICON
+   ============================================ */
+
+/* Active item ka background aur text */
+.admin-layout.dark .sidebar .nav-link.active {
+  background: #3730a3 !important; /* Solid Purple */
+  color: #ffffff !important; /* White Text */
+  border: none !important;
+  box-shadow: none !important; /* Purane shadows hatao */
+}
+
+/* Active item ka icon (SVG) white karo */
+.admin-layout.dark .sidebar .nav-link.active svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Focus karne pe jo white outline aa raha hai usko hatao */
+.admin-layout.dark .sidebar .nav-link:focus,
+.admin-layout.dark .sidebar .nav-link:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================
+   SIDEBAR ACTIVE STATE - WHITE BORDER + WHITE TEXT
+   ============================================ */
+
+.admin-layout.dark .sidebar .nav-link.active {
+  background: #3730a3 !important; /* Solid Purple background */
+  color: #ffffff !important; /* White text */
+  border: 1px solid #ffffff !important; /* Wapas White Border */
+  box-shadow: none !important;
+}
+
+/* Active item ka icon white karo */
+.admin-layout.dark .sidebar .nav-link.active svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Focus karne pe default outline hatao, par white border rehne do */
+.admin-layout.dark .sidebar .nav-link:focus {
+  outline: none !important;
+}
+
+/* ============================================
+   SIDEBAR HOVER STATE - ORANGE ICON
+   ============================================ */
+
+/* Hover karne pe background purple aur text white */
+.admin-layout.dark .sidebar .nav-link:hover {
+  background: #3730a3 !important; 
+  color: #ffffff !important;
+}
+
+/* Hover karne pe icon ka color Orange (#f97316) */
+.admin-layout.dark .sidebar .nav-link:hover svg {
+  color: #f97316 !important;
+  stroke: #f97316 !important;
+}
+
+/* Ensure active state ka bhi yahi rule ho agar hover kare */
+.admin-layout.dark .sidebar .nav-link.active:hover svg {
+  color: #f97316 !important;
+  stroke: #f97316 !important;
+}
+
