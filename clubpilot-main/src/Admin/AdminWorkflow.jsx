@@ -1,4 +1,3 @@
-
 import React, { useContext, useMemo, useState } from "react";
 import { AdminContext } from "./AdminContext";
 import "./AdminDashboard.css";
@@ -150,6 +149,7 @@ function AdminWorkflow() {
       borderRadius: 14,
       boxShadow: "0 3px 12px rgba(43,25,94,.035)",
       overflow: "hidden",
+      boxSizing: "border-box",
     },
     fieldLabel: {
       display: "block",
@@ -181,17 +181,12 @@ function AdminWorkflow() {
         </p>
       </header>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(170px, .72fr) minmax(300px, 1.65fr) minmax(270px, 1.15fr)",
-          gap: 18,
-          alignItems: "start",
-        }}
-        className="admin-workflow-layout"
-      >
-        {/* Request type selector */}
-        <section style={{ ...styles.panel, padding: 10 }}>
+      <div className="admin-workflow-layout">
+        {/* TOP LEFT: Request Type */}
+        <section
+          className="workflow-types-card"
+          style={{ ...styles.panel, padding: 10, gridArea: "types" }}
+        >
           <div
             style={{
               padding: "10px 10px 14px",
@@ -255,109 +250,11 @@ function AdminWorkflow() {
           })}
         </section>
 
-        {/* Request form */}
-        <section style={{ ...styles.panel, padding: 22 }}>
-          <h2
-            style={{
-              margin: "0 0 20px",
-              color: "#201744",
-              fontSize: 19,
-              fontWeight: 800,
-            }}
-          >
-            {requestTitles[requestType]}
-          </h2>
-
-          <form onSubmit={handleSendRequest}>
-            <div style={{ marginBottom: 20 }}>
-              <label style={styles.fieldLabel} htmlFor="workflow-message">
-                Message to Leader
-              </label>
-              <textarea
-                id="workflow-message"
-                rows={4}
-                value={message}
-                onChange={(event) => setMessage(event.target.value)}
-                placeholder={`Please submit the required ${requestType.toLowerCase()}...`}
-                style={{
-                  ...styles.field,
-                  resize: "vertical",
-                  lineHeight: 1.6,
-                  minHeight: 110,
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: 20 }}>
-              <label style={styles.fieldLabel} htmlFor="workflow-deadline">
-                Deadline
-              </label>
-              <input
-                id="workflow-deadline"
-                type="date"
-                min={new Date().toISOString().slice(0, 10)}
-                value={deadline}
-                onChange={(event) => setDeadline(event.target.value)}
-                style={styles.field}
-              />
-            </div>
-
-            {feedback && (
-              <p
-                role="status"
-                style={{
-                  margin: "0 0 15px",
-                  color: feedback.startsWith("Request added")
-                    ? "#16703b"
-                    : "#b42318",
-                  fontSize: 13,
-                  lineHeight: 1.5,
-                }}
-              >
-                {feedback}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 9,
-                padding: "12px 18px",
-                border: "none",
-                borderRadius: 9,
-                background: "#6844f5",
-                color: "#fff",
-                fontFamily: "inherit",
-                fontSize: 14,
-                fontWeight: 750,
-                cursor: "pointer",
-                boxShadow: "0 4px 10px rgba(104,68,245,.15)",
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="17"
-                height="17"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m22 2-7 20-4-9-9-4Z" />
-                <path d="M22 2 11 13" />
-              </svg>
-              Send Request
-            </button>
-          </form>
-        </section>
-
-        {/* Recent requests */}
-        <section style={styles.panel}>
+        {/* TOP RIGHT: Recent Requests */}
+        <section
+          className="workflow-recent-card"
+          style={{ ...styles.panel, gridArea: "recent", minWidth: 0 }}
+        >
           <div
             style={{
               padding: "20px 20px 15px",
@@ -398,10 +295,23 @@ function AdminWorkflow() {
                     <path d="M14 3.5V8h4M9 13h6M9 16.5h6" />
                   </svg>
                 </div>
-                <p style={{ margin: 0, color: "#51476d", fontSize: 14, fontWeight: 700 }}>
+                <p
+                  style={{
+                    margin: 0,
+                    color: "#51476d",
+                    fontSize: 14,
+                    fontWeight: 700,
+                  }}
+                >
                   No requests yet
                 </p>
-                <p style={{ margin: "6px 0 0", color: "#8b849e", fontSize: 12 }}>
+                <p
+                  style={{
+                    margin: "6px 0 0",
+                    color: "#8b849e",
+                    fontSize: 12,
+                  }}
+                >
                   Requests will appear here after submission.
                 </p>
               </div>
@@ -507,24 +417,140 @@ function AdminWorkflow() {
             )}
           </div>
         </section>
+
+        {/* BOTTOM: Full-width Request Form */}
+        <section
+          className="workflow-form-card"
+          style={{
+            ...styles.panel,
+            padding: "28px",
+            gridArea: "form",
+            minWidth: 0,
+          }}
+        >
+          <h2
+            style={{
+              margin: "0 0 24px",
+              color: "#201744",
+              fontSize: 19,
+              fontWeight: 800,
+            }}
+          >
+            {requestTitles[requestType]}
+          </h2>
+
+          <form onSubmit={handleSendRequest}>
+            <div style={{ marginBottom: 22 }}>
+              <label style={styles.fieldLabel} htmlFor="workflow-message">
+                Message to Leader
+              </label>
+              <textarea
+                id="workflow-message"
+                rows={5}
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                placeholder={`Please submit the required ${requestType.toLowerCase()}...`}
+                style={{
+                  ...styles.field,
+                  resize: "vertical",
+                  lineHeight: 1.7,
+                  minHeight: 130,
+                }}
+              />
+            </div>
+
+            <div style={{ marginBottom: 20 }}>
+              <label style={styles.fieldLabel} htmlFor="workflow-deadline">
+                Deadline
+              </label>
+              <input
+                id="workflow-deadline"
+                type="date"
+                min={new Date().toISOString().slice(0, 10)}
+                value={deadline}
+                onChange={(event) => setDeadline(event.target.value)}
+                style={styles.field}
+              />
+            </div>
+
+            {feedback && (
+              <p
+                role="status"
+                style={{
+                  margin: "0 0 15px",
+                  color: feedback.startsWith("Request added")
+                    ? "#16703b"
+                    : "#b42318",
+                  fontSize: 13,
+                  lineHeight: 1.5,
+                }}
+              >
+                {feedback}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 9,
+                padding: "12px 18px",
+                border: "none",
+                borderRadius: 9,
+                background: "#6844f5",
+                color: "#fff",
+                fontFamily: "inherit",
+                fontSize: 14,
+                fontWeight: 750,
+                cursor: "pointer",
+                boxShadow: "0 4px 10px rgba(104,68,245,.15)",
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m22 2-7 20-4-9-9-4Z" />
+                <path d="M22 2 11 13" />
+              </svg>
+              Send Request
+            </button>
+          </form>
+        </section>
       </div>
 
       <style>{`
-        @media (max-width: 1100px) {
-          .admin-workflow-layout {
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) !important;
-          }
-          .admin-workflow-layout > section:last-child {
-            grid-column: 1 / -1;
-          }
+        .admin-workflow-layout {
+          display: grid;
+          grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.8fr);
+          grid-template-areas:
+            "types recent"
+            "form form";
+          gap: 20px;
+          align-items: stretch;
+          width: 100%;
+        }
+
+        .admin-workflow-layout > section {
+          min-width: 0;
         }
 
         @media (max-width: 680px) {
           .admin-workflow-layout {
-            grid-template-columns: minmax(0, 1fr) !important;
-          }
-          .admin-workflow-layout > section:last-child {
-            grid-column: auto;
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+              "types"
+              "recent"
+              "form";
           }
         }
       `}</style>

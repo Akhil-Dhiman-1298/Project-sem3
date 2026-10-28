@@ -4461,3 +4461,1286 @@
     font-size: 16px;
   }
 }
+
+/* ============================================
+   FINAL SIDEBAR CSS (AS IT WAS EARLIER)
+   ============================================ */
+
+/* 1. Sidebar Base */
+.admin-layout .sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #F3F4F6 !important;
+  padding: 24px 16px !important;
+  width: 260px !important;
+  flex: 0 0 260px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Logo Box */
+.admin-layout .sidebar .logo-box {
+  background: transparent !important;
+  padding: 0 12px 24px 12px !important;
+  border: none !important;
+}
+
+/* Brand Text */
+.admin-layout .sidebar .brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #0F172A !important;
+}
+
+.admin-layout .sidebar .brand-name span {
+  color: #5B3DF6 !important;
+}
+
+/* Scroll Area */
+.admin-layout .sidebar .sidebar-scroll-area {
+  flex: 1 !important;
+  overflow-y: auto !important;
+}
+
+/* 2. Normal Links */
+.admin-layout .sidebar .nav-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  border-radius: 10px !important;
+  color: #475569 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-bottom: 6px !important;
+  transition: all 0.3s ease-out !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
+}
+
+/* 3. Hover State */
+.admin-layout .sidebar .nav-link:hover {
+  background: #F5F3FF !important;
+  color: #5B3DF6 !important;
+  transform: translateX(4px) scale(1.02) !important;
+  transform-origin: left center !important;
+}
+
+/* 4. Active State (White text, Solid Purple background, White Border) */
+.admin-layout .sidebar .nav-link.active {
+  background: #5B3DF6 !important; 
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important; 
+  box-shadow: 0 4px 12px rgba(91, 61, 246, 0.2) !important;
+  transform: translateX(4px) scale(1.02) !important;
+  font-weight: 600 !important;
+}
+
+/* Active Icon White */
+.admin-layout .sidebar .nav-link.active svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* 5. Divider */
+.admin-layout .sidebar .divider {
+  border-top: 1px solid #F3F4F6 !important;
+  margin: 16px 0 !important;
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+
+.admin-layout.dark .sidebar {
+  background: #0f172a !important;
+  border-right: 1px solid #1e293b !important;
+}
+
+.admin-layout.dark .sidebar .brand-name {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark .sidebar .nav-link {
+  color: #94a3b8 !important;
+}
+
+/* Dark Hover */
+.admin-layout.dark .sidebar .nav-link:hover {
+  background: #1e293b !important;
+  color: #a78bfa !important;
+}
+
+/* Dark Hover Icon Orange */
+.admin-layout.dark .sidebar .nav-link:hover svg {
+  color: #f97316 !important;
+  stroke: #f97316 !important;
+}
+
+/* Dark Active (White border, Solid purple) */
+.admin-layout.dark .sidebar .nav-link.active {
+  background: #3730a3 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important; 
+  box-shadow: none !important;
+}
+
+/* Dark Active Icon (Orange) */
+.admin-layout.dark .sidebar .nav-link.active svg {
+  color: #f97316 !important;
+  stroke: #f97316 !important;
+}
+
+.admin-layout.dark .sidebar .divider {
+  border-top: 1px solid #1e293b !important;
+}
+
+/* ============================================
+   EXACT CSS FROM USER'S FILE
+   ============================================ */
+
+/* ✅ Sidebar Scroll Area */
+.admin-layout .sidebar-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-right: 8px;
+    padding-left: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-layout .sidebar-scroll-area::-webkit-scrollbar {
+    width: 4px;
+}
+.admin-layout .sidebar-scroll-area::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* LOGO */
+.admin-layout .logo-box {
+    background: linear-gradient(180deg, #FFFFFF, #F8F5FF);
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin: 0 0 14px 0;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+.admin-layout .logo-box:hover {
+    border-color: rgba(91, 61, 246, 0.1);
+}
+.admin-layout .brand-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: #0F172A;
+    letter-spacing: -0.5px;
+}
+.admin-layout .brand-name span { color: #5B3DF6; }
+.admin-layout .dark .brand-name span.pilot-dark { color: #f97316; }
+
+/* NAVIGATION LINKS */
+.admin-layout .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    margin-bottom: 6px;
+    color: #56657A;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    width: calc(100% - 6px);
+    box-sizing: border-box;
+}
+.admin-layout .nav-link i, 
+.admin-layout .nav-link svg {
+    width: 22px;
+    text-align: center;
+    color: #56657A;
+    font-size: 16px;
+    transition: all 0.3s ease-out;
+}
+.admin-layout .nav-link:hover {
+    background: #F6F2FF;
+    color: #5B3DF6;
+    transform: translateX(4px) scale(1.05);
+    transform-origin: left center;
+    box-shadow: 0 2px 12px rgba(91, 61, 246, 0.04);
+}
+.admin-layout .nav-link:hover i, 
+.admin-layout .nav-link:hover svg {
+    color: #5B3DF6;
+    transform: scale(1.1);
+}
+.admin-layout .nav-link.active {
+    background: #EFE8FF;
+    color: #5B3DF6;
+    font-weight: 600;
+    border: 1px solid #E3D8FF;
+    box-shadow: 0 2px 12px rgba(91, 61, 246, 0.08);
+}
+.admin-layout .nav-link.active i, 
+.admin-layout .nav-link.active svg {
+    color: #5B3DF6;
+    text-shadow: 0 0 20px rgba(91, 61, 246, 0.15);
+}
+
+.admin-layout .divider {
+    height: 1px;
+    width: auto;
+    background: linear-gradient(90deg, #EEEAF8, transparent);
+    margin: 12px 0;
+}
+/* ============================================
+   ULTIMATE FIX: FORCE LIGHT PURPLE ACTIVE
+   ============================================ */
+
+.admin-layout .sidebar .nav-link.active,
+.admin-layout .sidebar .nav-link.active:hover,
+.admin-layout.dark .sidebar .nav-link.active,
+.admin-layout.dark .sidebar .nav-link.active:hover {
+  background: #EFE8FF !important; /* Halka Purple Background */
+  color: #5B3DF6 !important; /* Purple Text */
+  border: 1px solid #E3D8FF !important; /* Halka Border */
+  box-shadow: 0 2px 12px rgba(91, 61, 246, 0.08) !important;
+  font-weight: 600 !important;
+  transform: translateX(4px) scale(1.02) !important;
+}
+
+/* Icon ka color purple karo */
+.admin-layout .sidebar .nav-link.active svg,
+.admin-layout .sidebar .nav-link.active i,
+.admin-layout .sidebar .nav-link.active:hover svg,
+.admin-layout .sidebar .nav-link.active:hover i {
+  color: #5B3DF6 !important; 
+  stroke: #5B3DF6 !important;
+  fill: none !important;
+}
+
+/* Sidebar me Purple Gradient add karne ke liye */
+.admin-layout .sidebar {
+  background: linear-gradient(180deg, #FCFBFF 0%, #F7F4FE 40%, #F3F0FC 100%) !important;
+  border-right: 1px solid #EEEAF8 !important;
+}
+
+/* ============================================
+   DARK MODE SIDEBAR (EXACT MATCH WITH MAIN SITE)
+   ============================================ */
+
+/* 1. Sidebar ka Background aur Border */
+.admin-layout.dark .sidebar {
+  background: #111827 !important;
+  border-right: 1px solid #475569 !important;
+}
+
+/* 2. Logo Box aur Text */
+.admin-layout.dark .logo-box {
+  background: #1e293b !important; /* Dark grey box */
+  border-color: transparent !important;
+}
+.admin-layout.dark .brand-name {
+  color: #ffffff !important;
+}
+.admin-layout.dark .brand-name span {
+  color: #a78bfa !important; /* Light purple for 'Pilot' */
+}
+
+/* 3. Normal Links (Text aur Icons) */
+.admin-layout.dark .nav-link,
+.admin-layout.dark .nav-link i, 
+.admin-layout.dark .nav-link svg {
+  color: #e2e8f0 !important;
+}
+
+/* 4. Hover State (Normal links pe) */
+.admin-layout.dark .nav-link:hover {
+  background: #3730a3 !important;
+  color: #ffffff !important;
+}
+.admin-layout.dark .nav-link:hover i, 
+.admin-layout.dark .nav-link:hover svg {
+  color: #f97316 !important; /* Orange Icon on Hover */
+}
+
+/* 5. ACTIVE STATE (Dark mode me active solid purple rahega) */
+.admin-layout.dark .sidebar .nav-link.active,
+.admin-layout.dark .sidebar .nav-link.active:hover {
+  background: #3730a3 !important; /* Solid Dark Purple */
+  color: #ffffff !important; /* White Text */
+  border: none !important;
+}
+.admin-layout.dark .sidebar .nav-link.active i, 
+.admin-layout.dark .sidebar .nav-link.active svg {
+  color: #ffffff !important; /* White Icon */
+  stroke: #ffffff !important;
+}
+
+/* 6. Divider (Line) */
+.admin-layout.dark .divider {
+  background: #475569 !important;
+}
+
+/* 7. Profile Card (Neeche wala) */
+.admin-layout.dark .sidebar-profile-card {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+}
+.admin-layout.dark .sidebar-profile-card .spc-name {
+  color: #ffffff !important;
+}
+.admin-layout.dark .sidebar-profile-card .spc-avatar {
+  background: #3f1d24 !important; /* Dark maroon bg */
+  color: #fca5a5 !important; /* Light red text */
+  border: none !important;
+}
+.admin-layout.dark .sidebar-profile-card .spc-role {
+  color: #fca5a5 !important; /* Red text */
+}
+.admin-layout.dark .sidebar-profile-card .spc-online-dot {
+  border-color: #1e293b !important;
+}
+
+/* ============================================
+   ULTIMATE DARK MODE FIX FOR NEW UI
+   ============================================ */
+
+/* 1. MAIN LAYOUT BACKGROUND */
+.admin-layout.dark,
+.admin-layout.dark .admin-main {
+  background: #0b1120 !important; 
+}
+
+/* 2. HEADINGS & TEXT COLORS */
+.admin-layout.dark h1, 
+.admin-layout.dark h2, 
+.admin-layout.dark h3, 
+.admin-layout.dark h4,
+.admin-layout.dark .admin-page-heading h1 {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark p, 
+.admin-layout.dark span,
+.admin-layout.dark .admin-page-heading p {
+  color: #94a3b8 !important;
+}
+
+/* 3. PANELS & CARDS (Inline styles override) */
+.admin-layout.dark .admin-overview .admin-section-card,
+.admin-layout.dark .admin-documents-page section,
+.admin-layout.dark .admin-submissions-page section,
+.admin-layout.dark .admin-events-page section,
+.admin-layout.dark .admin-workflow-page section {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 4. TABLES DARK MODE */
+.admin-layout.dark table,
+.admin-layout.dark th,
+.admin-layout.dark td {
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark th {
+  background-color: #1a2238 !important;
+  color: #94a3b8 !important;
+}
+.admin-layout.dark td {
+  background-color: #141b2d !important;
+  color: #e2e8f0 !important;
+}
+.admin-layout.dark tr:hover td {
+  background-color: #1a2238 !important;
+}
+
+/* 5. TAB BUTTONS (Submissions/Documents me) */
+.admin-layout.dark .admin-submissions-page button,
+.admin-layout.dark .admin-documents-page button {
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+}
+.admin-layout.dark .admin-submissions-page button[style*="background: rgb(104, 68, 245)"],
+.admin-layout.dark .admin-documents-page button[style*="background: rgb(104, 68, 245)"] {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+  border-color: #5b3df6 !important;
+}
+
+/* 6. FORMS & INPUTS (Submissions/Documents/Workflow me) */
+.admin-layout.dark input,
+.admin-layout.dark select,
+.admin-layout.dark textarea {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+/* 7. STAT CARDS (Admin Overview me) */
+.admin-layout.dark .admin-stat-card {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark .admin-stat-card h2 {
+  color: #ffffff !important;
+}
+
+/* 8. BADGES (Pending/Approved/Rejected) */
+.admin-layout.dark .admin-status-badge {
+  color: #ffffff !important; 
+}
+
+/* 9. MODALS & POPUPS (Agar koi View pe click kare) */
+.admin-layout.dark div[role="dialog"] {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+}
+.admin-layout.dark div[role="dialog"] h2 {
+  color: #ffffff !important;
+}
+.admin-layout.dark div[role="dialog"] strong {
+  color: #cbd5e1 !important;
+}
+.admin-layout.dark div[role="dialog"] span,
+.admin-layout.dark div[role="dialog"] p {
+  color: #94a3b8 !important;
+}
+.admin-layout.dark div[role="dialog"] div {
+  border-color: #2a3348 !important;
+}
+
+/* 10. CALENDAR (Admin Events page) */
+.admin-layout.dark .admin-calendar-day {
+  background-color: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark .admin-calendar-day.has-events {
+  color: #a78bfa !important;
+}
+.admin-layout.dark .admin-calendar-day.selected {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+}
+
+/* 11. WORKFLOW PAGE (Request submission) */
+.admin-layout.dark .admin-workflow-page [style*="borderBottom"] {
+  border-bottom-color: #2a3348 !important;
+}
+
+/* 12. Hover Fix for Dropdown (Notification menu) */
+.admin-layout.dark .admin-notification-item:hover {
+  background-color: #1a2238 !important;
+}
+
+/* ============================================
+   ULTIMATE DARK MODE FIX FOR NEW UI
+   ============================================ */
+
+/* 1. Global Background */
+.admin-layout.dark,
+.admin-layout.dark .admin-main,
+.admin-layout.dark .admin-page-content {
+  background-color: #0b1120 !important;
+}
+
+/* 2. Headings & Text */
+.admin-layout.dark h1,
+.admin-layout.dark h2,
+.admin-layout.dark h3,
+.admin-layout.dark .admin-page-heading h1 {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark p,
+.admin-layout.dark .admin-page-heading p,
+.admin-layout.dark .admin-section-heading p {
+  color: #94a3b8 !important;
+}
+
+/* 3. Panels & Cards (Inline #fff ko override karega) */
+.admin-layout.dark section,
+.admin-layout.dark .admin-section-card,
+.admin-layout.dark .admin-stat-card {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 4. Tables */
+.admin-layout.dark table,
+.admin-layout.dark th,
+.admin-layout.dark td {
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark th {
+  background-color: #1a2238 !important;
+  color: #94a3b8 !important;
+}
+.admin-layout.dark td {
+  background-color: transparent !important;
+  color: #e2e8f0 !important;
+}
+.admin-layout.dark tr:hover td {
+  background-color: #1a2238 !important;
+}
+
+/* 5. Inputs, Selects, Textareas */
+.admin-layout.dark input,
+.admin-layout.dark select,
+.admin-layout.dark textarea {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+.admin-layout.dark input::placeholder,
+.admin-layout.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* 6. Tabs (Submissions & Documents) */
+.admin-layout.dark button[style*="background: rgb(248, 246, 252)"],
+.admin-layout.dark button[style*="background-color: rgb(248, 246, 252)"] {
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+}
+
+/* 7. Active Tabs (Purple wale ko safe rakhna) */
+.admin-layout.dark button[style*="background: rgb(104, 68, 245)"],
+.admin-layout.dark button[style*="background-color: rgb(104, 68, 245)"] {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+  border-color: #5b3df6 !important;
+}
+
+/* 8. Modals & Popups (View Details) */
+.admin-layout.dark div[role="dialog"] {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+}
+.admin-layout.dark div[role="dialog"] h2,
+.admin-layout.dark div[role="dialog"] strong {
+  color: #ffffff !important;
+}
+.admin-layout.dark div[role="dialog"] span,
+.admin-layout.dark div[role="dialog"] p {
+  color: #94a3b8 !important;
+}
+.admin-layout.dark div[role="dialog"] div {
+  border-color: #2a3348 !important;
+}
+
+/* 9. Calendar (Events Page) */
+.admin-layout.dark .admin-calendar-day {
+  background-color: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #2a3348 !important;
+}
+.admin-layout.dark .admin-calendar-day.has-events {
+  color: #a78bfa !important;
+}
+.admin-layout.dark .admin-calendar-day.selected {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+}
+
+/* 10. Workflow Form (Border fix) */
+.admin-layout.dark .admin-workflow-page [style*="borderBottom"] {
+  border-bottom-color: #2a3348 !important;
+}
+
+/* ============================================
+   DARK MODE FIX: RECENT ACTIVITY ICONS & LINES
+   ============================================ */
+
+/* 1. Safed Icon Box ko Dark Purple/Grey karo */
+.admin-layout.dark .overview-activity-icon {
+  background-color: #1e293b !important; /* Dark background */
+  color: #a78bfa !important; /* Light purple icon */
+}
+
+/* Agar icon FontAwesome ka nahi hai toh SVG ko bhi color do */
+.admin-layout.dark .overview-activity-icon svg,
+.admin-layout.dark .overview-activity-icon i {
+  color: #a78bfa !important;
+  stroke: #a78bfa !important;
+}
+
+/* 2. Activity List ke beech me lines wapas laao */
+.admin-layout.dark .overview-activity-row {
+  border-bottom: 1px solid #2a3348 !important;
+}
+
+/* 3. Status Badges ko thoda aur clean dark look do */
+.admin-layout.dark .admin-status-badge.pending {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+}
+
+.admin-layout.dark .admin-status-badge.rejected {
+  background: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+}
+
+.admin-layout.dark .admin-status-badge.approved {
+  background: rgba(52, 211, 153, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* ============================================
+   DARK MODE FIX: EVENT CALENDAR & CARDS
+   ============================================ */
+
+/* 1. Top Right Total Proposals Card Fix */
+.admin-layout.dark .admin-events-total,
+.admin-layout.dark [style*="backgroundColor: \"rgb(255, 255, 255)\""],
+.admin-layout.dark [style*="backgroundColor: \"#fff\""] {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+}
+
+/* Total Proposals card ke andar ka icon box */
+.admin-layout.dark .admin-events-total-icon {
+  background-color: #1e293b !important;
+  color: #a78bfa !important;
+}
+
+/* Total Proposals card ka text */
+.admin-layout.dark .admin-events-total strong {
+  color: #ffffff !important;
+}
+.admin-layout.dark .admin-events-total span {
+  color: #94a3b8 !important;
+}
+
+/* 2. Event Details ke andar "0" wala counter box */
+.admin-layout.dark .admin-upcoming-count {
+  background-color: #1e293b !important;
+  color: #a78bfa !important;
+}
+
+/* 3. "No proposals on this date" ka safed dabba aur text */
+.admin-layout.dark .admin-events-empty-icon {
+  background-color: #1e293b !important;
+  color: #a78bfa !important;
+}
+
+.admin-layout.dark .admin-events-empty strong {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark .admin-events-empty p {
+  color: #94a3b8 !important;
+}
+
+/* 4. Calendar Days ko thoda aur dark karo */
+.admin-layout.dark .admin-calendar-day {
+  background-color: #0f172a !important;
+  border-color: #2a3348 !important;
+}
+
+.admin-layout.dark .admin-calendar-day:hover {
+  background-color: #1e293b !important;
+}
+
+/* 5. "28" (Selected Date) ka color */
+.admin-layout.dark .admin-calendar-day.selected {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+  border-color: #5b3df6 !important;
+}
+
+/* ============================================
+   DARK MODE FIX: SUBMISSIONS PAGE
+   ============================================ */
+
+/* 1. Table ke andar ka dark text White karo */
+.admin-layout.dark table td div,
+.admin-layout.dark table td strong,
+.admin-layout.dark table td span {
+  color: #ffffff !important;
+}
+
+/* 2. Inline styling se aane wale dark colors ko override karo */
+.admin-layout.dark .admin-submissions-page td div[style*="color: rgb(48, 38, 76)"] {
+  color: #ffffff !important;
+}
+
+/* 3. Tabs (All, Event Proposals) ka background aur text */
+.admin-layout.dark button[style*="background: rgb(248, 246, 252)"],
+.admin-layout.dark button[style*="background-color: rgb(248, 246, 252)"] {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+/* Active Tab (All (5)) */
+.admin-layout.dark button[style*="background: rgb(104, 68, 245)"],
+.admin-layout.dark button[style*="background-color: rgb(104, 68, 245)"] {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+  border-color: #5b3df6 !important;
+}
+
+/* 4. View Button */
+.admin-layout.dark button[style*="background: rgb(248, 245, 255)"],
+.admin-layout.dark button[style*="background-color: rgb(248, 245, 255)"] {
+  background-color: #1e293b !important;
+  color: #a78bfa !important;
+  border-color: #334155 !important;
+}
+.admin-layout.dark button[style*="background: rgb(248, 245, 255)"]:hover {
+  background-color: #334155 !important;
+}
+
+/* 5. Table Header Text */
+.admin-layout.dark table th {
+  color: #94a3b8 !important;
+}
+
+/* 6. Table ke andar jo icons hain unka background */
+.admin-layout.dark td span[style*="background: rgb(241, 235, 255)"] {
+  background-color: #1e293b !important;
+  color: #a78bfa !important;
+}
+
+/* ============================================
+   DARK MODE FIX: DOCUMENTS PAGE ICONS & BUTTONS
+   ============================================ */
+
+/* 1. File Icons ka White Background Dark karo */
+.admin-layout.dark .admin-documents-page td span[style*="background: rgb(242, 237, 255)"],
+.admin-layout.dark .admin-documents-page td span[style*="background-color: rgb(242, 237, 255)"] {
+  background-color: #1e293b !important; /* Dark background */
+  border: 1px solid #334155 !important;
+}
+
+/* Icon (SVG) ka color bright rakho */
+.admin-layout.dark .admin-documents-page td span svg {
+  color: #a78bfa !important;
+  stroke: #a78bfa !important;
+}
+
+/* 2. View aur 3-dots Button ka background fix */
+.admin-layout.dark .admin-documents-page td button[style*="background: rgb(248, 245, 255)"],
+.admin-layout.dark .admin-documents-page td button[style*="background-color: rgb(248, 245, 255)"] {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #a78bfa !important;
+}
+
+/* 3. 3-dots button jo transparent hai usko hover pe background do */
+.admin-layout.dark .admin-documents-page td button[style*="background: transparent"]:hover {
+  background-color: #334155 !important;
+}
+
+/* ============================================
+   PREMIUM DARK MODE: WORKFLOW PAGE
+   ============================================ */
+
+/* 1. "Request Type" ke Buttons */
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(255, 255, 255)"],
+.admin-layout.dark .admin-workflow-page button[style*="background-color: rgb(255, 255, 255)"],
+.admin-layout.dark .admin-workflow-page button {
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+  border: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover karne pe buttons */
+.admin-layout.dark .admin-workflow-page button:hover {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+/* Active Button (Event Proposal jo select hai) */
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"],
+.admin-layout.dark .admin-workflow-page button[style*="background-color: rgb(240, 234, 255)"] {
+  background-color: #5b3df6 !important; /* Solid Purple */
+  color: #ffffff !important;
+  border: 1px solid #7c6bf5 !important;
+  box-shadow: 0 4px 12px rgba(91, 61, 246, 0.3) !important;
+}
+
+/* Active Button ke andar ka icon */
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"] svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* 2. Form Inputs (Message & Deadline) */
+.admin-layout.dark .admin-workflow-page input,
+.admin-layout.dark .admin-workflow-page textarea {
+  background-color: #0f172a !important; /* Deep dark background */
+  color: #e2e8f0 !important;
+  border: 1px solid #334155 !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important; /* Thoda depth dene ke liye */
+  transition: all 0.2s ease !important;
+}
+
+/* Input pe focus karne pe border glow */
+.admin-layout.dark .admin-workflow-page input:focus,
+.admin-layout.dark .admin-workflow-page textarea:focus {
+  border-color: #5b3df6 !important;
+  box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.2) !important;
+  outline: none !important;
+}
+
+/* 3. Recent Requests ke andar ke chhote Icon boxes */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(240, 234, 255)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(240, 234, 255)"] {
+  background-color: rgba(91, 61, 246, 0.15) !important; /* Halka purple tint */
+  color: #a78bfa !important; /* Bright purple icon */
+  border: 1px solid rgba(91, 61, 246, 0.3) !important;
+}
+
+/* 4. Recent Requests ke text color fix */
+.admin-layout.dark .admin-workflow-page div[style*="borderBottom"] {
+  border-bottom-color: #2a3348 !important;
+}
+
+/* Title aur labels ko bright karo */
+.admin-layout.dark .admin-workflow-page h2,
+.admin-layout.dark .admin-workflow-page label {
+  color: #ffffff !important;
+}
+
+/* Form ke background box ko dark karo (Agar inline white hai toh) */
+.admin-layout.dark .admin-workflow-page section {
+  background-color: #141b2d !important;
+  border-color: #2a3348 !important;
+}
+
+/* ============================================
+   FIX: WHITE TEXT FOR REQUEST TYPE
+   ============================================ */
+
+/* 1. "Request Type" heading ko White karo */
+.admin-layout.dark .admin-workflow-page div[style*="color: rgb(48, 38, 76)"],
+.admin-layout.dark .admin-workflow-page div {
+  color: #ffffff !important; 
+}
+
+/* 2. Baaki buttons ka text aur icon bright white/grey karo */
+.admin-layout.dark .admin-workflow-page button {
+  color: #e2e8f0 !important; 
+}
+.admin-layout.dark .admin-workflow-page button svg {
+  color: #94a3b8 !important;
+  stroke: #94a3b8 !important;
+}
+
+/* 3. Active button (Event Proposal) ka text aur icon white rakho */
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"],
+.admin-layout.dark .admin-workflow-page button[style*="background-color: rgb(240, 234, 255)"] {
+  color: #ffffff !important;
+}
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"] svg,
+.admin-layout.dark .admin-workflow-page button[style*="background-color: rgb(240, 234, 255)"] svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* 4. Form ka "Message to Leader" aur "Deadline" ka label white karo */
+.admin-layout.dark .admin-workflow-page label {
+  color: #ffffff !important;
+}
+
+/* ============================================
+   DARK MODE FIX: STATUS BADGES (WORKFLOW)
+   ============================================ */
+
+/* 1. Pending Badge (Orange/Yellow glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(255, 243, 214)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(255, 243, 214)"] {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+}
+
+/* 2. Rejected Badge (Red glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(254, 236, 235)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(254, 236, 235)"] {
+  background-color: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+}
+
+/* 3. Approved Badge (Green glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(225, 248, 233)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(225, 248, 233)"] {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* 4. Send Request Button Fix */
+.admin-layout.dark .admin-workflow-page button[type="submit"] {
+  background: linear-gradient(135deg, #7c6bf5, #5b3df6) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(91, 61, 246, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.admin-layout.dark .admin-workflow-page button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(91, 61, 246, 0.4) !important;
+}
+
+/* ============================================
+   DARK MODE FIX: STATUS BADGES (WORKFLOW)
+   ============================================ */
+
+/* 1. Pending Badge (Orange/Yellow glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(255, 243, 214)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(255, 243, 214)"] {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+}
+
+/* 2. Rejected Badge (Red glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(254, 236, 235)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(254, 236, 235)"] {
+  background-color: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+}
+
+/* 3. Approved Badge (Green glow) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(225, 248, 233)"],
+.admin-layout.dark .admin-workflow-page span[style*="background-color: rgb(225, 248, 233)"] {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* 4. Send Request Button Fix */
+.admin-layout.dark .admin-workflow-page button[type="submit"] {
+  background: linear-gradient(135deg, #7c6bf5, #5b3df6) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(91, 61, 246, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.admin-layout.dark .admin-workflow-page button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(91, 61, 246, 0.4) !important;
+}
+
+.admin-layout.dark .overview-activity-icon {
+  background-color: #1e293b !important;
+}
+.admin-layout.dark .overview-activity-icon i {
+  color: #a78bfa !important;
+}
+
+.admin-layout.dark .overview-activity-icon {
+  background-color: #1e293b !important;
+}
+.admin-layout.dark .overview-activity-icon i {
+  color: #a78bfa !important;
+}
+
+.admin-layout.dark .logo-box {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.admin-layout.dark .brand-name {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* ============================================
+   DARK MODE: WHITE BORDER ON ACTIVE + WHITE TEXT
+   ============================================ */
+
+/* 1. Active State: White Border + Purple Background + White Text */
+.admin-layout.dark .sidebar .nav-link.active,
+.admin-layout.dark .sidebar .nav-link.active:hover {
+  background: #3730a3 !important; /* Solid purple */
+  color: #ffffff !important; /* White text */
+  border: 1px solid #ffffff !important; /* White border */
+  box-shadow: none !important;
+}
+
+/* Active icon ko bhi white rakho */
+.admin-layout.dark .sidebar .nav-link.active i,
+.admin-layout.dark .sidebar .nav-link.active svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* 2. Hover State (Baaki links pe): Text White aur Icon Orange */
+.admin-layout.dark .sidebar .nav-link:hover:not(.active) {
+  background: #3730a3 !important;
+  color: #ffffff !important;
+}
+
+.admin-layout.dark .sidebar .nav-link:hover:not(.active) i,
+.admin-layout.dark .sidebar .nav-link:hover:not(.active) svg {
+  color: #f97316 !important; /* Orange icon */
+  stroke: #f97316 !important;
+}
+
+/* Logo aur pehle link ke beech gap dene ke liye */
+.admin-layout.dark .logo-box {
+  margin-bottom: 25px !important;
+}
+
+/* ============================================
+   DARK MODE FIX: NOTIFICATIONS & EMPTY STATE
+   ============================================ */
+
+/* 1. "Mark all as read" button ko dark karo */
+.admin-layout.dark .admin-mark-read-btn {
+  background: transparent !important;
+  color: #a78bfa !important;
+  border-top: 1px solid #2a3348 !important;
+}
+
+.admin-layout.dark .admin-mark-read-btn:hover {
+  background: #1e2740 !important;
+}
+
+/* 2. Notification Dropdown ka Close Button */
+.admin-layout.dark .admin-notification-close {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+.admin-layout.dark .admin-notification-close:hover {
+  background: #334155 !important;
+  color: #ffffff !important;
+}
+
+/* 3. "No submissions found" text ko white/silver karo */
+.admin-layout.dark .admin-submissions-page div[style*="color: rgb(48, 38, 76)"],
+.admin-layout.dark .admin-submissions-page div[style*="color: #30264c"] {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark .admin-submissions-page p[style*="color: rgb(116, 128, 150)"] {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   DARK MODE FIX: STATUS BADGES (SUBMISSIONS TABLE)
+   ============================================ */
+
+/* Pending (Yellow/Orange) */
+.admin-layout.dark td span[style*="background: rgb(255, 243, 214)"],
+.admin-layout.dark td span[style*="background-color: rgb(255, 243, 214)"] {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+}
+
+/* Approved (Green) */
+.admin-layout.dark td span[style*="background: rgb(225, 248, 233)"],
+.admin-layout.dark td span[style*="background-color: rgb(225, 248, 233)"] {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* Rejected (Red) */
+.admin-layout.dark td span[style*="background: rgb(254, 236, 235)"],
+.admin-layout.dark td span[style*="background-color: rgb(254, 236, 235)"] {
+  background-color: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(248, 113, 113, 0.3) !important;
+}
+
+/* ============================================
+   FORCE CENTER LOGO TEXT
+   ============================================ */
+
+.admin-layout.dark .logo-box {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.admin-layout.dark .brand-name {
+  margin: 0 auto !important; 
+  text-align: center !important;
+  display: block !important;
+}
+
+/* ============================================
+   ABSOLUTE FINAL FIX: FORCE CENTER CLUBPILOT
+   ============================================ */
+
+.admin-layout .sidebar .logo-box {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 0 !important; /* Extra padding hata di taaki text center me aaye */
+  margin-bottom: 24px !important;
+}
+
+.admin-layout .sidebar .brand-name {
+  text-align: center !important;
+  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Agar dark mode me bhi issue aa raha hai */
+.admin-layout.dark .sidebar .logo-box {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+.admin-layout.dark .sidebar .brand-name {
+  text-align: center !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* Logo box ki size thodi kam karne ke liye */
+.admin-layout.dark .sidebar .logo-box {
+  padding: 12px 16px !important; /* Space kam kiya */
+  min-height: 55px !important; /* Height kam ki */
+}
+
+/* Pilot ka color bright purple karne ke liye */
+.admin-layout.dark .sidebar .brand-name span {
+  color:  #5B3DF6 !important; /* Bright light purple */
+}
+
+/* ============================================
+   NEW ADMIN WORKFLOW — DARK MODE (GRID LAYOUT)
+   ============================================ */
+
+/* 1. Main Page Text & Headings */
+.admin-layout.dark .admin-workflow-page {
+  color: #e2e8f0 !important;
+}
+
+.admin-layout.dark .admin-workflow-page header h1,
+.admin-layout.dark .admin-workflow-page h2 {
+  color: #ffffff !important;
+}
+
+.admin-layout.dark .admin-workflow-page header p {
+  color: #94a3b8 !important;
+}
+
+/* 2. Saare Cards/Panels (Request Type, Recent, Form) */
+.admin-layout.dark .admin-workflow-page section {
+  background-color: #141b2d !important; /* Dark slate */
+  border: 1px solid #2a3348 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 3. Request Type ke Buttons (Default) */
+.admin-layout.dark .admin-workflow-page button {
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+  border-color: transparent !important;
+}
+
+.admin-layout.dark .admin-workflow-page button:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* 4. Active Button (Event Proposal) */
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"],
+.admin-layout.dark .admin-workflow-page button[style*="background-color: rgb(240, 234, 255)"] {
+  background-color: #5b3df6 !important;
+  color: #ffffff !important;
+  border-color: #7c6bf5 !important;
+}
+.admin-layout.dark .admin-workflow-page button[style*="background: rgb(240, 234, 255)"] svg {
+  stroke: #ffffff !important;
+}
+
+/* 5. Form Inputs (Message & Deadline) */
+.admin-layout.dark .admin-workflow-page input,
+.admin-layout.dark .admin-workflow-page textarea {
+  background-color: #0f172a !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155 !important;
+}
+.admin-layout.dark .admin-workflow-page input::placeholder,
+.admin-layout.dark .admin-workflow-page textarea::placeholder {
+  color: #64748b !important;
+}
+.admin-layout.dark .admin-workflow-page input:focus,
+.admin-layout.dark .admin-workflow-page textarea:focus {
+  border-color: #5b3df6 !important;
+  box-shadow: 0 0 0 3px rgba(91, 61, 246, 0.2) !important;
+}
+
+/* 6. Labels ("Request Type", "Message to Leader", "Deadline") */
+.admin-layout.dark .admin-workflow-page label,
+.admin-layout.dark .admin-workflow-page .workflow-types-card > div:first-child {
+  color: #ffffff !important;
+}
+
+/* 7. Recent Requests ke andar ke Icons (White Boxes) */
+.admin-layout.dark .admin-workflow-page .workflow-recent-card span[style*="background: rgb(240, 234, 255)"],
+.admin-layout.dark .admin-workflow-page .workflow-recent-card span[style*="background-color: rgb(240, 234, 255)"] {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+}
+.admin-layout.dark .admin-workflow-page .workflow-recent-card span svg {
+  color: #a78bfa !important;
+  stroke: #a78bfa !important;
+}
+
+/* 8. Recent Requests ke beech ki lines (Borders) */
+.admin-layout.dark .admin-workflow-page div[style*="borderBottom"] {
+  border-bottom-color: #2a3348 !important;
+}
+
+/* 9. Recent Requests ka Title & Date */
+.admin-layout.dark .admin-workflow-page .workflow-recent-card p {
+  color: #94a3b8 !important;
+}
+.admin-layout.dark .admin-workflow-page .workflow-recent-card div[style*="color: rgb(48, 38, 76)"] {
+  color: #ffffff !important; /* Title text */
+}
+
+/* 10. Status Badges (Pending / Approved / Rejected) */
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(255, 243, 214)"] {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+}
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(254, 236, 235)"] {
+  background: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+}
+.admin-layout.dark .admin-workflow-page span[style*="background: rgb(225, 248, 233)"] {
+  background: rgba(52, 211, 153, 0.15) !important;
+  color: #34d399 !important;
+}
+
+/* 11. Send Request Button */
+.admin-layout.dark .admin-workflow-page button[type="submit"] {
+  background: linear-gradient(135deg, #7c6bf5, #5b3df6) !important;
+  color: #ffffff !important;
+}
