@@ -3601,3 +3601,863 @@
   stroke: #f97316 !important;
 }
 
+
+/* =========================================
+   CLUBPILOT ADMIN — SIDEBAR & LAYOUT FIX
+   ========================================= */
+
+.admin-layout {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
+  background: #f8f9fd;
+}
+
+/* Keep the sidebar visible throughout page scrolling */
+.admin-layout > .sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  flex: 0 0 255px;
+  width: 255px;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 18px 12px 12px;
+  background: #fff;
+  border-right: 1px solid #eceaf5;
+  z-index: 50;
+}
+
+/* The navigation can scroll independently if it gets too long */
+.admin-layout > .sidebar .sidebar-scroll-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #ded7f8 transparent;
+}
+
+/* Sidebar logo */
+.admin-layout > .sidebar .logo-box {
+  flex-shrink: 0;
+  padding: 8px 12px 22px;
+  margin-bottom: 10px;
+}
+
+.admin-layout > .sidebar .brand-name {
+  color: #201744;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.admin-layout > .sidebar .brand-name span {
+  color: #5b3df6;
+}
+
+/* Sidebar navigation */
+.admin-layout > .sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 42px;
+  margin-bottom: 5px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  color: #536078;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-layout > .sidebar .nav-link:hover {
+  background: #f3f0ff;
+  color: #5b3df6;
+}
+
+.admin-layout > .sidebar .nav-link.active {
+  background: linear-gradient(100deg, #5b3df6, #7558f8);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(91, 61, 246, 0.16);
+}
+
+.admin-layout > .sidebar .divider {
+  height: 1px;
+  margin: 14px 4px;
+  background: #eeedf4;
+}
+
+/* Main content must be allowed to shrink without overflowing */
+.admin-layout > .admin-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: calc(100% - 255px);
+  min-height: 100vh;
+  overflow: visible;
+  background: #f8f9fd;
+}
+
+.admin-layout .admin-page-content {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  padding: 26px 28px 40px;
+}
+
+/* Responsive sidebar */
+@media (max-width: 720px) {
+  .admin-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-layout > .sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex: 0 0 auto;
+    padding: 10px;
+    border-right: 0;
+    border-bottom: 1px solid #eceaf5;
+  }
+
+  .admin-layout > .sidebar .logo-box {
+    padding-bottom: 10px;
+  }
+
+  .admin-layout > .sidebar .sidebar-scroll-area {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 5px;
+  }
+
+  .admin-layout > .sidebar .nav-link {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .admin-layout > .admin-main {
+    width: 100%;
+  }
+
+  .admin-layout .admin-page-content {
+    padding: 20px 14px 30px;
+  }
+}
+
+/* =========================================
+   CLUBPILOT ADMIN — TYPOGRAPHY CLEANUP
+   ========================================= */
+
+/* Consistent font throughout the Admin module */
+.admin-layout,
+.admin-layout * {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Main headings */
+.admin-layout .admin-page-heading h1,
+.admin-layout .admin-page-heading h2 {
+  font-size: 25px;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+  color: #201744;
+}
+
+.admin-layout .admin-page-heading p {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #748096;
+}
+
+/* Sidebar navigation text */
+.admin-layout > .sidebar .nav-link {
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.45;
+  color: #475569;
+  text-align: left;
+}
+
+/* Fix the dark text on the purple selected item */
+.admin-layout > .sidebar .nav-link.active,
+.admin-layout > .sidebar .nav-link.active span,
+.admin-layout > .sidebar .nav-link.active i,
+.admin-layout > .sidebar .nav-link.active svg {
+  color: #ffffff !important;
+  stroke: #ffffff;
+}
+
+.admin-layout > .sidebar .nav-link.active {
+  background: linear-gradient(110deg, #5b3df6, #7655fa);
+  font-weight: 650;
+}
+
+/* Cards and section headings */
+.admin-layout .admin-section-heading h2,
+.admin-layout .admin-section-card h2 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+.admin-layout .admin-section-heading p,
+.admin-layout .admin-section-card p {
+  line-height: 1.55;
+}
+
+/* Tables and form controls */
+.admin-layout table,
+.admin-layout th,
+.admin-layout td,
+.admin-layout input,
+.admin-layout select,
+.admin-layout textarea,
+.admin-layout button {
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.admin-layout table th {
+  font-size: 11px;
+  font-weight: 700;
+  color: #596579;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+}
+
+.admin-layout table td {
+  font-size: 12px;
+  color: #475569;
+}
+
+/* Submission titles and descriptions */
+.admin-layout .submission-title,
+.admin-layout .document-title {
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+  color: #201744;
+}
+
+.admin-layout .submission-description,
+.admin-layout .document-description {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* Prevent oversized global heading styles from leaking into Admin */
+.admin-layout h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.admin-layout h2 {
+  margin-top: 0;
+}
+
+/* Keep status labels compact and readable */
+.admin-layout .admin-status-badge {
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* OVERVIEW — restore the reference layout */
+.admin-overview.redesigned-overview .overview-activity-list {
+  padding: 0 20px;
+}
+
+.admin-overview.redesigned-overview .overview-activity-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 100%;
+  min-height: 76px;
+  padding: 13px 4px;
+  text-align: left;
+  border-bottom: 1px solid #edf0f6;
+}
+
+.admin-overview.redesigned-overview .overview-activity-icon {
+  display: flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border-radius: 10px;
+  color: #4f46e5;
+  background: #edf2ff;
+}
+
+.admin-overview.redesigned-overview .overview-activity-details {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+
+.admin-overview.redesigned-overview .overview-activity-details strong,
+.admin-overview.redesigned-overview .overview-activity-details p,
+.admin-overview.redesigned-overview .overview-activity-details > span {
+  text-align: left;
+}
+
+.admin-overview.redesigned-overview .overview-activity-details strong {
+  font-size: 12px;
+  font-weight: 650;
+  color: #26334b;
+}
+
+.admin-overview.redesigned-overview .overview-activity-details p {
+  margin: 4px 0 0;
+  font-size: 10px;
+  color: #718096;
+}
+
+.admin-overview.redesigned-overview .overview-activity-details > span {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #8490a4;
+}
+
+.admin-overview.redesigned-overview .overview-activity-row
+.admin-status-badge {
+  flex: 0 0 auto;
+  margin: 0 0 0 auto;
+}
+
+/* Compact, horizontal summary cards */
+.admin-overview.redesigned-overview .overview-summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.admin-overview.redesigned-overview .admin-stat-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  min-height: 90px;
+  padding: 17px;
+  text-align: left;
+}
+
+.admin-overview.redesigned-overview .admin-stat-card > div:last-child {
+  min-width: 0;
+}
+
+.admin-overview.redesigned-overview .admin-stat-card p,
+.admin-overview.redesigned-overview .admin-stat-card h2 {
+  text-align: left;
+}
+
+.admin-overview.redesigned-overview .admin-stat-card h2 {
+  font-size: 25px;
+}
+
+@media (max-width: 900px) {
+  .admin-overview.redesigned-overview .overview-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Recent Activity — larger typography */
+.admin-overview.redesigned-overview
+.overview-activity .admin-section-heading h2 {
+  font-size: 23px;
+  font-weight: 750;
+}
+
+.admin-overview.redesigned-overview
+.overview-activity .admin-section-heading p {
+  font-size: 15px;
+}
+
+.admin-overview.redesigned-overview
+.overview-activity-details strong {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.admin-overview.redesigned-overview
+.overview-activity-details p {
+  font-size: 14px;
+}
+
+.admin-overview.redesigned-overview
+.overview-activity-details > span {
+  font-size: 13px;
+}
+
+/* ADMIN EVENTS — expanded selected-date details */
+
+.admin-selected-events {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.admin-selected-events .admin-upcoming-header {
+  padding: 20px;
+  border-bottom: 1px solid #efedf7;
+}
+
+.admin-selected-events .admin-upcoming-header h3 {
+  margin: 0;
+  color: #201744;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.admin-selected-events .admin-upcoming-header p {
+  margin-top: 6px;
+  color: #748096;
+  font-size: 14px;
+}
+
+.admin-selected-events .admin-upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 18px;
+}
+
+.admin-selected-events .admin-event-detail-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid #efedf7;
+}
+
+.admin-selected-events .admin-upcoming-date-icon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.admin-selected-events .admin-event-detail-title {
+  display: block;
+  margin-bottom: 14px;
+  color: #292342;
+  font-size: 17px;
+  font-weight: 750;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.admin-selected-events .admin-upcoming-event-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-event-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.admin-event-detail-meta span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  color: #475569;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.admin-event-detail-meta b {
+  color: #8791a3;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.admin-event-detail-description {
+  margin-top: 16px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.admin-event-detail-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+@media (max-width: 520px) {
+  .admin-selected-events .admin-event-detail-card {
+    gap: 10px;
+  }
+
+  .admin-event-detail-meta {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ==========================================
+   ADMIN EVENTS — TYPOGRAPHY & ALIGNMENT
+   ========================================== */
+
+
+
+/* Total Event Proposals summary card */
+.admin-events-total {
+  flex-shrink: 0;
+  min-height: 66px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e5dcff;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.admin-events-total-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f0eaff;
+  color: #6844ff;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.admin-events-total-icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.admin-events-total > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-events-total strong {
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 750;
+  color: #201744;
+}
+
+.admin-events-total > div > span {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #748096;
+}
+
+/* Calendar panel */
+.admin-calendar-panel {
+  min-width: 0;
+  padding: 22px;
+}
+
+.admin-calendar-header {
+  margin-bottom: 22px;
+}
+
+.admin-calendar-header h3 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 750;
+  color: #201744;
+}
+
+.admin-calendar-header p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #748096;
+}
+
+/* Weekday labels */
+.admin-calendar-weekday {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6c5b91;
+  text-align: center;
+}
+
+/* Make calendar dates bigger, bolder and easier to scan */
+.admin-calendar-day {
+  position: relative;
+  min-width: 0;
+  min-height: 76px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.3;
+  color: #30264c;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.admin-calendar-day:not(.empty):hover {
+  background: #f3efff;
+}
+
+.admin-calendar-day.has-events {
+  font-weight: 800;
+  color: #5b3df6;
+}
+
+.admin-calendar-day.selected,
+.admin-calendar-day.selected.has-events {
+  background: #6840f5;
+  color: #fff;
+  font-weight: 800;
+}
+
+.admin-calendar-day.today:not(.selected) {
+  border: 1.5px solid #987dff;
+  color: #4f32d9;
+  font-weight: 800;
+}
+
+.admin-calendar-day.selected.today {
+  color: #fff;
+}
+
+.admin-calendar-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #815cff;
+}
+
+.admin-calendar-day.selected .admin-calendar-dot {
+  background: #fff;
+}
+
+.admin-calendar-legend {
+  padding-top: 14px;
+  font-size: 12px;
+  color: #748096;
+}
+
+/* ==========================================
+   EVENT DETAILS — CLEAN, READABLE STRUCTURE
+   ========================================== */
+
+.admin-selected-events {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.admin-selected-events .admin-upcoming-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid #efedf7;
+}
+
+.admin-selected-events .admin-upcoming-header h3 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 750;
+  color: #201744;
+}
+
+.admin-selected-events .admin-upcoming-header p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #748096;
+}
+
+.admin-selected-events .admin-upcoming-count {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #f0eaff;
+  color: #6844ff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.admin-selected-events .admin-upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 24px;
+}
+
+.admin-selected-events .admin-event-detail-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid #efedf7;
+}
+
+.admin-selected-events .admin-upcoming-date-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 12px;
+  background: #f0eaff;
+  color: #5b3df6;
+}
+
+.admin-selected-events .admin-upcoming-date-icon span {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.admin-selected-events .admin-upcoming-date-icon small {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-selected-events .admin-upcoming-event-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-selected-events .admin-event-detail-title {
+  display: block;
+  margin: 1px 0 20px;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 750;
+  color: #201744;
+  overflow-wrap: anywhere;
+}
+
+/* Two neat columns instead of cramped scattered text */
+.admin-event-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+  align-items: start;
+}
+
+.admin-event-detail-meta span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+  overflow-wrap: anywhere;
+}
+
+.admin-event-detail-meta b {
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #8791a3;
+}
+
+.admin-event-detail-description {
+  margin: 20px 0 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #64748b;
+  overflow-wrap: anywhere;
+}
+
+.admin-event-detail-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .admin-calendar-panel {
+    padding: 18px;
+  }
+
+  .admin-calendar-day {
+    min-height: 64px;
+  }
+
+  .admin-selected-events .admin-upcoming-header {
+    padding: 20px;
+  }
+
+  .admin-selected-events .admin-upcoming-list {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-events-intro {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-events-total {
+    width: 100%;
+  }
+
+  .admin-event-detail-meta {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admin-selected-events .admin-event-detail-card {
+    gap: 12px;
+  }
+
+  .admin-selected-events .admin-event-detail-title {
+    font-size: 16px;
+  }
+}
