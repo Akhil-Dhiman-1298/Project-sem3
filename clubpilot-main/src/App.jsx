@@ -73,6 +73,25 @@ function App() {
     dispatch({ type: 'SET_EVENTS', payload: nextEvents });
   };
 
+  // ✅ DB se events fetch karo jab app load ho
+  useEffect(() => {
+    const fetchEventsFromDB = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/events');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data) && data.length > 0) {
+            dispatch({ type: 'SET_EVENTS', payload: data });
+          }
+        }
+      } catch (err) {
+        console.log("Backend offline, using local events.");
+      }
+    };
+    
+    fetchEventsFromDB();
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
@@ -187,7 +206,6 @@ function App() {
     return <SignUpPage onSignUp={handleSignUp} goToLogin={goToLogin} />;
   }
 
-  // ✅ Admin Dashboard Routing (AdminProvider wrapped correctly)
   if (path === '/admin') {
     if (role?.toLowerCase() === 'admin') {
       return (
@@ -287,7 +305,7 @@ function App() {
         initialTab={tab}
         goToLanding={goToLanding}
         goToProfile={goToProfile}
-         dispatch={dispatch}
+        dispatch={dispatch}
       />
     );
   }
@@ -337,7 +355,7 @@ function App() {
     );
   }
 
-
+  // ---- LANDING PAGE ----
   return (
     <div className={darkMode ? "main-layout dark" : "main-layout"}>
       {!role ? (
