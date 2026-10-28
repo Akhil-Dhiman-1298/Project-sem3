@@ -1,3 +1,4 @@
+
 // import React, { useEffect, useLayoutEffect, useReducer, useState } from 'react';
 // import { useNavigate, useLocation } from 'react-router-dom';
 // import AOS from 'aos';
@@ -395,6 +396,8 @@
 
 // export default App;
 
+
+
 import React, { useEffect, useLayoutEffect, useReducer, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AOS from 'aos';
@@ -608,7 +611,7 @@ function App() {
     if (role?.toLowerCase() === 'admin') {
       return (
         <AdminProvider>
-          <AdminDashboard onLogout={confirmLogout} />
+          <AdminDashboard onLogout={confirmLogout} goToProfile={goToProfile} />
         </AdminProvider>
       );
     }
@@ -753,7 +756,7 @@ function App() {
     );
   }
 
-  // ---- LANDING PAGE ----
+
   return (
     <div className={darkMode ? "main-layout dark" : "main-layout"}>
       {!role ? (

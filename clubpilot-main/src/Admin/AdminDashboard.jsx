@@ -4,7 +4,8 @@ import AdminEvents from "./AdminEvents";
 import AdminSubmissions from "./AdminSubmissions";
 import AdminDocuments from "./AdminDocuments";
 import AdminWorkflow from "./AdminWorkflow";
-import { useTheme } from "../ThemeContext"; // 👈 Dark Mode ke liye import
+import { useTheme } from "../ThemeContext"; 
+import SidebarProfileCard from '../SidebarProfileCard'; // 👈 Yahan ../ laga diya
 import "./AdminDashboard.css";
 
 // Reusable icons using inline SVG
@@ -121,8 +122,8 @@ const pageDetails = {
   },
 };
 
-function AdminDashboard({ onLogout }) {
-  const { darkMode } = useTheme(); // 👈 Context se darkMode nikal liya
+function AdminDashboard({ onLogout,goToProfile }) {
+  const { darkMode } = useTheme(); 
   const [activePage, setActivePage] = useState("overview");
   const [showNotifications, setShowNotifications] = useState(false);
   const [readNotifications, setReadNotifications] = useState(false);
@@ -174,43 +175,51 @@ function AdminDashboard({ onLogout }) {
   };
 
   return (
-    // 👈 Dynamic dark class
     <div className={`admin-layout ${darkMode ? "dark" : ""}`}>
       
-      {/* PURANA SIDEBAR (EventSidebar style) */}
-      <aside className="sidebar">
+      {/* SIDEBAR */}
+      <aside className="sidebar" style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="logo-box">
           <div className="brand-name">Club<span>Pilot</span></div>
         </div>
 
-        {navigationItems.map((item) => (
+        <div className="sidebar-scroll-area" style={{ flex: 1 }}>
+          {navigationItems.map((item) => (
+            <a
+              key={item.id}
+              href="#"
+              className={`nav-link ${activePage === item.id ? "active" : ""}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation(item.id);
+              }}
+              style={item.label === "Submissions & Approvals" ? { fontSize: "13px" } : {}}
+            >
+              <AdminIcon name={item.icon} size={18} /> {item.label}
+            </a>
+          ))}
+
+          <div className="divider"></div>
+
+          {/* Go Back to Home Button */}
           <a
-            key={item.id}
-            href="#"
-            className={`nav-link ${activePage === item.id ? "active" : ""}`}
+            href="/"
+            className="nav-link"
             onClick={(e) => {
               e.preventDefault();
-              handleNavigation(item.id);
+              goToHome();
             }}
-            style={item.label === "Submissions & Approvals" ? { fontSize: "13px" } : {}}
           >
-            <AdminIcon name={item.icon} size={18} /> {item.label}
+            <AdminIcon name="home" size={18} /> Go Back to Home
           </a>
-        ))}
+        </div>
 
-        <div className="divider"></div>
-
-        {/* Go Back to Home Button */}
-        <a
-          href="/"
-          className="nav-link"
-          onClick={(e) => {
-            e.preventDefault();
-            goToHome();
-          }}
-        >
-          <AdminIcon name="home" size={18} /> Go Back to Home
-        </a>
+        {/* 👇 PROFILE CARD YAHAN HAI 👇 */}
+        <SidebarProfileCard 
+          role="admin" 
+          username="Admin" 
+          goToProfile={goToProfile} 
+        />
       </aside>
 
       {/* Main area */}
@@ -226,6 +235,7 @@ function AdminDashboard({ onLogout }) {
           </div>
 
           <div className="admin-topbar-actions">
+            {/* Top right avatar hata diya, bell wahi hai */}
             <div className="admin-notification-wrapper">
               <button
                 type="button"
@@ -286,13 +296,6 @@ function AdminDashboard({ onLogout }) {
                   </button>
                 </div>
               )}
-            </div>
-
-            <div className="admin-topbar-divider" />
-
-            <div className="admin-topbar-profile">
-              <div className="admin-avatar admin-avatar-small">A</div>
-              <strong className="admin-topbar-admin-name">Club Admin</strong>
             </div>
           </div>
         </header> 

@@ -1,36 +1,132 @@
-import React, { useContext, useState } from "react";
+
+import React, { useContext, useMemo, useState } from "react";
 import { AdminContext } from "./AdminContext";
 import "./AdminDashboard.css";
 
 function AdminSubmissions() {
-  const { submissions, updateStatus } = useContext(AdminContext);
+  const { submissions = [], updateStatus } = useContext(AdminContext);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
-  const [typeFilter, setTypeFilter] = useState("All");
+  const [activeTab, setActiveTab] = useState("All");
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
 
-  // Search and filter submissions
-  const filteredSubmissions = submissions.filter((item) => {
-    const search = searchTerm.toLowerCase();
+  const getText = (value) => String(value ?? "");
 
-    const matchesSearch =
-      item.title.toLowerCase().includes(search) ||
-      item.club.toLowerCase().includes(search) ||
-      item.submittedBy.toLowerCase().includes(search);
+  const getStatusStyle = (status) => {
+    const value = getText(status).toLowerCase();
 
-    const matchesStatus =
-      statusFilter === "All" || item.status === statusFilter;
+    if (value.includes("approv")) {
+      return { color: "#16703b", background: "#e1f8e9" };
+    }
 
-    const matchesType =
-      typeFilter === "All" || item.type === typeFilter;
+    if (value.includes("reject")) {
+      return { color: "#b42318", background: "#feeceb" };
+    }
 
-    return matchesSearch && matchesStatus && matchesType;
-  });
+    if (value.includes("update")) {
+      return { color: "#b42336", background: "#fff0f0" };
+    }
 
-  // Approve or reject a submission
-  function handleStatusChange(id, newStatus) {
+    if (value.includes("review")) {
+      return { color: "#6941c6", background: "#f0eaff" };
+    }
+
+    return { color: "#a15c00", background: "#fff3d6" };
+  };
+
+  const getTypeCategory = (type) => {
+    const value = getText(type).toLowerCase();
+
+    if (value.includes("event")) return "Event Proposals";
+    if (value.includes("budget") || value.includes("expense")) return "Budgets";
+    if (value.includes("report")) return "Reports";
+
+    return "Others";
+  };
+
+  const getDateValue = (item) => {
+    const rawDate = item.date || item.submittedOn || item.createdAt;
+
+    if (!rawDate) return 0;
+
+    const parsed = new Date(rawDate).getTime();
+    return Number.isNaN(parsed) ? 0 : parsed;
+  };
+
+  const formatDate = (item) => {
+    const rawDate = item.date || item.submittedOn || item.createdAt;
+
+    if (!rawDate) return "—";
+
+    const parsed = new Date(rawDate);
+
+    if (Number.isNaN(parsed.getTime())) {
+      return getText(rawDate);
+    }
+
+    return parsed.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  const categories = [
+    { label: "All", value: "All" },
+    { label: "Event Proposals", value: "Event Proposals" },
+    { label: "Budgets", value: "Budgets" },
+    { label: "Reports", value: "Reports" },
+    { label: "Others", value: "Others" },
+  ];
+
+  const tabCounts = useMemo(() => {
+    const counts = { All: submissions.length };
+
+    categories.slice(1).forEach((category) => {
+      counts[category.value] = submissions.filter(
+        (item) => getTypeCategory(item.type) === category.value
+      ).length;
+    });
+
+    return counts;
+  }, [submissions]);
+
+  const filteredSubmissions = useMemo(() => {
+    const search = searchTerm.trim().toLowerCase();
+
+    return submissions
+      .filter((item) => {
+        const matchesSearch = [
+          item.title,
+          item.club,
+          item.submittedBy,
+          item.type,
+          item.description,
+        ].some((value) => getText(value).toLowerCase().includes(search));
+
+        const matchesStatus =
+          statusFilter === "All" ||
+          getText(item.status).toLowerCase() === statusFilter.toLowerCase();
+
+        const matchesCategory =
+          activeTab === "All" ||
+          getTypeCategory(item.type) === activeTab;
+
+        return matchesSearch && matchesStatus && matchesCategory;
+      })
+      .sort((a, b) => {
+        const difference = getDateValue(a) - getDateValue(b);
+        return sortOrder === "newest" ? -difference : difference;
+      });
+  }, [submissions, searchTerm, statusFilter, activeTab, sortOrder]);
+
+  function handleStatusChange(item, newStatus) {
     if (typeof updateStatus !== "function") {
-      alert("Please check updateStatus in AdminContext.jsx.");
+      window.alert("Please check updateStatus in AdminContext.jsx.");
       return;
     }
 
@@ -39,186 +135,615 @@ function AdminSubmissions() {
     );
 
     if (confirmed) {
-      updateStatus(id, newStatus);
+      updateStatus(item.id, newStatus);
+      setSelectedSubmission(null);
     }
   }
 
-  const pendingCount = submissions.filter(
-    (item) => item.status === "Pending"
-  ).length;
+  const styles = {
+    page: {
+      color: "#201744",
+      fontSize: 14,
+      width: "100%",
+      minWidth: 0,
+    },
 
-  const approvedCount = submissions.filter(
-    (item) => item.status === "Approved"
-  ).length;
+    heading: {
+      margin: "0 0 6px",
+      color: "#5b3df6",
+      fontSize: 30,
+      fontWeight: 800,
+      lineHeight: 1.3,
+      letterSpacing: "-0.5px",
+    },
 
-  const rejectedCount = submissions.filter(
-    (item) => item.status === "Rejected"
-  ).length;
+    subtitle: {
+      margin: 0,
+      color: "#748096",
+      fontSize: 15,
+      lineHeight: 1.6,
+    },
+
+    panel: {
+  marginTop: 24,
+  width: "100%",
+  minHeight: 480,
+  boxSizing: "border-box",
+  background: "#fff",
+  border: "1px solid #e8e2f7",
+  borderRadius: 14,
+  overflow: "hidden",
+  boxShadow: "0 3px 12px rgba(43, 25, 94, 0.035)",
+},
+
+    tabs: {
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 8,
+      padding: "18px 20px",
+      borderBottom: "1px solid #eeeaf6",
+    },
+
+    tab: {
+      border: "1px solid transparent",
+      borderRadius: 9,
+      padding: "9px 14px",
+      fontSize: 13,
+      fontWeight: 650,
+      cursor: "pointer",
+      whiteSpace: "nowrap",
+      transition: "all 0.15s ease",
+    },
+
+    controls: {
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 12,
+      padding: "16px 20px",
+      borderBottom: "1px solid #eeeaf6",
+    },
+
+    input: {
+      boxSizing: "border-box",
+      minWidth: 180,
+      flex: "1 1 220px",
+      height: 40,
+      padding: "0 13px",
+      border: "1px solid #e2deed",
+      borderRadius: 9,
+      outlineColor: "#8b72ff",
+      color: "#30264c",
+      background: "#fff",
+      fontSize: 13,
+    },
+
+    select: {
+      boxSizing: "border-box",
+      minWidth: 135,
+      height: 40,
+      padding: "0 12px",
+      border: "1px solid #e2deed",
+      borderRadius: 9,
+      outlineColor: "#8b72ff",
+      color: "#4c4563",
+      background: "#fff",
+      fontSize: 13,
+      cursor: "pointer",
+    },
+
+    tableWrap: {
+      width: "100%",
+      overflowX: "auto",
+    },
+
+    table: {
+      width: "100%",
+      minWidth: 850,
+      borderCollapse: "collapse",
+      textAlign: "left",
+    },
+
+    th: {
+      padding: "14px 15px",
+      background: "#fbfaff",
+      color: "#77718c",
+      fontSize: 12,
+      fontWeight: 750,
+      whiteSpace: "nowrap",
+      borderBottom: "1px solid #eeeaf6",
+    },
+
+    td: {
+      padding: "15px",
+      color: "#514b65",
+      fontSize: 13,
+      lineHeight: 1.5,
+      verticalAlign: "middle",
+      borderBottom: "1px solid #f0edf6",
+    },
+
+    badge: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "6px 10px",
+      borderRadius: 7,
+      fontSize: 11,
+      fontWeight: 750,
+      lineHeight: 1.3,
+      whiteSpace: "nowrap",
+    },
+
+    viewButton: {
+      padding: "7px 12px",
+      border: "1px solid #e8e0ff",
+      borderRadius: 7,
+      color: "#5b3df6",
+      background: "#f8f5ff",
+      fontSize: 12,
+      fontWeight: 750,
+      cursor: "pointer",
+    },
+  };
 
   return (
-    <div className="admin-overview">
+    <div className="admin-submissions-page" style={styles.page}>
       {/* Page heading */}
-      <div className="admin-page-heading">
-        <div>
-          <h1>Submissions & Approvals</h1>
-          <p>
-            Review event proposals and budget requests submitted by club leaders.
-          </p>
-        </div>
-      </div>
+<header
+  style={{
+    marginBottom: 0,
+    textAlign: "left",
+    width: "100%",
+  }}
+>        <h1 style={styles.heading}>Submissions &amp; Approvals</h1>
+        <p style={styles.subtitle}>
+          Review and manage all submissions from the club.
+        </p>
+      </header>
 
-      {/* Summary cards */}
-      <div className="admin-stats-grid">
-        <div className="admin-stat-card">
-          <div className="admin-stat-icon">📋</div>
-          <p>Total Submissions</p>
-          <h2>{submissions.length}</h2>
-        </div>
+      {/* Main submissions panel */}
+      <section style={styles.panel}>
+        {/* Compact category tabs */}
+        <div style={styles.tabs}>
+          {categories.map((category) => {
+            const active = activeTab === category.value;
 
-        <div className="admin-stat-card">
-          <div className="admin-stat-icon">⏳</div>
-          <p>Pending</p>
-          <h2>{pendingCount}</h2>
-        </div>
-
-        <div className="admin-stat-card">
-          <div className="admin-stat-icon">✅</div>
-          <p>Approved</p>
-          <h2>{approvedCount}</h2>
-        </div>
-
-        <div className="admin-stat-card">
-          <div className="admin-stat-icon">❌</div>
-          <p>Rejected</p>
-          <h2>{rejectedCount}</h2>
-        </div>
-      </div>
-
-      {/* Submission table */}
-      <div className="admin-section-card">
-        <div className="admin-section-heading">
-          <div>
-            <h2>All Submissions</h2>
-            <p>Manage requests and track their approval status.</p>
-          </div>
+            return (
+              <button
+                type="button"
+                key={category.value}
+                onClick={() => setActiveTab(category.value)}
+                style={{
+                  ...styles.tab,
+                  color: active ? "#fff" : "#6e6684",
+                  background: active ? "#6844f5" : "#f8f6fc",
+                  borderColor: active ? "#6844f5" : "#f0edf7",
+                }}
+              >
+                {category.label}{" "}
+                <span style={{ opacity: active ? 0.9 : 0.7 }}>
+                  ({tabCounts[category.value] ?? 0})
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Search and filters */}
-        <div className="admin-event-controls">
-          <input
-            type="text"
-            className="admin-search-input"
-            placeholder="Search by title, club or leader..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={styles.controls}>
+          <div
+            style={{
+              position: "relative",
+              flex: "1 1 220px",
+              minWidth: 180,
+            }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              style={{
+                position: "absolute",
+                left: 12,
+                top: 12,
+                color: "#8b849e",
+                pointerEvents: "none",
+              }}
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m16 16 4 4" />
+            </svg>
+
+            <input
+              type="text"
+              placeholder="Search submissions..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              style={{
+                ...styles.input,
+                width: "100%",
+                paddingLeft: 36,
+              }}
+              aria-label="Search submissions"
+            />
+          </div>
 
           <select
-            className="admin-filter-select"
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            style={styles.select}
+            aria-label="Filter by status"
           >
             <option value="All">All Statuses</option>
             <option value="Pending">Pending</option>
+            <option value="Pending Approval">Pending Approval</option>
+            <option value="Under Review">Under Review</option>
+            <option value="Needs Update">Needs Update</option>
             <option value="Approved">Approved</option>
             <option value="Rejected">Rejected</option>
           </select>
 
           <select
-            className="admin-filter-select"
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
+            value={sortOrder}
+            onChange={(event) => setSortOrder(event.target.value)}
+            style={styles.select}
+            aria-label="Sort submissions"
           >
-            <option value="All">All Types</option>
-            <option value="Event Proposal">Event Proposal</option>
-            <option value="Budget Request">Budget Request</option>
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
           </select>
         </div>
 
-        {/* Results */}
+        {/* Compact submission list */}
         {filteredSubmissions.length === 0 ? (
-          <div className="admin-empty-state">
-            <p>No submissions found.</p>
+          <div
+            style={{
+              padding: "52px 20px",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                fontSize: 17,
+                fontWeight: 750,
+                color: "#30264c",
+                marginBottom: 8,
+              }}
+            >
+              No submissions found
+            </div>
+
+            <p style={{ ...styles.subtitle, fontSize: 13 }}>
+              Try changing the category, search term, or status filter.
+            </p>
           </div>
         ) : (
-          <div className="admin-table-wrapper">
-            <table className="admin-table">
+          <div style={styles.tableWrap}>
+            <table style={styles.table}>
               <thead>
                 <tr>
-                  <th>Submission</th>
-                  <th>Club</th>
-                  <th>Type</th>
-                  <th>Submitted By</th>
-                  <th>Date</th>
-                  <th>Budget</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th style={styles.th}>Type</th>
+                  <th style={styles.th}>Title</th>
+                  <th style={styles.th}>Submitted By</th>
+                  <th style={styles.th}>Submitted On</th>
+                  <th style={styles.th}>Status</th>
+                  <th style={styles.th}>Actions</th>
                 </tr>
               </thead>
 
               <tbody>
-                {filteredSubmissions.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <strong>{item.title}</strong>
-                      <small className="admin-table-subtext">
-                        {item.description}
-                      </small>
-                    </td>
+                {filteredSubmissions.map((item) => {
+                  const status = item.status || "Pending";
+                  const statusStyle = getStatusStyle(status);
 
-                    <td>{item.club}</td>
-                    <td>{item.type}</td>
-                    <td>{item.submittedBy}</td>
-                    <td>{item.date}</td>
-
-                    <td>
-                      ₹{Number(item.budget || 0).toLocaleString("en-IN")}
-                    </td>
-
-                    <td>
-                      <span
-                        className={`admin-status-badge ${item.status.toLowerCase()}`}
-                      >
-                        {item.status}
-                      </span>
-                    </td>
-
-                    <td>
-                      {item.status === "Pending" ? (
-                        <div className="admin-action-buttons">
-                          <button
-                            type="button"
-                            className="admin-approve-btn"
-                            onClick={() =>
-                              handleStatusChange(item.id, "Approved")
-                            }
+                  return (
+                    <tr key={item.id}>
+                      <td style={styles.td}>
+                        <span
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: 30,
+                            height: 30,
+                            borderRadius: 8,
+                            background: "#f1ebff",
+                            color: "#6844f5",
+                          }}
+                          title={getText(item.type)}
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="16"
+                            height="16"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
                           >
-                            Approve
-                          </button>
-
-                          <button
-                            type="button"
-                            className="admin-reject-btn"
-                            onClick={() =>
-                              handleStatusChange(item.id, "Rejected")
-                            }
-                          >
-                            Reject
-                          </button>
-                        </div>
-                      ) : (
-                        <span className="admin-action-complete">
-                          Reviewed
+                            <path d="M6 3.5h8l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20z" />
+                            <path d="M14 3.5V8h4M9 13h6M9 16.5h6" />
+                          </svg>
                         </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+
+                      <td style={{ ...styles.td, minWidth: 155 }}>
+                        <div
+                          style={{
+                            fontWeight: 750,
+                            fontSize: 13,
+                            color: "#30264c",
+                          }}
+                        >
+                          {item.title || "Untitled submission"}
+                        </div>
+                      </td>
+
+                      <td style={{ ...styles.td, whiteSpace: "nowrap" }}>
+                        {item.submittedBy || "—"}
+                      </td>
+
+                      <td style={{ ...styles.td, whiteSpace: "nowrap" }}>
+                        {formatDate(item)}
+                      </td>
+
+                      <td style={styles.td}>
+                        <span
+                          style={{
+                            ...styles.badge,
+                            color: statusStyle.color,
+                            background: statusStyle.background,
+                          }}
+                        >
+                          {status}
+                        </span>
+                      </td>
+
+                      <td style={styles.td}>
+                        <button
+                          type="button"
+                          style={styles.viewButton}
+                          onClick={() => setSelectedSubmission(item)}
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         )}
-      </div>
+
+        {/* Small result count */}
+        <div
+          style={{
+            padding: "12px 20px",
+            borderTop: "1px solid #eeeaf6",
+            fontSize: 12,
+            color: "#827b96",
+          }}
+        >
+          Showing {filteredSubmissions.length} of {submissions.length} submissions
+        </div>
+      </section>
+
+      {/* View submission dialog */}
+      {selectedSubmission && (
+        <div
+          onClick={() => setSelectedSubmission(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+            background: "rgba(24, 17, 47, 0.42)",
+          }}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="submission-dialog-title"
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 540,
+              maxHeight: "85vh",
+              overflowY: "auto",
+              padding: 26,
+              borderRadius: 16,
+              border: "1px solid #e8e0fa",
+              background: "#fff",
+              boxShadow: "0 20px 60px rgba(24, 17, 47, 0.2)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: 16,
+                marginBottom: 22,
+              }}
+            >
+              <div>
+                <h2
+                  id="submission-dialog-title"
+                  style={{
+                    margin: "0 0 7px",
+                    fontSize: 23,
+                    lineHeight: 1.4,
+                    fontWeight: 800,
+                    color: "#201744",
+                  }}
+                >
+                  {selectedSubmission.title || "Submission details"}
+                </h2>
+
+                <p style={{ ...styles.subtitle, fontSize: 13 }}>
+                  {selectedSubmission.type || "Submission"}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedSubmission(null)}
+                aria-label="Close submission details"
+                style={{
+                  width: 32,
+                  height: 32,
+                  border: "none",
+                  borderRadius: 8,
+                  background: "#f4f1fb",
+                  color: "#5b5470",
+                  fontSize: 20,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            {[
+              ["Club", selectedSubmission.club || "—"],
+              ["Submitted by", selectedSubmission.submittedBy || "—"],
+              ["Submitted on", formatDate(selectedSubmission)],
+              [
+                "Proposed budget",
+                selectedSubmission.budget != null
+                  ? `₹${Number(
+                      selectedSubmission.budget || 0
+                    ).toLocaleString("en-IN")}`
+                  : "—",
+              ],
+              ["Status", selectedSubmission.status || "Pending"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 6,
+                  padding: "13px 0",
+                  borderBottom: "1px solid #f0edf6",
+                }}
+              >
+                <strong
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    color: "#51476d",
+                  }}
+                >
+                  {label}
+                </strong>
+
+                <span
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                    color: "#475569",
+                  }}
+                >
+                  {value}
+                </span>
+              </div>
+            ))}
+
+            {selectedSubmission.description && (
+              <div style={{ paddingTop: 16 }}>
+                <strong
+                  style={{
+                    display: "block",
+                    marginBottom: 8,
+                    fontSize: 13,
+                    fontWeight: 800,
+                    color: "#51476d",
+                  }}
+                >
+                  Description
+                </strong>
+
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: 14,
+                    lineHeight: 1.8,
+                    color: "#475569",
+                    overflowWrap: "anywhere",
+                  }}
+                >
+                  {selectedSubmission.description}
+                </p>
+              </div>
+            )}
+
+            {["Pending", "Pending Approval"].includes(
+              selectedSubmission.status || "Pending"
+            ) && (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 10,
+                  marginTop: 24,
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleStatusChange(selectedSubmission, "Approved")
+                  }
+                  style={{
+                    padding: "10px 16px",
+                    border: "none",
+                    borderRadius: 9,
+                    color: "#fff",
+                    background: "#218653",
+                    fontSize: 13,
+                    fontWeight: 750,
+                    cursor: "pointer",
+                  }}
+                >
+                  Approve
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleStatusChange(selectedSubmission, "Rejected")
+                  }
+                  style={{
+                    padding: "10px 16px",
+                    border: "1px solid #fecaca",
+                    borderRadius: 9,
+                    color: "#b42318",
+                    background: "#fff1f0",
+                    fontSize: 13,
+                    fontWeight: 750,
+                    cursor: "pointer",
+                  }}
+                >
+                  Reject
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
+      )}
     </div>
   );
 }
