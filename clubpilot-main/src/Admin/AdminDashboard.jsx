@@ -122,7 +122,7 @@ const pageDetails = {
   },
 };
 
-function AdminDashboard({ onLogout }) {
+function AdminDashboard({ onLogout,goToProfile }) {
   const { darkMode } = useTheme(); 
   const [activePage, setActivePage] = useState("overview");
   const [showNotifications, setShowNotifications] = useState(false);
@@ -218,7 +218,7 @@ function AdminDashboard({ onLogout }) {
         <SidebarProfileCard 
           role="admin" 
           username="Admin" 
-          goToProfile={() => {}} 
+          goToProfile={goToProfile} 
         />
       </aside>
 

@@ -192,7 +192,7 @@ function App() {
     if (role?.toLowerCase() === 'admin') {
       return (
         <AdminProvider>
-          <AdminDashboard onLogout={confirmLogout} />
+          <AdminDashboard onLogout={confirmLogout} goToProfile={goToProfile} />
         </AdminProvider>
       );
     }
