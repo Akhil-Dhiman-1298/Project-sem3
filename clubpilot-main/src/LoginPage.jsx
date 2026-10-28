@@ -8,6 +8,7 @@ function LoginPage({ onLogin, goToSignUp }) {
   const { darkMode } = useTheme();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state add ki
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -18,52 +19,46 @@ function LoginPage({ onLogin, goToSignUp }) {
     AOS.refresh();
   }, []);
 
-  const handleLogin = () => {
-    let role = '';
-    let memberId = null;
-
-    if (username === 'admin' && password === '686admin123') {
-      role = 'admin';
-    } else if (username === 'leader' && password === '686leader123') {
-      role = 'leader';
-    } else if (username === 'user' && password === '686user123') {
-      role = 'user';
-    } else if (username === 'user1' && password === '686user1') {
-      role = 'user';
-      memberId = 1;
-    } else if (username === 'user2' && password === '686user2') {
-      role = 'user';
-      memberId = 2;
-    } else if (username === 'user3' && password === '686user3') {
-      role = 'user';
-      memberId = 3;
-    } else if (username === 'user4' && password === '686user4') {
-      role = 'user';
-      memberId = 4;
-    } else if (username === 'user5' && password === '686user5') {
-      role = 'user';
-      memberId = 5;
-    } else if (username === 'member1' && password === '686member1') {
-      role = 'core-member';
-      memberId = 1;
-    } else if (username === 'member2' && password === '686member2') {
-      role = 'core-member';
-      memberId = 2;
-    } else if (username === 'member3' && password === '686member3') {
-      role = 'core-member';
-      memberId = 3;
-    } else if (username === 'member4' && password === '686member4') {
-      role = 'core-member';
-      memberId = 4;
-    } else {
-      alert('Invalid username or password');
+  // ✅ Database API se Login
+  const handleLogin = async () => {
+    if (!username || !password) {
+      alert('Please enter username and password');
       return;
     }
 
-    sessionStorage.setItem('username', username);
-    sessionStorage.setItem('userRole', role);
+    setLoading(true);
 
-    onLogin(role, memberId);
+    try {
+      const res = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!res.ok) {
+        alert('Invalid username or password');
+        setLoading(false);
+        return;
+      }
+
+      const user = await res.json();
+      
+      // ✅ Session Storage me save karo
+      sessionStorage.setItem('username', user.username);
+      sessionStorage.setItem('userRole', user.role);
+      if (user.member_id) {
+        sessionStorage.setItem('currentMemberId', user.member_id);
+      }
+
+      // ✅ App.jsx me data pass karo
+      onLogin(user.role, user.member_id);
+
+    } catch (err) {
+      console.error(err);
+      alert('Server error. Backend chal raha hai? (Check terminal)');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleUsernameKeyDown = (e) => {
@@ -119,8 +114,8 @@ function LoginPage({ onLogin, goToSignUp }) {
             onKeyDown={handlePasswordKeyDown}
           />
 
-          <button className="login-submit" onClick={handleLogin}>
-            Sign In <span>→</span>
+          <button className="login-submit" onClick={handleLogin} disabled={loading}>
+            {loading ? 'Signing In...' : 'Sign In'} <span>→</span>
           </button>
 
           <div className="login-footer">

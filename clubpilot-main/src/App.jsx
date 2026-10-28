@@ -177,6 +177,7 @@
 //     }, 300);
 //   };
 
+//   // ---- ROUTING START ----
 
 //   if (path === '/login') {
 //     return <LoginPage onLogin={handleLogin} goToSignUp={goToSignUp} />;
@@ -186,17 +187,17 @@
 //     return <SignUpPage onSignUp={handleSignUp} goToLogin={goToLogin} />;
 //   }
 
- 
-// if (path === '/admin') {
-//   if (role?.toLowerCase() === 'admin') {
-//     return (
-//       <AdminProvider>
-//         <AdminDashboard onLogout={confirmLogout} />
-//       </AdminProvider>
-//     );
+//   // ✅ Admin Dashboard Routing (AdminProvider wrapped correctly)
+//   if (path === '/admin') {
+//     if (role?.toLowerCase() === 'admin') {
+//       return (
+//         <AdminProvider>
+//           <AdminDashboard onLogout={confirmLogout} />
+//         </AdminProvider>
+//       );
+//     }
+//     return null;
 //   }
-//   return null;
-// }
 
 //   if (path === '/events') {
 //     return (
@@ -217,8 +218,8 @@
 //             setEvents={setEvents} 
 //             goToAnalytics={goToAnalytics} 
 //             onEventClick={goToEventDetail} 
-//             currentMemberId={currentMemberId}
-//             dispatch={dispatch} 
+//             currentMemberId={currentMemberId} 
+//             dispatch={dispatch}
 //           />
 //         </div>
 //       </div>
@@ -245,7 +246,7 @@
 //             role={role} 
 //             setEvents={setEvents} 
 //             currentMemberId={currentMemberId} 
-//             dispatch={dispatch} 
+//             dispatch={dispatch}
 //           />
 //         </div>
 //       </div>
@@ -286,6 +287,7 @@
 //         initialTab={tab}
 //         goToLanding={goToLanding}
 //         goToProfile={goToProfile}
+//          dispatch={dispatch}
 //       />
 //     );
 //   }
@@ -335,6 +337,7 @@
 //     );
 //   }
 
+//   // ---- LANDING PAGE ----
 //   return (
 //     <div className={darkMode ? "main-layout dark" : "main-layout"}>
 //       {!role ? (
@@ -467,6 +470,26 @@ function App() {
     dispatch({ type: 'SET_EVENTS', payload: nextEvents });
   };
 
+  // ✅ NEW: DB se events fetch karo jab app load ho
+  useEffect(() => {
+    const fetchEventsFromDB = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/events');
+        if (res.ok) {
+          const data = await res.json();
+          // Agar DB me data hai, toh local state ko update karo
+          if (data && Array.isArray(data) && data.length > 0) {
+            dispatch({ type: 'SET_EVENTS', payload: data });
+          }
+        }
+      } catch (err) {
+        console.log("Backend offline, using local events.");
+      }
+    };
+    
+    fetchEventsFromDB();
+  }, []); // Sirf ek baar jab app mount hoga
+
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
@@ -581,7 +604,6 @@ function App() {
     return <SignUpPage onSignUp={handleSignUp} goToLogin={goToLogin} />;
   }
 
-  // ✅ Admin Dashboard Routing (AdminProvider wrapped correctly)
   if (path === '/admin') {
     if (role?.toLowerCase() === 'admin') {
       return (
@@ -681,7 +703,7 @@ function App() {
         initialTab={tab}
         goToLanding={goToLanding}
         goToProfile={goToProfile}
-         dispatch={dispatch}
+        dispatch={dispatch}
       />
     );
   }
