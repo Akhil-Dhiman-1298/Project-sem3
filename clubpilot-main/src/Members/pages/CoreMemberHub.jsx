@@ -3,13 +3,14 @@ import { members } from "../data/memberData";
 import "../Members.css";
 
 function CoreMemberHub({ memberId, tasks }) {
+  // 🔥 YAHAN FIX KIYA HAI: String comparison taaki '1' aur 1 dono match ho
   const currentMember = members.find(
-    (member) => member.id === memberId
+    (member) => String(member.id) === String(memberId) || `core-member_${member.id}` === memberId
   );
 
   const myTasks = useMemo(() => {
     return tasks.filter(
-      (task) => task.assignedTo === memberId
+      (task) => String(task.assignedTo) === String(memberId) || `core-member_${task.assignedTo}` === memberId
     );
   }, [tasks, memberId]);
 

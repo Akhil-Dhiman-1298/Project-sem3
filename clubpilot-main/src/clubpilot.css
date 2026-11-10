@@ -82,7 +82,7 @@ body {
     flex-shrink: 0;
     position: relative;
     top: 0;
-    overflow-x: hidden; /* ✅ Ye add kiya scrollbar rokne ke liye */
+    overflow-x: hidden; 
 }
 
 /* ✅ Sidebar Scroll Area */
@@ -936,3 +936,4 @@ body {
 .main-layout.dark .spc-role.role-leader { color: #FBBF24; }
 .main-layout.dark .spc-role.role-core-member { color: #A78BFA; }
 .main-layout.dark .spc-role.role-user { color: #818CF8; }
+

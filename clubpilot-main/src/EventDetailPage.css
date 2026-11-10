@@ -1099,3 +1099,867 @@
   color: #FBBF24;                           /* Bright yellow text */
   border: 1px solid rgba(251, 191, 36, 0.3); /* Halka border taaki alag dikhe */
 }
+
+/* ==========================================
+   EVENT DETAIL PAGE BASE STYLES (TERA PURANA CSS)
+   ========================================== */
+/* (Tere saare edp- classes wale styles yahan aayenge, 
+   jaise .edp-wrap, .edp-hero, .edp-grid, .edp-card, etc. 
+   Unko mat chhedna, bas unke niche ye naya code daal dena) */
+
+
+/* ==========================================
+   🎟️ PREMIUM VIRTUAL TICKET (LIGHT + DARK)
+   ========================================== */
+
+.ticket-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
+}
+
+.ticket-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: ticketPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ticketPop {
+  0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.ticket-header {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  padding: 30px 24px 20px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.ticket-logo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.ticket-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.ticket-status {
+  display: inline-block;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
+}
+
+/* Perforated edge divider */
+.ticket-divider {
+  position: relative;
+  height: 30px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.cutout {
+  width: 30px;
+  height: 30px;
+  background: rgba(15, 23, 42, 0.6); /* Matches overlay */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  backdrop-filter: blur(8px); /* Trick to blend */
+}
+.cutout.left { left: -15px; }
+.cutout.right { right: -15px; }
+
+.dashed-line {
+  flex: 1;
+  margin: 0 30px;
+  border-top: 2px dashed #e2e8f0;
+}
+
+.ticket-body {
+  padding: 10px 24px 24px;
+}
+
+.ticket-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Fake Barcode */
+.ticket-barcode {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.barcode-lines {
+  height: 40px;
+  width: 80%;
+  margin: 0 auto 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #1e293b,
+    #1e293b 2px,
+    transparent 2px,
+    transparent 4px,
+    #1e293b 4px,
+    #1e293b 6px,
+    transparent 6px,
+    transparent 10px
+  );
+  opacity: 0.8;
+}
+
+.ticket-id {
+  font-family: monospace;
+  font-size: 14px;
+  color: #64748b;
+  letter-spacing: 2px;
+}
+
+.ticket-footer {
+  padding: 0 24px 24px;
+}
+
+.ticket-close-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 12px;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ticket-close-btn:hover {
+  background: #e2e8f0;
+}
+
+
+/* ==========================================
+   🌙 DARK MODE SUPPORT FOR TICKET
+   ========================================== */
+
+.main-layout.dark .ticket-card,
+.event-detail-page.dark-mode .ticket-card {
+  background: #1e293b;
+}
+
+.main-layout.dark .ticket-divider,
+.event-detail-page.dark-mode .ticket-divider {
+  background: #1e293b;
+}
+
+.main-layout.dark .dashed-line,
+.event-detail-page.dark-mode .dashed-line {
+  border-top-color: #334155; /* Darker dashed line */
+}
+
+.main-layout.dark .info-value,
+.event-detail-page.dark-mode .info-value {
+  color: #f1f5f9;
+}
+
+.main-layout.dark .info-label,
+.event-detail-page.dark-mode .info-label {
+  color: #94a3b8;
+}
+
+.main-layout.dark .ticket-barcode,
+.event-detail-page.dark-mode .ticket-barcode {
+  border-top-color: #334155;
+}
+
+.main-layout.dark .ticket-close-btn,
+.event-detail-page.dark-mode .ticket-close-btn {
+  background: #334155;
+  color: #f1f5f9;
+}
+
+.main-layout.dark .ticket-close-btn:hover,
+.event-detail-page.dark-mode .ticket-close-btn:hover {
+  background: #475569;
+}
+
+.main-layout.dark .barcode-lines,
+.event-detail-page.dark-mode .barcode-lines {
+  background: repeating-linear-gradient(
+    90deg,
+    #f1f5f9,
+    #f1f5f9 2px,
+    transparent 2px,
+    transparent 4px,
+    #f1f5f9 4px,
+    #f1f5f9 6px,
+    transparent 6px,
+    transparent 10px
+  );
+}
+
+.main-layout.dark .ticket-id,
+.event-detail-page.dark-mode .ticket-id {
+  color: #94a3b8;
+}
+
+/* ==========================================
+   🎟️ PREMIUM VIRTUAL TICKET (CENTER-ALIGNED)
+   ========================================== */
+
+.ticket-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
+}
+
+.ticket-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: ticketPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ticketPop {
+  0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Ticket Header */
+.ticket-header {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  padding: 30px 24px 20px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.ticket-logo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.ticket-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.ticket-status {
+  display: inline-block;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
+}
+
+/* Perforated edge divider */
+.ticket-divider {
+  position: relative;
+  height: 30px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.cutout {
+  width: 30px;
+  height: 30px;
+  background: rgba(15, 23, 42, 0.6); 
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  backdrop-filter: blur(8px); 
+}
+.cutout.left { left: -15px; }
+.cutout.right { right: -15px; }
+
+.dashed-line {
+  flex: 1;
+  margin: 0 30px;
+  border-top: 2px dashed #e2e8f0;
+}
+
+/* Ticket Body */
+.ticket-body {
+  padding: 10px 24px 24px;
+}
+
+.ticket-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* 🔥 Center-Aligned QR Code Section */
+.ticket-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding-top: 24px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.main-layout.dark .ticket-qr-section,
+.event-detail-page.dark-mode .ticket-qr-section {
+  border-top-color: #334155;
+}
+
+/* Ticket ID Container */
+.ticket-id-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.ticket-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 2px;
+}
+
+.ticket-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 1px;
+}
+
+.main-layout.dark .ticket-number,
+.event-detail-page.dark-mode .ticket-number {
+  color: #f1f5f9;
+}
+
+/* QR Code Frame */
+.qr-frame {
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-layout.dark .qr-frame,
+.event-detail-page.dark-mode .qr-frame {
+  background: #ffffff; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: #334155;
+}
+
+/* Scan Instruction */
+.scan-instruction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.main-layout.dark .scan-instruction,
+.event-detail-page.dark-mode .scan-instruction {
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.1);
+}
+
+/* Ticket Footer */
+.ticket-footer {
+  padding: 0 24px 24px;
+}
+
+.ticket-close-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 12px;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ticket-close-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ==========================================
+   🌙 DARK MODE SUPPORT FOR TICKET
+   ========================================== */
+
+.main-layout.dark .ticket-card,
+.event-detail-page.dark-mode .ticket-card {
+  background: #1e293b;
+}
+
+.main-layout.dark .ticket-divider,
+.event-detail-page.dark-mode .ticket-divider {
+  background: #1e293b;
+}
+
+.main-layout.dark .dashed-line,
+.event-detail-page.dark-mode .dashed-line {
+  border-top-color: #334155;
+}
+
+.main-layout.dark .info-value,
+.event-detail-page.dark-mode .info-value {
+  color: #f1f5f9;
+}
+
+.main-layout.dark .info-label,
+.event-detail-page.dark-mode .info-label {
+  color: #94a3b8;
+}
+
+.main-layout.dark .ticket-close-btn,
+.event-detail-page.dark-mode .ticket-close-btn {
+  background: #334155;
+  color: #f1f5f9;
+}
+
+.main-layout.dark .ticket-close-btn:hover,
+.event-detail-page.dark-mode .ticket-close-btn:hover {
+  background: #475569;
+}
+
+/* ==========================================
+   🔔 NOTIFICATION BELL & DROPDOWN
+   ========================================== */
+
+.notif-bell-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.notif-bell-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.notif-bell-btn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.notif-bell-btn.has-notif {
+  color: #6366f1;
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.main-layout.dark .notif-bell-btn,
+.event-detail-page.dark-mode .notif-bell-btn {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+  box-shadow: none;
+}
+
+.main-layout.dark .notif-bell-btn.has-notif,
+.event-detail-page.dark-mode .notif-bell-btn.has-notif {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: #6366f1;
+  color: #a78bfa;
+}
+
+/* Red Dot Indicator */
+.notif-dot {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Dropdown Menu */
+.notif-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 320px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  z-index: 9999;
+  animation: dropdownFade 0.2s ease-out;
+  overflow: hidden;
+}
+
+@keyframes dropdownFade {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.notif-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.notif-header button {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.notif-header button:hover {
+  color: #ef4444;
+}
+
+.notif-body {
+  padding: 16px;
+}
+
+.notif-item {
+  display: flex;
+  gap: 12px;
+}
+
+.notif-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #6366f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.notif-text p {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* 🔥 OTP Display Box Spacing Fix */
+.otp-display-box {
+  background: #eef2ff;
+  border: 1px dashed #c7d2fe;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+.otp-display-box strong {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  color: #4f46e5;
+  font-family: monospace;
+}
+
+.notif-action-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.notif-action-btn:hover {
+  background: #4f46e5;
+}
+
+.no-notif {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+  padding: 20px 0;
+}
+
+/* Dark Mode Dropdown */
+.main-layout.dark .notif-dropdown,
+.event-detail-page.dark-mode .notif-dropdown {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.main-layout.dark .notif-header,
+.event-detail-page.dark-mode .notif-header {
+  background: #0f172a;
+  border-bottom-color: #334155;
+}
+
+.main-layout.dark .notif-header h4,
+.event-detail-page.dark-mode .notif-header h4 {
+  color: #f1f5f9;
+}
+
+.main-layout.dark .notif-text p,
+.event-detail-page.dark-mode .notif-text p {
+  color: #cbd5e1;
+}
+
+.main-layout.dark .notif-icon,
+.event-detail-page.dark-mode .notif-icon {
+  background: rgba(167, 139, 250, 0.1);
+  color: #a78bfa;
+}
+
+.main-layout.dark .otp-display-box,
+.event-detail-page.dark-mode .otp-display-box {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.main-layout.dark .otp-display-box strong,
+.event-detail-page.dark-mode .otp-display-box strong {
+  color: #a78bfa;
+}
+
+
+/* ==========================================
+   ✅ CUSTOM SUCCESS MODAL
+   ========================================== */
+
+.confirm-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.success-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 24px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.main-layout.dark .success-modal,
+.event-detail-page.dark-mode .success-modal {
+  background: #1e293b;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon-wrap {
+  width: 70px;
+  height: 70px;
+  background: #ecfdf5;
+  color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.1);
+}
+
+.main-layout.dark .success-icon-wrap,
+.event-detail-page.dark-mode .success-icon-wrap {
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.05);
+}
+
+.success-modal h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.main-layout.dark .success-modal h3,
+.event-detail-page.dark-mode .success-modal h3 {
+  color: #f1f5f9;
+}
+
+.success-modal p {
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.main-layout.dark .success-modal p,
+.event-detail-page.dark-mode .success-modal p {
+  color: #94a3b8;
+}
+
+.success-modal .confirm-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.success-modal .btn-confirm-yes {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.success-modal .btn-confirm-yes:hover {
+  background: #059669;
+}

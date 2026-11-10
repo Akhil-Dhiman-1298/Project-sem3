@@ -364,6 +364,45 @@
     pointer-events: none;
 }
 
+/* =========================================================
+   ONGOING CARD - RED BORDER & PREMIUM BADGE (LIGHT + DARK)
+   ========================================================= */
+
+/* 1. Border ko Laal (Red) kar de - Light Mode */
+.event-card:has(.event-status-badge.ongoing)::before {
+    background: linear-gradient(135deg, #EF4444, #DC2626) !important;
+    opacity: 1 !important;
+}
+
+/* 2. "Ongoing" Badge ko Premium Laal bana de - Light Mode */
+.event-card:has(.event-status-badge.ongoing) .event-status-badge.ongoing {
+    background: #EF4444 !important; /* Solid Red */
+    color: #FFFFFF !important; /* White text */
+    font-weight: 800 !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4) !important;
+}
+
+
+/* =========================================================
+   DARK MODE FIXES
+   ========================================================= */
+
+/* Dark mode me border thoda aur bright (Neon Red) karega taaki dark bg pe pop kare */
+.main-layout.dark .event-card:has(.event-status-badge.ongoing)::before,
+.dark-mode .event-card:has(.event-status-badge.ongoing)::before {
+    background: linear-gradient(135deg, #F87171, #EF4444) !important; /* Brighter Red */
+    opacity: 1 !important;
+}
+
+/* Dark mode me "Ongoing" badge ka look */
+.main-layout.dark .event-card:has(.event-status-badge.ongoing) .event-status-badge.ongoing,
+.dark-mode .event-card:has(.event-status-badge.ongoing) .event-status-badge.ongoing {
+    background: #EF4444 !important; /* Solid Red */
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.6) !important; /* Zyada glow dark mode me */
+}
+
 .event-card:hover::before {
     opacity: 1;
 }
@@ -2171,7 +2210,7 @@
   cursor: pointer;
   margin: 0;
   border: 2px solid #CBD5E1;
-  border-radius: 6px; /* 👈 Border radius yahan hai */
+  border-radius: 6px; /* Border radius yahan hai */
   background: #ffffff;
   transition: all 0.2s ease;
 }
@@ -2203,3 +2242,669 @@
   background: #A78BFA;
   border-color: #A78BFA;
 }
+
+
+.calendar-cell.today {
+    background: #F3E8FF !important; /* Light Purple */
+    border: 2px solid #7C3AED !important; /* Purple Border */
+}
+
+/* Aaj ki date (number) ko ek solid purple circle me daalega */
+.calendar-cell.today .calendar-date {
+    background: #7C3AED !important;
+    color: #FFFFFF !important;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Gol shape */
+    font-weight: 800 !important;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+    margin: 0; /* Alignment fix */
+}
+
+
+.main-layout.dark .calendar-cell.today,
+.dark-mode .calendar-cell.today {
+    background: rgba(124, 58, 237, 0.15) !important;
+    border-color: #A78BFA !important;
+}
+
+.main-layout.dark .calendar-cell.today .calendar-date,
+.dark-mode .calendar-cell.today .calendar-date {
+    background: #A78BFA !important;
+    color: #0F172A !important;
+}
+
+/* ==========================================
+   ✈️ CLUBPILOT AEROPLANE ANIMATION (LIGHT + DARK)
+   ========================================== */
+
+/* Dark overlay jisme animation chalega */
+.plane-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6); /* Halka transparent */
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Dark Mode Overlay ko aur zyada dark aur rich banao */
+.main-layout.dark .plane-overlay,
+.event-page.dark-mode .plane-overlay {
+  background: rgba(2, 6, 23, 0.85); /* Deep black-blue */
+}
+
+/* Boarding Confirmed Text (Light Mode) */
+.plane-text {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseText 1.5s infinite;
+}
+
+/* Dark Mode Text (Neon Glow) */
+.main-layout.dark .plane-text,
+.event-page.dark-mode .plane-text {
+  background: linear-gradient(90deg, #818cf8, #c084fc, #e879f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.6));
+}
+
+/* Subtext (Adding you to the flight...) */
+.plane-subtext {
+  font-size: 16px;
+  color: #475569; /* Dark gray for light mode */
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Dark Mode Subtext */
+.main-layout.dark .plane-subtext,
+.event-page.dark-mode .plane-subtext {
+  color: #94a3b8; /* Light gray for dark mode */
+}
+
+/* Container jahan plane udega */
+.plane-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FontAwesome Plane Icon (Light Mode) */
+.plane-icon {
+  font-size: 60px;
+  color: #6366f1;
+  position: absolute;
+  left: -100px;
+  animation: flyPlane 2.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+  z-index: 2;
+  transform: rotate(-15deg);
+  filter: drop-shadow(0 10px 15px rgba(99, 102, 241, 0.5));
+}
+
+/* Dark Mode FontAwesome Plane Icon (Neon Glow) */
+.main-layout.dark .plane-icon,
+.event-page.dark-mode .plane-icon {
+  color: #a78bfa;
+  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.9)) drop-shadow(0 0 40px rgba(167, 139, 250, 0.5));
+}
+
+/* Dashed Trail (Contrail) */
+.plane-trail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(99, 102, 241, 0.8) 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  width: 0%;
+  transform: translateY(-50%);
+  animation: drawTrail 2.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+/* Dark Mode Trail */
+.main-layout.dark .plane-trail,
+.event-page.dark-mode .plane-trail {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(167, 139, 250, 0.9),
+    rgba(167, 139, 250, 0.9) 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
+}
+
+/* ==========================================
+   ANIMATION KEYFRAMES
+   ========================================== */
+
+@keyframes flyPlane {
+  0% {
+    left: -10%;
+    transform: rotate(-15deg) scale(0.6);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  50% {
+    left: 50%;
+    transform: rotate(-15deg) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    transform: rotate(-15deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes drawTrail {
+  0% { width: 0%; left: 0; opacity: 0; }
+  20% { opacity: 1; }
+  50% { width: 50%; left: 0; opacity: 1; }
+  100% { width: 100%; left: 0; opacity: 0; }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ==========================================
+   ✈️ CLUBPILOT AEROPLANE ANIMATION (VISIBLE IN LIGHT & DARK)
+   ========================================== */
+
+/* Overlay Background */
+.plane-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.4); /* Halka transparent dark overlay taaki background dikhe par plane pop kare */
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Dark Mode Overlay */
+.main-layout.dark .plane-overlay,
+.event-page.dark-mode .plane-overlay {
+  background: rgba(2, 6, 23, 0.85); /* Dark mode mein aur zyada dark */
+}
+
+/* Boarding Confirmed Text */
+.plane-text {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  /* Deep Violet to Neon Pink Gradient */
+  background: linear-gradient(90deg, #4c1d95, #db2777); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseText 1.5s infinite;
+}
+
+/* Dark Mode Text */
+.main-layout.dark .plane-text,
+.event-page.dark-mode .plane-text {
+  background: linear-gradient(90deg, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(244, 114, 182, 0.6));
+}
+
+/* Subtext */
+.plane-subtext {
+  font-size: 16px;
+  color: #1e293b; /* Dark slate for light mode */
+  margin-top: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.main-layout.dark .plane-subtext,
+.event-page.dark-mode .plane-subtext {
+  color: #cbd5e1; /* Light for dark mode */
+}
+
+.plane-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔥 PLANE ICON (Deep Dark Violet for Light Mode) */
+.plane-icon {
+  font-size: 65px;
+  color: #4c1d95; /* Ekdum dark violet color jo white bg par visible ho */
+  position: absolute;
+  left: -100px;
+  animation: flyPlane 2.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+  z-index: 2;
+  transform: rotate(-15deg);
+  filter: drop-shadow(0 10px 15px rgba(76, 29, 149, 0.4)); /* Halka sa shadow */
+}
+
+/* Dark Mode Plane (Neon Glow) */
+.main-layout.dark .plane-icon,
+.event-page.dark-mode .plane-icon {
+  color: #c084fc; /* Bright pinkish purple */
+  filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.9)) drop-shadow(0 0 40px rgba(192, 132, 252, 0.5));
+}
+
+/* Trail (Dashed line) */
+.plane-trail {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  height: 5px;
+  /* Light mode trail: dark violet dashed */
+  background: repeating-linear-gradient(
+    90deg,
+    #4c1d95,
+    #4c1d95 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  width: 0%;
+  transform: translateY(-50%);
+  animation: drawTrail 2.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+  z-index: 1;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+/* Dark Mode Trail */
+.main-layout.dark .plane-trail,
+.event-page.dark-mode .plane-trail {
+  background: repeating-linear-gradient(
+    90deg,
+    #c084fc,
+    #c084fc 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.6);
+  opacity: 1;
+}
+
+/* ==========================================
+   ANIMATION KEYFRAMES
+   ========================================== */
+
+@keyframes flyPlane {
+  0% {
+    left: -10%;
+    transform: rotate(-15deg) scale(0.8);
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  50% {
+    left: 50%;
+    transform: rotate(-15deg) scale(1.15);
+    opacity: 1;
+  }
+  85% { opacity: 1; }
+  100% {
+    left: 110%;
+    transform: rotate(-15deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes drawTrail {
+  0% { width: 0%; left: 0; opacity: 0; }
+  15% { opacity: 1; }
+  50% { width: 50%; left: 0; opacity: 1; }
+  100% { width: 100%; left: 0; opacity: 0; }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* QR Button in Event Card */
+.qr-btn-wrapper {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.qr-btn-wrapper:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.qr-btn-wrapper i {
+  font-size: 16px;
+  color: #6366f1;
+}
+
+/* Dark mode for QR button */
+.main-layout.dark .qr-btn-wrapper,
+.event-page.dark-mode .qr-btn-wrapper {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.main-layout.dark .qr-btn-wrapper i,
+.event-page.dark-mode .qr-btn-wrapper i {
+  color: #a78bfa;
+}
+
+/* Light Mode Background */
+.plane-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+  
+  /* 🔥 Sirf ye background color change karna hai */
+  background: #f8f5ff; /* Ekdum soft lavender/light purple tint jo plane ke sath match kare */
+  /* Agar thoda aur bright chahiye toh #f3f0ff ya #ffffff bhi kar sakta hai */
+}
+
+/* Dark Mode Background */
+.main-layout.dark .plane-overlay,
+.event-page.dark-mode .plane-overlay {
+  background: #0f172a; /* Deep dark blue/black */
+}
+
+
+
+
+.main-layout.dark .event-card .thanks-badge,
+.dark-mode .event-card .thanks-badge {
+    background: rgba(16, 185, 129, 0.15) !important; /* Dark transparent green */
+    color: #34D399 !important; /* Neon mint green */
+    border: 1px solid rgba(52, 211, 153, 0.3) !important; /* Subtle border */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1) !important;
+}
+
+.main-layout.dark .event-card .thanks-badge i,
+.dark-mode .event-card .thanks-badge i {
+    color: #34D399 !important; /* Icon color */
+}
+
+/* =========================================================
+   REGISTERED & CANCEL BADGE — DARK MODE PREMIUM FIX
+   ========================================================= */
+
+/* 1. "Registered" Badge Dark Mode Fix */
+.main-layout.dark .already-participated,
+.dark-mode .already-participated {
+    background: rgba(52, 211, 153, 0.15) !important; /* Transparent Neon Mint */
+    color: #34D399 !important; /* Bright Mint Text */
+    border: 1px solid rgba(52, 211, 153, 0.3) !important;
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.1) !important;
+}
+
+/* 2. "Cancel" Button Dark Mode Fix */
+.main-layout.dark .cancel-participation-btn,
+.dark-mode .cancel-participation-btn {
+    background: rgba(239, 68, 68, 0.15) !important; /* Transparent Red */
+    color: #F87171 !important; /* Soft Red Text */
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Cancel Button Hover Effect */
+.main-layout.dark .cancel-participation-btn:hover,
+.dark-mode .cancel-participation-btn:hover {
+    background: rgba(239, 68, 68, 0.25) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* =========================================================
+   PARTICIPATE BUTTON — DARK MODE PREMIUM FIX
+   ========================================================= */
+
+.main-layout.dark .event-page.dark-mode .participate-btn,
+.dark-mode .event-page .participate-btn,
+.main-layout.dark .event-card .participate-btn,
+.dark-mode .participate-btn {
+    background: rgba(249, 115, 22, 0.15) !important; /* Transparent Orange */
+    color: #FB923C !important; /* Bright Orange Text */
+    border: 1px solid rgba(249, 115, 22, 0.4) !important;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.1) !important;
+    backdrop-filter: blur(5px);
+}
+
+.main-layout.dark .event-page.dark-mode .participate-btn:hover,
+.dark-mode .event-page .participate-btn:hover,
+.main-layout.dark .event-card .participate-btn:hover,
+.dark-mode .participate-btn:hover {
+    background: rgba(249, 115, 22, 0.25) !important; /* Thoda aur bright on hover */
+    color: #FDBA74 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.25) !important;
+}
+
+/* Dark mode icon fix */
+.main-layout.dark .event-page.dark-mode .participate-btn i,
+.dark-mode .participate-btn i {
+    color: #FB923C !important;
+}
+
+
+/* ==========================================
+   ✈️ FINAL OVERRIDE — PERFECT STRAIGHT FLIGHT
+   ========================================== */
+
+/* 1. Plane ka base tilt fix karo (Thoda sa angle jo line se match kare) */
+.plane-icon {
+  transform: rotate(-2deg) !important; /* Sirf 2 degree ka halka tilt */
+}
+
+/* 2. Animation Keyframes Override karo */
+@keyframes flyPlane {
+  0% {
+    left: -10%;
+    transform: rotate(-2deg) scale(0.8) !important; 
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  50% {
+    left: 50%;
+    transform: rotate(-2deg) scale(1.15) !important; 
+    opacity: 1;
+  }
+  85% { opacity: 1; }
+  100% {
+    left: 110%;
+    transform: rotate(-2deg) scale(1) !important; 
+    opacity: 0;
+  }
+}
+
+/* 3. Dashed line ko exact center mein align karo */
+.plane-trail {
+  top: 50% !important; 
+  transform: translateY(-50%) !important;
+}
+
+/* 4. Dark mode ke liye bhi override */
+.main-layout.dark .plane-icon,
+.event-page.dark-mode .plane-icon {
+  transform: rotate(-2deg) !important;
+}
+
+/* 🔥 TIMELINE VIEW */
+.timeline-view {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 40px;
+}
+
+.timeline-view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899);
+  border-radius: 3px;
+  opacity: 0.3;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.timeline-item:hover {
+  transform: translateX(6px);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  z-index: 2;
+}
+
+.dark-mode .timeline-dot {
+  border-color: #1e293b;
+}
+
+.timeline-dot.ongoing {
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+  animation: pulseDot 2s infinite;
+}
+
+.timeline-dot.completed {
+  background: #94a3b8;
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.2);
+}
+
+.timeline-dot.cancelled {
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.1); }
+}
+
+.timeline-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.dark-mode .timeline-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.timeline-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6366f1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.timeline-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.dark-mode .timeline-info h3 {
+  color: #f1f5f9;
+}
+
+.timeline-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.timeline-status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.timeline-status.upcoming { background: #e0e7ff; color: #4338ca; }
+.timeline-status.ongoing { background: #d1fae5; color: #059669; }
+.timeline-status.completed { background: #e2e8f0; color: #475569; }
+.timeline-status.cancelled { background: #fee2e2; color: #dc2626; }

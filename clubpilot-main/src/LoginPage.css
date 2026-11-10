@@ -745,3 +745,76 @@
     gap: 4px;
   }
 }
+/* ===== BUTTON & INPUT STABILITY (Flicker Fix) ===== */
+.login-submit {
+  outline: none;
+}
+
+.login-submit:active {
+  transform: scale(1); 
+}
+
+input {
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important; 
+  height: 48px; 
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+/* ===== ERROR VALIDATION STYLES ===== */
+.input-error {
+  border-color: #f97316 !important; 
+  background-color: #fff7ed !important; 
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15) !important;
+}
+
+.error-space {
+  height: 20px; 
+  margin-top: 2px;
+}
+
+.error-text {
+  display: block;
+  color: #f97316; 
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.general-error-box {
+  background: #fff7ed; 
+  border: 1px solid #fed7aa; 
+  color: #ea580c; 
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Dark mode adjustments */
+.login-page.dark-mode .input-error {
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  border-color: #fb923c !important;
+}
+
+.login-page.dark-mode .error-text {
+  color: #fb923c;
+}
+
+.login-page.dark-mode .general-error-box {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: rgba(249, 115, 22, 0.3);
+  color: #fb923c;
+}

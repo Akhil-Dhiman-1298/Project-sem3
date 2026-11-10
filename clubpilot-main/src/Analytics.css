@@ -10,6 +10,16 @@
     max-width: 100%;
 }
 
+/* Analytics Heading in Dark Mode */
+.main-layout.dark .analytics-header h2,
+.dark-mode .analytics-header h2,
+.main-layout.dark .event-header-left h2,
+.dark-mode .event-header-left h2 {
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
 /* =========================================================
    HEADER ROW — Title left, Back button right
    ========================================================= */

@@ -15,27 +15,39 @@ export function eventsReducer(state, action) {
       return [...state, action.payload];
       
     case 'UPDATE_EVENT':
-      return state.map(e => e.id === action.payload.id ? { ...e, ...action.payload.updates } : e);
+      return state.map(e => 
+        String(e.id) === String(action.payload.id) 
+          ? { ...e, ...action.payload.updates } 
+          : e
+      );
       
     case 'DELETE_EVENT':
-      return state.filter(e => e.id !== action.payload);
+      return state.filter(e => String(e.id) !== String(action.payload));
       
     case 'PARTICIPATE':
-      return state.map(e => e.id === action.payload.id ? {
-        ...e,
-        participants: (e.participants || 0) + 1,
-        participantNames: [...(e.participantNames || []), action.payload.userId]
-      } : e);
+      return state.map(e => 
+        String(e.id) === String(action.payload.id) 
+          ? {
+              ...e,
+              participants: (e.participants || 0) + 1,
+              participantNames: [...(e.participantNames || []), action.payload.userId]
+            } 
+          : e
+      );
       
     case 'CANCEL_PARTICIPATE':
-      return state.map(e => e.id === action.payload.id ? {
-        ...e,
-        participants: Math.max(0, (e.participants || 0) - 1),
-        participantNames: (e.participantNames || []).filter(n => n !== action.payload.userId),
-        attendedBy: (e.attendedBy || []).filter(n => n !== action.payload.userId),
-        pendingAttendance: (e.pendingAttendance || []).filter(n => n !== action.payload.userId),
-        rejectedBy: (e.rejectedBy || []).filter(n => n !== action.payload.userId),
-      } : e);
+      return state.map(e => 
+        String(e.id) === String(action.payload.id) 
+          ? {
+              ...e,
+              participants: Math.max(0, (e.participants || 0) - 1),
+              participantNames: (e.participantNames || []).filter(n => n !== action.payload.userId),
+              attendedBy: (e.attendedBy || []).filter(n => n !== action.payload.userId),
+              pendingAttendance: (e.pendingAttendance || []).filter(n => n !== action.payload.userId),
+              rejectedBy: (e.rejectedBy || []).filter(n => n !== action.payload.userId),
+            } 
+          : e
+      );
 
     case 'SET_EVENTS':
       return action.payload;
